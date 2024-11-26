@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.social_post.subtitle
+    - socials.social_post_type.substack_post
+id: social_post.substack_post.subtitle
+field_name: subtitle
+entity_type: social_post
+bundle: substack_post
+label: Subtitle
+description: ''
+required: false
+translatable: true
+default_value: {}
+default_value_callback: ''
+settings: {}
+field_type: string_long
