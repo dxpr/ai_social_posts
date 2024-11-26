@@ -1,0 +1,10 @@
+'delete social_post entity':
+  title: Delete entity content.
+'add social_post entity':
+  title: Add entity content
+'view social_post entity':
+  title: View entity content
+'edit social_post entity':
+  title: Edit entity content
+'administer social_post entity':
+  title: Administer settings

@@ -1,0 +1,89 @@
+# This file brings everything together. Very nifty!
+
+# Route names can be used in several places, for example links, redirects, and
+# local actions.
+entity.socials_social_post.canonical:
+  path: '/socials_social_post/{socials_social_post}'
+  defaults:
+
+    # Calls the view controller, defined in the annotation of the social_post
+    # entity. This marks this route as belonging to this entity type.
+    _entity_view: 'socials_social_post'
+    _title: 'SocialPost content'
+  requirements:
+
+    # Calls the access controller of the entity, passing in the suffix ('view')
+    # as the $operation parameter to checkAccess().
+    _entity_access: 'socials_social_post.view'
+
+entity.socials_social_post.collection:
+  path: '/admin/content/social-posts'
+  defaults:
+
+    # Calls the list controller, defined in the annotation of the social_post entity.
+    _entity_list: 'socials_social_post'
+    _title: 'Social Posts'
+  requirements:
+
+    # Checks for permission directly.
+    _permission: 'view social_post entity'
+
+socials.social_post_add:
+  path: '/socials_social_post/add'
+  defaults:
+
+    # Calls the form.add controller, defined in the social_post entity.
+    _entity_form: socials_social_post.default
+    _title: 'Add social_post'
+  requirements:
+
+    # Use the entity's access controller. _entity_create_access tells the router
+    # to use the access controller's checkCreateAccess() method instead of
+    # checkAccess().
+    _entity_create_access: 'socials_social_post'
+
+entity.socials_social_post.edit_form:
+  path: '/socials_social_post/{socials_social_post}/edit'
+  defaults:
+
+    # Calls the form.edit controller, defined in the social_post entity.
+    _entity_form: socials_social_post.default
+    _title: 'Edit social_post'
+  requirements:
+
+    # Calls the access controller of the entity, passing in the suffix
+    # ('update') as the $operation parameter to checkAccess().
+    _entity_access: 'socials_social_post.update'
+
+entity.socials_social_post.delete_form:
+  path: '/social_post/{socials_social_post}/delete'
+  defaults:
+
+    # Calls the form.delete controller, defined in the social_post entity.
+    _entity_form: socials_social_post.delete
+    _title: 'Delete social_post'
+  requirements:
+
+    # Calls the access controller of the entity, passing in the suffix
+    # ('delete') as the $operation parameter to checkAccess().
+    _entity_access: 'socials_social_post.delete'
+
+socials.social_post_settings:
+  path: '/admin/structure/socials_social_post_settings'
+  defaults:
+    _form: '\Drupal\socials\Form\SocialPostSettingsForm'
+    _title: 'SocialPost settings'
+  requirements:
+    _permission: 'administer social_post entity'
+
+socials.node.social_posts:
+  path: '/node/{node}/social-posts'
+  defaults:
+    _controller: '\Drupal\socials\Controller\SocialPostController::nodeSocialPosts'
+    _title: 'Social Posts'
+  requirements:
+    _permission: 'add social_post entity'
+  options:
+    parameters:
+      node:
+        type: entity:node

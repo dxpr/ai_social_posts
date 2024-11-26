@@ -1,0 +1,10 @@
+socials.social_post_add:
+
+  # The route which will be invoked when the link is clicked.
+  route_name: socials.social_post_add
+  title: 'Add social_post'
+
+  # The pages where the link appears, indicated by their route names.
+  appears_on:
+    - entity.socials_social_post.collection
+    - entity.socials_social_post.canonical

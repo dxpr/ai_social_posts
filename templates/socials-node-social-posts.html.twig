@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display node social posts.
+ *
+ * Available variables:
+ * - node: The node entity.
+ * - form: The social post creation form.
+ * - posts: Array of existing social posts.
+ */
+#}
+
+<div class="social-posts-wrapper">
+  <h2>{{ 'Create new social post'|t }}</h2>
+  {{ form }}
+
+  {% if posts %}
+    <h2>{{ 'Existing social posts'|t }}</h2>
+    <div class="existing-social-posts">
+      {{ posts }}
+    </div>
+  {% endif %}
+</div>
