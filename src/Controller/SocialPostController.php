@@ -5,6 +5,8 @@ namespace Drupal\socials\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\EntityFormBuilderInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Returns responses for Social Post routes.
@@ -35,7 +37,25 @@ class SocialPostController extends ControllerBase {
   }
 
   /**
-   * Displays social posts of a specific bundle associated with a node.
+   * Loads social posts for a given node and bundle.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node entity.
+   * @param string $bundle
+   *   The bundle type.
+   *
+   * @return \Drupal\socials\Entity\SocialPost[]
+   *   An array of social post entities.
+   */
+  protected function loadPosts(NodeInterface $node, $bundle) {
+    return $this->entityTypeManager()->getStorage('social_post')->loadByProperties([
+      'type' => $bundle,
+      'node_id' => $node->id(),
+    ]);
+  }
+
+  /**
+   * Displays social posts of a specific bundle for a node.
    *
    * @param \Drupal\node\NodeInterface $node
    *   The node entity.
@@ -46,48 +66,81 @@ class SocialPostController extends ControllerBase {
    *   A render array.
    */
   public function nodeBundlePosts(NodeInterface $node, $bundle) {
-    $social_post_storage = $this->entityTypeManager()->getStorage('social_post');
-    
-    // Load existing social posts for this node and bundle
-    $query = $social_post_storage->getQuery()
-      ->condition('node_id', $node->id())
-      ->condition('type', $bundle)
-      ->sort('created', 'DESC')
-      ->accessCheck(TRUE);
+    // Create a new social post entity
+    $social_post = $this->entityTypeManager()->getStorage('social_post')->create([
+      'type' => $bundle,
+      'node_id' => $node->id(),
+    ]);
 
-    $ids = $query->execute();
-    $social_posts = $social_post_storage->loadMultiple($ids);
+    // Get bundle info
+    $bundle_type = $this->entityTypeManager()
+      ->getStorage('social_post_type')
+      ->load($bundle);
+    $bundle_label = $bundle_type ? $bundle_type->label() : ucfirst($bundle);
 
-    $build = [
-      '#theme' => 'social_posts_bundle_tab',
-      '#node' => $node,
-      '#social_posts' => $social_posts,
-      '#bundle' => $bundle,
-      '#cache' => [
-        'tags' => $node->getCacheTags(),
-        'contexts' => ['user.permissions'],
+    // Get the form and set the redirect
+    $form = $this->entityFormBuilder()->getForm($social_post);
+    $form['actions']['submit']['#submit'][] = '::redirectAfterSubmit';
+    $form['#return_path'] = "/node/{$node->id()}/social-posts/$bundle";
+
+    // Update submit button text
+    $form['actions']['submit']['#value'] = $this->t('Create @type', [
+      '@type' => $bundle_label,
+    ]);
+
+    return [
+      'form_wrapper' => [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['social-post-form-wrapper'],
+        ],
+        'heading' => [
+          '#type' => 'html_tag',
+          '#tag' => 'h3',
+          '#value' => $this->t('Create @type', [
+            '@type' => $bundle_label,
+          ]),
+        ],
+        'description' => [
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#value' => $this->t('Create a new post for @title', [
+            '@title' => $node->getTitle(),
+          ]),
+          '#attributes' => [
+            'class' => ['form-description'],
+          ],
+        ],
+        'form' => $form,
+      ],
+      'existing_posts' => [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['social-posts-list'],
+        ],
+        'heading' => [
+          '#type' => 'html_tag',
+          '#tag' => 'h3',
+          '#value' => $this->t('Published Posts'),
+        ],
+        'content' => [
+          '#theme' => 'social_posts_bundle_tab',
+          '#node' => $node,
+          '#social_posts' => $this->loadPosts($node, $bundle),
+          '#bundle' => $bundle,
+        ],
+      ],
+      '#attached' => [
+        'library' => ['socials/social-posts'],
       ],
     ];
+  }
 
-    // Add create button
-    $build['add_link'] = [
-      '#type' => 'link',
-      '#title' => $this->t('Add new @type', [
-        '@type' => $this->entityTypeManager()
-          ->getStorage('social_post_type')
-          ->load($bundle)
-          ->label(),
-      ]),
-      '#url' => Url::fromRoute('socials.social_post_add', [
-        'social_post_type' => $bundle,
-        'node' => $node->id(),
-      ]),
-      '#attributes' => [
-        'class' => ['button', 'button--action', 'button--primary'],
-      ],
-    ];
-
-    return $build;
+  /**
+   * Custom submit handler to redirect back to the bundle page.
+   */
+  public static function redirectAfterSubmit($form, FormStateInterface $form_state) {
+    $form_state->setRedirect('<current>');
   }
 
   /**
