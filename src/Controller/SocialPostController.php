@@ -6,7 +6,6 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\EntityFormBuilderInterface;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Returns responses for Social Post routes.
@@ -78,12 +77,14 @@ class SocialPostController extends ControllerBase {
       ->load($bundle);
     $bundle_label = $bundle_type ? $bundle_type->label() : ucfirst($bundle);
 
-    // Get the form and set the redirect
+    // Get the form
     $form = $this->entityFormBuilder()->getForm($social_post);
-    $form['actions']['submit']['#submit'][] = '::redirectAfterSubmit';
-    $form['#return_path'] = "/node/{$node->id()}/social-posts/$bundle";
+    
+    // Set the destination to the current page's path
+    $current_path = \Drupal::service('path.current')->getPath();
+    $form['#action'] = $form['#action'] . '?destination=' . urlencode($current_path);
 
-    // Update submit button text
+    // Keep existing button text
     $form['actions']['submit']['#value'] = $this->t('Create @type', [
       '@type' => $bundle_label,
     ]);
@@ -121,7 +122,7 @@ class SocialPostController extends ControllerBase {
         'heading' => [
           '#type' => 'html_tag',
           '#tag' => 'h3',
-          '#value' => $this->t('Published Posts'),
+          '#value' => $this->t('Created Posts'),
         ],
         'content' => [
           '#theme' => 'social_posts_bundle_tab',
@@ -134,13 +135,6 @@ class SocialPostController extends ControllerBase {
         'library' => ['socials/social-posts'],
       ],
     ];
-  }
-
-  /**
-   * Custom submit handler to redirect back to the bundle page.
-   */
-  public static function redirectAfterSubmit($form, FormStateInterface $form_state) {
-    $form_state->setRedirect('<current>');
   }
 
   /**
