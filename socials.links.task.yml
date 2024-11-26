@@ -1,44 +1,23 @@
+# Primary tab for content page
 socials.admin:
   title: 'Social Posts'
-  route_name: entity.socials_social_post.collection
+  route_name: entity.social_post.collection
   base_route: system.admin_content
+  weight: 2
 
+# Local tasks for individual social post
 socials.view:
-  route_name: entity.socials_social_post.canonical
-  base_route: entity.socials_social_post.canonical
+  route_name: entity.social_post.canonical
+  base_route: entity.social_post.canonical
   title: View
 
 socials.page_edit:
-  route_name: entity.socials_social_post.edit_form
-  base_route: entity.socials_social_post.canonical
+  route_name: entity.social_post.edit_form
+  base_route: entity.social_post.canonical
   title: Edit
 
 socials.delete_confirm:
-  route_name: entity.socials_social_post.delete_form
-  base_route: entity.socials_social_post.canonical
+  route_name: entity.social_post.delete_form
+  base_route: entity.social_post.canonical
   title: Delete
   weight: 10
-
-socials.settings_tab:
-  route_name: socials.social_post_settings
-  title: Settings
-  base_route: entity.socials_social_post.collection
-
-socials.collection:
-  route_name: entity.socials_social_post.collection
-  title: 'List'
-  base_route: entity.socials_social_post.collection
-  weight: 0
-
-socials.add:
-  route_name: socials.social_post_add
-  title: 'Add Social Post'
-  base_route: entity.socials_social_post.collection
-  weight: 10
-
-# Add tab to nodes
-socials.node_social_posts:
-  route_name: socials.node.social_posts
-  title: 'Social Posts'
-  base_route: entity.node.canonical
-  weight: 100

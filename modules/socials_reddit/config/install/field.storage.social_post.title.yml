@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - socials_reddit
+id: social_post.title
+field_name: title
+entity_type: social_post
+type: string
+settings:
+  max_length: 300
+module: core
+locked: false
+cardinality: 1
+translatable: true

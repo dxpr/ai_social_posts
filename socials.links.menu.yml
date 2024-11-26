@@ -1,10 +1,11 @@
-entity.socials_social_post.collection:
+entity.social_post.collection:
   title: 'Social Posts'
-  route_name: entity.socials_social_post.collection
+  route_name: entity.social_post.collection
   description: 'List of social posts'
   parent: system.admin_content
-socials_social_post.admin.structure.settings:
-  title: 'SocialPost settings'
-  description: 'Configure social_post entity'
-  route_name: socials.social_post_settings
+
+entity.social_post_type.collection:
+  title: 'Social Post Types'
+  description: 'Manage social post types'
+  route_name: entity.social_post_type.collection
   parent: system.admin_structure

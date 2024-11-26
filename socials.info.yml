@@ -1,7 +1,7 @@
-name: Socials
+name: Social Posts
 type: module
-description: Demonstrates how to create a content entity.
-package: Example modules
+description: 'Demonstrates how to create a content entity.'
+package: Social Posts
 core_version_requirement: ^10.3 || ^11.0
 
 # These modules are required by tests; they must be available at bootstrap time.

@@ -41,9 +41,9 @@ class ContentEntityExampleTest extends ExamplesBrowserTestBase {
       'view social_post entity',
       'delete social_post entity',
       'administer social_post entity',
-      'administer socials_social_post display',
-      'administer socials_social_post fields',
-      'administer socials_social_post form display',
+      'administer social_post display',
+      'administer social_post fields',
+      'administer social_post form display',
     ]);
 
     // Anonymous User should not see the link to the listing.
@@ -102,7 +102,7 @@ class ContentEntityExampleTest extends ExamplesBrowserTestBase {
     $assert->pageTextNotContains('test name');
 
     // Settings page.
-    $this->drupalGet('admin/structure/socials_social_post_settings');
+    $this->drupalGet('admin/structure/social_post_settings');
     $assert->pageTextContains('SocialPost Settings');
 
     // Make sure the field manipulation links are available.
@@ -162,42 +162,42 @@ class ContentEntityExampleTest extends ExamplesBrowserTestBase {
     return [
       [
         200,
-        '/socials_social_post/' . $social_post_id,
+        '/social_post/' . $social_post_id,
         'view social_post entity',
       ],
       [
         403,
-        '/socials_social_post/' . $social_post_id,
+        '/social_post/' . $social_post_id,
         '',
       ],
       [
         200,
-        '/socials_social_post/list',
+        '/social_post/list',
         'view social_post entity',
       ],
       [
         403,
-        '/socials_social_post/list',
+        '/social_post/list',
         '',
       ],
       [
         200,
-        '/socials_social_post/add',
+        '/social_post/add',
         'add social_post entity',
       ],
       [
         403,
-        '/socials_social_post/add',
+        '/social_post/add',
         '',
       ],
       [
         200,
-        '/socials_social_post/' . $social_post_id . '/edit',
+        '/social_post/' . $social_post_id . '/edit',
         'edit social_post entity',
       ],
       [
         403,
-        '/socials_social_post/' . $social_post_id . '/edit',
+        '/social_post/' . $social_post_id . '/edit',
         '',
       ],
       [
@@ -212,12 +212,12 @@ class ContentEntityExampleTest extends ExamplesBrowserTestBase {
       ],
       [
         200,
-        'admin/structure/socials_social_post_settings',
+        'admin/structure/social_post_settings',
         'administer social_post entity',
       ],
       [
         403,
-        'admin/structure/socials_social_post_settings',
+        'admin/structure/social_post_settings',
         '',
       ],
     ];
@@ -229,13 +229,13 @@ class ContentEntityExampleTest extends ExamplesBrowserTestBase {
   public function testAddFields() {
     $web_user = $this->drupalCreateUser([
       'administer social_post entity',
-      'administer socials_social_post display',
-      'administer socials_social_post fields',
-      'administer socials_social_post form display',
+      'administer social_post display',
+      'administer social_post fields',
+      'administer social_post form display',
     ]);
 
     $this->drupalLogin($web_user);
-    $entity_name = 'socials_social_post';
+    $entity_name = 'social_post';
     $add_field_url = 'admin/structure/' . $entity_name . '_settings/fields/add-field';
     $this->drupalGet($add_field_url);
     $field_name = 'test_name';

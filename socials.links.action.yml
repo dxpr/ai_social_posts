@@ -2,12 +2,12 @@ socials.social_post_add:
 
   # The route which will be invoked when the link is clicked.
   route_name: socials.social_post_add
-  title: 'Add social_post'
+  title: 'Add social post'
 
   # The pages where the link appears, indicated by their route names.
   appears_on:
-    - entity.socials_social_post.collection
-    - entity.socials_social_post.canonical
+    - entity.social_post.collection
+    - entity.social_post.canonical
 
 social_post_type_add:
   route_name: 'entity.social_post_type.add_form'

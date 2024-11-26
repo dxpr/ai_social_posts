@@ -20,7 +20,7 @@
  * This example implements the Entity API so that we have an entity type usable
  * by the user which you might think of as specialized nodes, but which are
  * different from nodes. These entities are called SocialPost, and are known
- * internally by the machine name socials_social_post.
+ * internally by the machine name social_post.
  *
  * SocialPost is a fieldable content entity used to hold structured information
  * without the overhead of using a node content type. 'Fieldable' means you can

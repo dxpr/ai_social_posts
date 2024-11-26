@@ -29,7 +29,7 @@ class SocialPostTest extends KernelTestBase {
    * Basic CRUD operations on a SocialPost entity.
    */
   public function testEntity() {
-    $this->installEntitySchema('socials_social_post');
+    $this->installEntitySchema('social_post');
     $entity = SocialPost::create([
       'name' => 'Name',
       'first_name' => 'First name',

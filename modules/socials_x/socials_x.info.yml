@@ -1,0 +1,7 @@
+name: Social Posts - X
+type: module
+description: 'Provides X (Twitter) integration for Social Posts'
+package: Social Posts
+core_version_requirement: ^10.3 || ^11.0
+dependencies:
+  - socials:socials

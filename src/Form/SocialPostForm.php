@@ -34,7 +34,7 @@ class SocialPostForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    $form_state->setRedirect('entity.socials_social_post.collection');
+    $form_state->setRedirect('entity.social_post.collection');
     $entity = $this->getEntity();
 
     return $entity->save();

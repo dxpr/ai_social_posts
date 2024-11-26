@@ -50,7 +50,7 @@ class SocialPostController extends ControllerBase {
   public function nodeSocialPosts(NodeInterface $node) {
     // Create a new social post entity pre-filled with node reference
     $social_post = $this->entityTypeManager()
-      ->getStorage('socials_social_post')
+      ->getStorage('social_post')
       ->create([
         'node_id' => $node->id(),
         // Add any other default values you need
@@ -61,7 +61,7 @@ class SocialPostController extends ControllerBase {
 
     // Get existing social posts for this node
     $posts = $this->entityTypeManager()
-      ->getStorage('socials_social_post')
+      ->getStorage('social_post')
       ->loadByProperties([
         'node_id' => $node->id(),
       ]);
@@ -70,7 +70,7 @@ class SocialPostController extends ControllerBase {
     $existing_posts = [];
     foreach ($posts as $post) {
       $existing_posts[] = $this->entityTypeManager()
-        ->getViewBuilder('socials_social_post')
+        ->getViewBuilder('social_post')
         ->view($post, 'default');
     }
 

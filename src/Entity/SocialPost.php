@@ -14,7 +14,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
  * Defines the Social Post entity.
  *
  * @ContentEntityType(
- *   id = "socials_social_post",
+ *   id = "social_post",
  *   label = @Translation("Social Post"),
  *   bundle_label = @Translation("Social Post Type"),
  *   base_table = "social_post",
@@ -41,11 +41,11 @@ use Drupal\Core\Entity\EntityChangedTrait;
  *   bundle_entity_type = "social_post_type",
  *   field_ui_base_route = "entity.social_post_type.edit_form",
  *   links = {
- *     "canonical" = "/social_post/{socials_social_post}",
+ *     "canonical" = "/social_post/{social_post}",
  *     "add-page" = "/social_post/add",
  *     "add-form" = "/social_post/add/{social_post_type}",
- *     "edit-form" = "/social_post/{socials_social_post}/edit",
- *     "delete-form" = "/social_post/{socials_social_post}/delete",
+ *     "edit-form" = "/social_post/{social_post}/edit",
+ *     "delete-form" = "/social_post/{social_post}/delete",
  *     "collection" = "/admin/content/social-posts"
  *   }
  * )

@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - socials_x
+id: social_post.post_content
+field_name: post_content
+entity_type: social_post
+type: string_long
+settings: { }
+module: core
+locked: false
+cardinality: 1
+translatable: true

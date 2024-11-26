@@ -26,7 +26,7 @@ class SocialPostDeleteForm extends ContentEntityConfirmFormBase {
    * If the delete command is canceled, return to the social_post list.
    */
   public function getCancelUrl() {
-    return new Url('entity.socials_social_post.collection');
+    return new Url('entity.social_post.collection');
   }
 
   /**
@@ -50,7 +50,7 @@ class SocialPostDeleteForm extends ContentEntityConfirmFormBase {
         '@type' => $this->entity->bundle(),
         '%title' => $this->entity->label(),
       ]);
-    $form_state->setRedirect('entity.socials_social_post.collection');
+    $form_state->setRedirect('entity.social_post.collection');
   }
 
 }

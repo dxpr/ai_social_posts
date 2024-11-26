@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.social_post.subreddit
+    - socials.social_post_type.reddit_post
+  module:
+    - socials_reddit
+id: social_post.reddit_post.subreddit
+field_name: subreddit
+entity_type: social_post
+bundle: reddit_post
+label: 'Subreddit'
+required: true
+settings:
+  max_length: 255
+field_type: string

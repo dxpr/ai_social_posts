@@ -10,7 +10,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  * @ConfigEntityType(
  *   id = "social_post_type",
  *   label = @Translation("Social Post Type"),
- *   bundle_of = "socials_social_post",
+ *   bundle_of = "social_post",
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "label",

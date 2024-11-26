@@ -76,6 +76,7 @@ class SocialPostListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('ID');
+    $header['type'] = $this->t('Type');
     $header['post'] = $this->t('Post');
     $header['node'] = $this->t('Referenced Node');
     return $header + parent::buildHeader();
@@ -87,6 +88,7 @@ class SocialPostListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /** @var \Drupal\socials\Entity\SocialPost $entity */
     $row['id'] = $entity->id();
+    $row['type'] = $entity->bundle->entity ? $entity->bundle->entity->label() : $entity->bundle();
     $row['post'] = $entity->post->value;
     if ($node = $entity->get('node_id')->entity) {
       $row['node'] = $node->toLink($node->label());
