@@ -8,3 +8,9 @@ socials.social_post_add:
   appears_on:
     - entity.socials_social_post.collection
     - entity.socials_social_post.canonical
+
+social_post_type_add:
+  route_name: 'entity.social_post_type.add_form'
+  title: 'Add social post type'
+  appears_on:
+    - entity.social_post_type.collection
