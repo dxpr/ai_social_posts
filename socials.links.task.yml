@@ -21,3 +21,10 @@ socials.delete_confirm:
   base_route: entity.social_post.canonical
   title: Delete
   weight: 10
+
+# Add the Social Posts tab to nodes
+socials.node.social_posts:
+  route_name: socials.node.social_posts
+  title: 'Social Posts'
+  base_route: entity.node.canonical
+  weight: 100

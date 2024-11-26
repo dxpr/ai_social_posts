@@ -1,0 +1,28 @@
+{# Display add button #}
+{{ add_link }}
+
+{# Display existing social posts #}
+{% if social_posts %}
+  <table>
+    <thead>
+      <tr>
+        <th>{{ 'Content'|t }}</th>
+        <th>{{ 'Created'|t }}</th>
+        <th>{{ 'Operations'|t }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for post in social_posts %}
+      <tr>
+        <td>{{ post.post.value }}</td>
+        <td>{{ post.created.value|date('Y-m-d H:i:s') }}</td>
+        <td>
+          {{ post.operations }}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>{{ 'No posts found.'|t }}</p>
+{% endif %}

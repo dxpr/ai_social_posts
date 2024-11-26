@@ -1,94 +1,74 @@
-# This file brings everything together. Very nifty!
-
-# Route names can be used in several places, for example links, redirects, and
-# local actions.
+# Entity routes
 entity.social_post.canonical:
   path: '/social_post/{social_post}'
   defaults:
-
-    # Calls the view controller, defined in the annotation of the social_post
-    # entity. This marks this route as belonging to this entity type.
     _entity_view: 'social_post'
-    _title: 'SocialPost content'
+    _title: 'Social Post'
   requirements:
-
-    # Calls the access controller of the entity, passing in the suffix ('view')
-    # as the $operation parameter to checkAccess().
     _entity_access: 'social_post.view'
 
 entity.social_post.collection:
   path: '/admin/content/social-posts'
   defaults:
-
-    # Calls the list controller, defined in the annotation of the social_post entity.
     _entity_list: 'social_post'
     _title: 'Social Posts'
   requirements:
-
-    # Checks for permission directly.
     _permission: 'view social_post entity'
 
 socials.social_post_add:
-  path: '/social_post/add'
+  path: '/social_post/add/{social_post_type}'
   defaults:
-
-    # Calls the form.add controller, defined in the social_post entity.
     _entity_form: social_post.default
-    _title: 'Add social_post'
+    _title_callback: '\Drupal\socials\Controller\SocialPostController::addPageTitle'
   requirements:
-
-    # Use the entity's access controller. _entity_create_access tells the router
-    # to use the access controller's checkCreateAccess() method instead of
-    # checkAccess().
     _entity_create_access: 'social_post'
+  options:
+    parameters:
+      social_post_type:
+        type: entity:social_post_type
+      node:
+        type: entity:node
 
 entity.social_post.edit_form:
   path: '/social_post/{social_post}/edit'
   defaults:
-
-    # Calls the form.edit controller, defined in the social_post entity.
     _entity_form: social_post.default
-    _title: 'Edit social_post'
+    _title: 'Edit Social Post'
   requirements:
-
-    # Calls the access controller of the entity, passing in the suffix
-    # ('update') as the $operation parameter to checkAccess().
     _entity_access: 'social_post.update'
 
 entity.social_post.delete_form:
   path: '/social_post/{social_post}/delete'
   defaults:
-
-    # Calls the form.delete controller, defined in the social_post entity.
     _entity_form: social_post.delete
-    _title: 'Delete social_post'
+    _title: 'Delete Social Post'
   requirements:
-
-    # Calls the access controller of the entity, passing in the suffix
-    # ('delete') as the $operation parameter to checkAccess().
     _entity_access: 'social_post.delete'
 
+# Settings routes
 socials.social_post_settings:
   path: '/admin/structure/social_post_settings'
   defaults:
     _form: '\Drupal\socials\Form\SocialPostSettingsForm'
-    _title: 'SocialPost settings'
+    _title: 'Social Post Settings'
   requirements:
     _permission: 'administer social_post entity'
 
+# Node integration routes
 socials.node.social_posts:
   path: '/node/{node}/social-posts'
   defaults:
     _controller: '\Drupal\socials\Controller\SocialPostController::nodeSocialPosts'
     _title: 'Social Posts'
   requirements:
-    _permission: 'add social_post entity'
+    _permission: 'view social_post entity'
   options:
     parameters:
       node:
         type: entity:node
+    _admin_route: TRUE
 
-# Add routes for social post type management
+# Social post type management routes
 entity.social_post_type.collection:
   path: '/admin/structure/social-post-types'
   defaults:
@@ -101,7 +81,7 @@ entity.social_post_type.add_form:
   path: '/admin/structure/social-post-types/add'
   defaults:
     _entity_form: 'social_post_type.add'
-    _title: 'Add social post type'
+    _title: 'Add Social Post Type'
   requirements:
     _permission: 'administer social_post types'
 
@@ -109,7 +89,7 @@ entity.social_post_type.edit_form:
   path: '/admin/structure/social-post-types/manage/{social_post_type}'
   defaults:
     _entity_form: 'social_post_type.edit'
-    _title: 'Edit social post type'
+    _title: 'Edit Social Post Type'
   requirements:
     _permission: 'administer social_post types'
 
@@ -117,6 +97,10 @@ entity.social_post_type.delete_form:
   path: '/admin/structure/social-post-types/manage/{social_post_type}/delete'
   defaults:
     _entity_form: 'social_post_type.delete'
-    _title: 'Delete social post type'
+    _title: 'Delete Social Post Type'
   requirements:
     _permission: 'administer social_post types'
+
+# Dynamic routes for bundle-specific tabs
+route_callbacks:
+  - '\Drupal\socials\Routing\SocialPostRoutes::routes'

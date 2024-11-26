@@ -3,43 +3,16 @@
 namespace Drupal\socials\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Entity\EntityFormBuilderInterface;
 
 /**
- * Controller for social post functionality.
+ * Returns responses for Social Post routes.
  */
 class SocialPostController extends ControllerBase {
 
   /**
-   * The entity form builder.
-   *
-   * @var \Drupal\Core\Entity\EntityFormBuilderInterface
-   */
-  protected $entityFormBuilder;
-
-  /**
-   * Constructs a SocialPostController object.
-   *
-   * @param \Drupal\Core\Entity\EntityFormBuilderInterface $entity_form_builder
-   *   The entity form builder service.
-   */
-  public function __construct(EntityFormBuilderInterface $entity_form_builder) {
-    $this->entityFormBuilder = $entity_form_builder;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('entity.form_builder')
-    );
-  }
-
-  /**
-   * Displays social posts for a node and the creation form.
+   * Displays social posts overview for a node.
    *
    * @param \Drupal\node\NodeInterface $node
    *   The node entity.
@@ -48,41 +21,121 @@ class SocialPostController extends ControllerBase {
    *   A render array.
    */
   public function nodeSocialPosts(NodeInterface $node) {
-    // Create a new social post entity pre-filled with node reference
-    $social_post = $this->entityTypeManager()
-      ->getStorage('social_post')
-      ->create([
-        'node_id' => $node->id(),
-        // Add any other default values you need
-      ]);
-
-    // Get the form
-    $form = $this->entityFormBuilder->getForm($social_post, 'default');
-
-    // Get existing social posts for this node
-    $posts = $this->entityTypeManager()
-      ->getStorage('social_post')
-      ->loadByProperties([
-        'node_id' => $node->id(),
-      ]);
-
-    // Build the list of existing posts
-    $existing_posts = [];
-    foreach ($posts as $post) {
-      $existing_posts[] = $this->entityTypeManager()
-        ->getViewBuilder('social_post')
-        ->view($post, 'default');
-    }
-
-    return [
-      '#theme' => 'socials_node_social_posts',
+    $build = [
+      '#theme' => 'social_posts_overview',
       '#node' => $node,
-      '#form' => $form,
-      '#posts' => $existing_posts,
+      '#cache' => [
+        'tags' => $node->getCacheTags(),
+        'contexts' => ['user.permissions'],
+      ],
+      '#title' => $this->t('Social Posts for @title', ['@title' => $node->getTitle()]),
+    ];
+
+    return $build;
+  }
+
+  /**
+   * Displays social posts of a specific bundle associated with a node.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node entity.
+   * @param string $bundle
+   *   The bundle type.
+   *
+   * @return array
+   *   A render array.
+   */
+  public function nodeBundlePosts(NodeInterface $node, $bundle) {
+    $social_post_storage = $this->entityTypeManager()->getStorage('social_post');
+    
+    // Load existing social posts for this node and bundle
+    $query = $social_post_storage->getQuery()
+      ->condition('node_id', $node->id())
+      ->condition('type', $bundle)
+      ->sort('created', 'DESC')
+      ->accessCheck(TRUE);
+
+    $ids = $query->execute();
+    $social_posts = $social_post_storage->loadMultiple($ids);
+
+    $build = [
+      '#theme' => 'social_posts_bundle_tab',
+      '#node' => $node,
+      '#social_posts' => $social_posts,
+      '#bundle' => $bundle,
       '#cache' => [
         'tags' => $node->getCacheTags(),
         'contexts' => ['user.permissions'],
       ],
     ];
+
+    // Add create button
+    $build['add_link'] = [
+      '#type' => 'link',
+      '#title' => $this->t('Add new @type', [
+        '@type' => $this->entityTypeManager()
+          ->getStorage('social_post_type')
+          ->load($bundle)
+          ->label(),
+      ]),
+      '#url' => Url::fromRoute('socials.social_post_add', [
+        'social_post_type' => $bundle,
+        'node' => $node->id(),
+      ]),
+      '#attributes' => [
+        'class' => ['button', 'button--action', 'button--primary'],
+      ],
+    ];
+
+    return $build;
   }
+
+  /**
+   * Title callback for the add social post form.
+   *
+   * @param string $social_post_type
+   *   The social post type.
+   *
+   * @return string
+   *   The page title.
+   */
+  public function addPageTitle($social_post_type) {
+    $type = $this->entityTypeManager()
+      ->getStorage('social_post_type')
+      ->load($social_post_type);
+    return $this->t('Add @type', ['@type' => $type->label()]);
+  }
+
+  /**
+   * Returns the title for the social posts overview page.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node entity.
+   *
+   * @return string
+   *   The page title.
+   */
+  public function getSocialPostsTitle(NodeInterface $node) {
+    return $this->t('Social Posts for @title', ['@title' => $node->getTitle()]);
+  }
+
+  /**
+   * Returns the title for the bundle-specific posts page.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node entity.
+   * @param string $bundle
+   *   The bundle type.
+   *
+   * @return string
+   *   The page title.
+   */
+  public function getBundlePostsTitle(NodeInterface $node, $bundle) {
+    $type = $this->entityTypeManager()->getStorage('social_post_type')->load($bundle);
+    return $this->t('@bundle Posts for @title', [
+      '@bundle' => $type->label(),
+      '@title' => $node->getTitle(),
+    ]);
+  }
+
 }

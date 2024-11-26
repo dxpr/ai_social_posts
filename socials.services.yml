@@ -1,0 +1,4 @@
+services:
+  socials.post_type_manager:
+    class: Drupal\socials\SocialPostTypeManager
+    arguments: ['@entity_type.manager']
