@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - socials.social_post_type.x_post
+  module:
+    - text
+id: social_post.x_post.default
+targetEntityType: social_post
+bundle: x_post
+mode: default
+content:
+  post:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  node_id:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }
