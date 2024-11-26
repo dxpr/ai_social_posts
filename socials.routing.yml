@@ -16,7 +16,7 @@ entity.social_post.collection:
     _permission: 'view social_post entity'
 
 socials.social_post_add:
-  path: '/social_post/add/{social_post_type}'
+  path: '/social_post/add'
   defaults:
     _entity_form: social_post.default
     _title_callback: '\Drupal\socials\Controller\SocialPostController::addPageTitle'
