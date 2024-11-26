@@ -1,3 +1,4 @@
+uuid: 9c3a316e-5898-473d-8eb7-ff5533cf5c70
 langcode: en
 status: true
 dependencies:
@@ -6,7 +7,10 @@ dependencies:
     - field.field.social_post.reddit_post.title
     - socials.social_post_type.reddit_post
   module:
+    - maxlength
     - text
+_core:
+  default_config_hash: cCZT5P4E8DVq9tEHeg36Wps4fnCSK2f5oQBjgUuR0eo
 id: social_post.reddit_post.default
 targetEntityType: social_post
 bundle: reddit_post
@@ -29,7 +33,11 @@ content:
     settings:
       rows: 5
       placeholder: ''
-    third_party_settings: {  }
+    third_party_settings:
+      maxlength:
+        maxlength_js: 40000
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: false
   subreddit:
     type: string_textfield
     weight: 1
@@ -47,3 +55,4 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden: {  }
+
