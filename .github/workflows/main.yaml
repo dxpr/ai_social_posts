@@ -1,0 +1,31 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - 'main'
+
+permissions:
+  contents: read
+
+jobs:
+  commitlint:
+    name: Lint Commit Messages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v6
+        with:
+          configFile: commitlint.config.mjs
+          helpURL: https://github.com/your-repo/socials/blob/main/CONTRIBUTING.md
+
+  drupal-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v3
+    - name: Lint Drupal
+      run: |
+        docker compose run --rm drupal-lint
