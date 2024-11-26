@@ -16,15 +16,14 @@ socials.page_edit:
   base_route: entity.social_post.canonical
   title: Edit
 
-socials.delete_confirm:
-  route_name: entity.social_post.delete_form
-  base_route: entity.social_post.canonical
-  title: Delete
-  weight: 10
-
-# Add the Social Posts tab to nodes
+# Primary tab for Social Posts
 socials.node.social_posts:
-  route_name: socials.node.social_posts
   title: 'Social Posts'
+  route_name: socials.node.social_posts
   base_route: entity.node.canonical
+  weight: 100
+
+# Dynamic local tasks for social post types
+socials.node.bundle_posts:
+  deriver: 'Drupal\socials\Plugin\Derivative\SocialPostLocalTasks'
   weight: 100

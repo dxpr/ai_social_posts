@@ -74,50 +74,5 @@ function socials_theme() {
 }
 
 /**
- * Implements hook_menu_local_tasks_alter().
- */
-function socials_menu_local_tasks_alter(&$data, $route_name) {
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if (!$node) {
-    return;
-  }
-
-  // Add the main Social Posts tab
-  $data['tabs'][0]['socials.node.social_posts'] = [
-    '#theme' => 'menu_local_task',
-    '#link' => [
-      'title' => t('Social Posts'),
-      'url' => Url::fromRoute('socials.node.social_posts', [
-        'node' => $node->id(),
-      ]),
-      'localized_options' => [],
-    ],
-    '#weight' => 100,
-  ];
-
-  // Only show bundle tabs if we're in the social posts section
-  if (strpos($route_name, 'socials.node.') === 0) {
-    // Get all social post types and add their tabs
-    $post_type_manager = \Drupal::service('socials.post_type_manager');
-    $weight = 0;
-    foreach ($post_type_manager->getTypes() as $type) {
-      $bundle_route_name = "socials.node.{$type->id()}_posts";
-      $data['tabs'][1][$bundle_route_name] = [
-        '#theme' => 'menu_local_task',
-        '#link' => [
-          'title' => $type->label(),
-          'url' => Url::fromRoute($bundle_route_name, [
-            'node' => $node->id(),
-          ]),
-          'localized_options' => [],
-        ],
-        '#weight' => $weight++,
-        '#active' => $route_name === $bundle_route_name,
-      ];
-    }
-  }
-}
-
-/**
  * @} End of "defgroup socials".
  */
