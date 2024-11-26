@@ -5,7 +5,9 @@
   "license": "GPL-2.0-or-later",
   "scripts": {
     "prepare": "husky",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint:php": "composer lint",
+    "lint:fix": "composer lint:fix"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",

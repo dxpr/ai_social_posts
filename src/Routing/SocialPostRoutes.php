@@ -3,10 +3,10 @@
 namespace Drupal\socials\Routing;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\socials\SocialPostTypeManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use Drupal\socials\SocialPostTypeManager;
 
 /**
  * Defines dynamic routes for social posts.
@@ -48,7 +48,7 @@ class SocialPostRoutes implements ContainerInjectionInterface {
   public function routes() {
     $collection = new RouteCollection();
 
-    // Add the overview route
+    // Add the overview route.
     $collection->add('socials.node.social_posts', new Route(
       '/node/{node}/social-posts',
       [
@@ -65,7 +65,7 @@ class SocialPostRoutes implements ContainerInjectionInterface {
       ]
     ));
 
-    // Add routes for each post type
+    // Add routes for each post type.
     foreach ($this->postTypeManager->getTypes() as $type) {
       $collection->add("socials.node.{$type->id()}_posts", new Route(
         "/node/{node}/social-posts/{$type->id()}",

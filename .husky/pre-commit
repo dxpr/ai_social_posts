@@ -1,2 +1,12 @@
-#!/bin/sh
-npm test
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run npm test
+# npm test
+
+# Run PHP linting
+if command -v composer &> /dev/null; then
+  composer lint
+else
+  echo "Composer is not installed. Skipping PHP linting."
+fi

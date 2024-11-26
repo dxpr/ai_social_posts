@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\socials\Kernel;
 
-use Drupal\socials\Entity\SocialPost;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\socials\Entity\SocialPost;
 
 /**
  * Test basic CRUD operations for our SocialPost entity type.

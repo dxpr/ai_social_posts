@@ -4,8 +4,8 @@ namespace Drupal\socials\Plugin\Derivative;
 
 use Drupal\Component\Plugin\Derivative\DeriverBase;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\socials\SocialPostTypeManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides local task definitions for all social post bundles.

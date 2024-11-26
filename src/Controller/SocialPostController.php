@@ -3,14 +3,40 @@
 namespace Drupal\socials\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Url;
+use Drupal\Core\Path\CurrentPathStack;
 use Drupal\node\NodeInterface;
-use Drupal\Core\Entity\EntityFormBuilderInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Returns responses for Social Post routes.
  */
 class SocialPostController extends ControllerBase {
+
+  /**
+   * The path current service.
+   *
+   * @var \Drupal\Core\Path\CurrentPathStack
+   */
+  protected $currentPath;
+
+  /**
+   * Constructs a new SocialPostController.
+   *
+   * @param \Drupal\Core\Path\CurrentPathStack $current_path
+   *   The current path service.
+   */
+  public function __construct(CurrentPathStack $current_path) {
+    $this->currentPath = $current_path;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('path.current')
+    );
+  }
 
   /**
    * Displays social posts overview for a node.
@@ -65,26 +91,26 @@ class SocialPostController extends ControllerBase {
    *   A render array.
    */
   public function nodeBundlePosts(NodeInterface $node, $bundle) {
-    // Create a new social post entity
+    // Create a new social post entity.
     $social_post = $this->entityTypeManager()->getStorage('social_post')->create([
       'type' => $bundle,
       'node_id' => $node->id(),
     ]);
 
-    // Get bundle info
+    // Get bundle info.
     $bundle_type = $this->entityTypeManager()
       ->getStorage('social_post_type')
       ->load($bundle);
     $bundle_label = $bundle_type ? $bundle_type->label() : ucfirst($bundle);
 
-    // Get the form
+    // Get the form.
     $form = $this->entityFormBuilder()->getForm($social_post);
-    
-    // Set the destination to the current page's path
-    $current_path = \Drupal::service('path.current')->getPath();
+
+    // Set the destination to the current page's path.
+    $current_path = $this->currentPath->getPath();
     $form['#action'] = $form['#action'] . '?destination=' . urlencode($current_path);
 
-    // Keep existing button text
+    // Keep existing button text.
     $form['actions']['submit']['#value'] = $this->t('Create @type', [
       '@type' => $bundle_label,
     ]);
