@@ -62,9 +62,28 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
    */
   public static function preCreate(EntityStorageInterface $storage_controller, array &$values) {
     parent::preCreate($storage_controller, $values);
+
     $values += [
       'user_id' => \Drupal::currentUser()->id(),
     ];
+
+    // Check if we're on a node path.
+    $route_match = \Drupal::routeMatch();
+    if ($node = $route_match->getParameter('node')) {
+      // Generate absolute URL for the node.
+      $url = $node->toUrl()->setAbsolute()->toString();
+
+      // Set the default value.
+      $values['post'] = [
+        'value' => '/' . sprintf(
+          t('Create a @type post to promote @url', [
+            '@type' => str_replace('_post', '', $values['type']),
+            '@url' => $url,
+          ])
+        ),
+        'format' => 'basic_html',
+      ];
+    }
   }
 
   /**

@@ -17,14 +17,13 @@ class SocialPostTypeForm extends BundleEntityFormBase {
     $form = parent::form($form, $form_state);
 
     $entity_type = $this->entity;
-    $content_entity_id = $entity_type->getEntityType()->getBundleOf();
 
     $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),
       '#maxlength' => 255,
       '#default_value' => $entity_type->label(),
-      '#description' => $this->t("Label for the %content_entity_id entity type (bundle).", ['%content_entity_id' => $content_entity_id]),
+      '#description' => $this->t("Label for the social post type."),
       '#required' => TRUE,
     ];
 
@@ -45,20 +44,20 @@ class SocialPostTypeForm extends BundleEntityFormBase {
    */
   public function save(array $form, FormStateInterface $form_state) {
     $entity_type = $this->entity;
+
     $status = $entity_type->save();
+
     $message_params = [
       '%label' => $entity_type->label(),
-      '%content_entity_id' => $entity_type->getEntityType()->getBundleOf(),
     ];
 
-    // Provide a message for the user and redirect them back to the collection.
     switch ($status) {
       case SAVED_NEW:
-        $this->messenger()->addMessage($this->t('Created the %label %content_entity_id entity type.', $message_params));
+        $this->messenger()->addMessage($this->t('Created the %label social post type.', $message_params));
         break;
 
       default:
-        $this->messenger()->addMessage($this->t('Saved the %label %content_entity_id entity type.', $message_params));
+        $this->messenger()->addMessage($this->t('Saved the %label social post type.', $message_params));
     }
 
     $form_state->setRedirectUrl($entity_type->toUrl('collection'));

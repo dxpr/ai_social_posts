@@ -19,7 +19,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *   config_prefix = "social_post_type",
  *   config_export = {
  *     "id",
- *     "label"
+ *     "label",
+ *     "uuid"
  *   },
  *   handlers = {
  *     "list_builder" = "Drupal\socials\Entity\Controller\SocialPostTypeListBuilder",
