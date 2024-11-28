@@ -75,10 +75,28 @@ class SocialPostListBuilder extends EntityListBuilder {
    * and inserts the 'edit' and 'delete' links as defined for the entity type.
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Post ID');
-    $header['type'] = $this->t('Platform');
-    $header['post'] = $this->t('Post');
-    $header['referenced_node'] = $this->t('Connected Content');
+    $header['id'] = [
+      'data' => $this->t('Post ID'),
+      'field' => 'id',
+      'specifier' => 'id',
+      'sort' => 'asc',
+    ];
+    $header['type'] = [
+      'data' => $this->t('Platform'),
+      'field' => 'type',
+      'specifier' => 'type',
+    ];
+    $header['post'] = [
+      'data' => $this->t('Post'),
+      'field' => 'post',
+      'specifier' => 'post__value',
+    ];
+    $header['referenced_node'] = [
+      'data' => $this->t('Connected Content'),
+      'field' => 'node_id',
+      'specifier' => 'node_id__target_id',
+    ];
+
     return $header + parent::buildHeader();
   }
 
@@ -119,6 +137,30 @@ class SocialPostListBuilder extends EntityListBuilder {
     }
 
     return $row + parent::buildRow($entity);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getEntityIds() {
+    $query = $this->getStorage()->getQuery()
+      ->accessCheck(TRUE);
+
+    // Add the table sort.
+    $headers = $this->buildHeader();
+    $query->tableSort($headers);
+
+    // Add the pager.
+    $query->pager($this->getLimit());
+
+    return $query->execute();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getLimit() {
+    return 50;
   }
 
 }
