@@ -153,7 +153,40 @@ class SocialPostController extends ControllerBase {
         'content' => [
           '#theme' => 'social_posts_bundle_tab',
           '#node' => $node,
-          '#social_posts' => $this->loadPosts($node, $bundle),
+          '#social_posts' => array_map(function ($post) {
+            /** @var \Drupal\socials\Entity\SocialPost $post */
+            // Get the processed text with format.
+            $text = [
+              '#type' => 'processed_text',
+              '#text' => $post->get('post')->value,
+              '#format' => $post->get('post')->format ?: filter_default_format(),
+            ];
+
+            // Render the text.
+            $rendered_text = $this->renderer()->renderPlain($text);
+
+            return [
+              'post' => [
+                'value' => $rendered_text,
+              ],
+              'created' => [
+                'value' => $post->get('created')->value,
+              ],
+              'operations' => [
+                '#type' => 'operations',
+                '#links' => [
+                  'edit' => [
+                    'title' => $this->t('Edit'),
+                    'url' => $post->toUrl('edit-form'),
+                  ],
+                  'delete' => [
+                    'title' => $this->t('Delete'),
+                    'url' => $post->toUrl('delete-form'),
+                  ],
+                ],
+              ],
+            ];
+          }, $this->loadPosts($node, $bundle)),
           '#bundle' => $bundle,
         ],
       ],

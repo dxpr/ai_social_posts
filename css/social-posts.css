@@ -29,3 +29,21 @@
   background: #f9f9f9;
   font-weight: 500;
 }
+
+.social-post-content {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+  white-space: pre-wrap;
+}
+
+.social-post-command {
+  color: #666;
+  font-family: monospace;
+  margin-bottom: 0.75rem;
+}
+
+.social-posts-list .dropbutton-wrapper:hover {
+  background: #f5f5f5;
+}
