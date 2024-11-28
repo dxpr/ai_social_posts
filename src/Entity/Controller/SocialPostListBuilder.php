@@ -17,6 +17,17 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class SocialPostListBuilder extends EntityListBuilder {
 
   /**
+   * Allowed HTML tags for post content.
+   *
+   * @var array
+   */
+  protected const ALLOWED_HTML_TAGS = [
+    'p', 'br', 'strong', 'em', 'b', 'i', 'u',
+    'ul', 'ol', 'li', 'blockquote', 'a',
+    'h2', 'h3', 'h4', 'h5', 'h6',
+  ];
+
+  /**
    * The url generator.
    *
    * @var \Drupal\Core\Routing\UrlGeneratorInterface
@@ -89,7 +100,16 @@ class SocialPostListBuilder extends EntityListBuilder {
     /** @var \Drupal\socials\Entity\SocialPost $entity */
     $row['id'] = $entity->id();
     $row['type'] = $entity->bundle();
-    $row['post'] = $entity->get('post')->value;
+    $row['post'] = [
+      'data' => [
+        '#type' => 'markup',
+        '#markup' => strip_tags(
+          $entity->get('post')->value,
+          '<' . implode('><', static::ALLOWED_HTML_TAGS) . '>'
+        ),
+        '#allowed_tags' => static::ALLOWED_HTML_TAGS,
+      ],
+    ];
 
     // Safely get the referenced node.
     if ($entity->hasField('node_id') && !$entity->get('node_id')->isEmpty()) {
