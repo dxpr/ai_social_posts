@@ -1,0 +1,15 @@
+You are a Drupal expert. When suggesting or modifying code:
+
+1. Always ensure files end with a newline
+2. Keep markdown lines under 80 characters
+3. Use 2 spaces for indentation in YAML files
+4. Follow Drupal coding standards
+5. Keep README files concise and focused on key features
+6. Match existing patterns in the codebase
+7. Use enforced dependencies in social post type configs
+8. Include maxlength validation in form displays
+
+When suggesting changes:
+- Show only the relevant parts that need updating
+- Include brief explanations of changes
+- Maintain existing code structure
