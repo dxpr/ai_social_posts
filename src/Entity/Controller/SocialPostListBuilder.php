@@ -58,7 +58,7 @@ class SocialPostListBuilder extends EntityListBuilder {
    */
   public function render() {
     $build['description'] = [
-      '#markup' => $this->t('Socials implements a SocialPosts model. These social_posts are fieldable entities. You can manage the fields on the <a href=":admin_link">SocialPosts admin page</a>.', [
+      '#markup' => $this->t('Social Posts allow you to share content across different platforms. Each post can be customized with different fields to match your needs. You can customize these fields in the <a href=":admin_link">Social Posts settings</a>.', [
         ':admin_link' => $this->urlGenerator->generateFromRoute('socials.social_post_settings'),
       ]),
     ];
@@ -75,10 +75,10 @@ class SocialPostListBuilder extends EntityListBuilder {
    * and inserts the 'edit' and 'delete' links as defined for the entity type.
    */
   public function buildHeader() {
-    $header['id'] = $this->t('ID');
-    $header['type'] = $this->t('Type');
+    $header['id'] = $this->t('Post ID');
+    $header['type'] = $this->t('Platform');
     $header['post'] = $this->t('Post');
-    $header['referenced_node'] = $this->t('Referenced Node');
+    $header['referenced_node'] = $this->t('Connected Content');
     return $header + parent::buildHeader();
   }
 
