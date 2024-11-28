@@ -1,6 +1,6 @@
 name: Social Posts
 type: module
-description: 'Demonstrates how to create a content entity.'
+description: 'Provides a content entity type for managing social media posts across multiple platforms.'
 package: Social Posts
 core_version_requirement: ^10.3 || ^11.0
 
@@ -8,8 +8,3 @@ core_version_requirement: ^10.3 || ^11.0
 dependencies:
   - drupal:options
   - drupal:user
-
-# Information added by Drupal.org packaging script on 2024-09-09
-version: '4.0.4'
-project: 'examples'
-datestamp: 1725887893
