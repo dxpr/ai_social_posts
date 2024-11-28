@@ -154,8 +154,8 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
       ->setDescription(t('The time that the social post was last edited.'));
 
     $fields['node_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Attach to a page'))
-      ->setDescription(t('The page this social post belongs to.'))
+      ->setLabel(t('Connected content'))
+      ->setDescription(t('The content this social post is connected to.'))
       ->setSetting('target_type', 'node')
       ->setDisplayOptions('form', [
         'type' => 'entity_reference_autocomplete',
