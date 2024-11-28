@@ -60,17 +60,20 @@ class SocialPostController extends ControllerBase {
    *   A render array.
    */
   public function nodeSocialPosts(NodeInterface $node) {
-    $build = [
-      '#theme' => 'social_posts_overview',
-      '#node' => $node,
-      '#cache' => [
-        'tags' => $node->getCacheTags(),
-        'contexts' => ['user.permissions'],
-      ],
-      '#title' => $this->t('Social Posts for @title', ['@title' => $node->getTitle()]),
-    ];
+    // Get all enabled social post types.
+    $types = $this->entityTypeManager()
+      ->getStorage('social_post_type')
+      ->loadMultiple();
 
-    return $build;
+    // If there's only one type, show its content directly.
+    if (count($types) === 1) {
+      $type = reset($types);
+      return $this->nodeBundlePosts($node, $type->id());
+    }
+
+    // If multiple types, show overview with first bundle content.
+    $first_type = reset($types);
+    return $this->nodeBundlePosts($node, $first_type->id());
   }
 
   /**

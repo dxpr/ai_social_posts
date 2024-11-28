@@ -42,14 +42,19 @@ class SocialPostLocalTasks extends DeriverBase implements ContainerDeriverInterf
    * {@inheritdoc}
    */
   public function getDerivativeDefinitions($base_plugin_definition) {
-    foreach ($this->postTypeManager->getTypes() as $type) {
-      $this->derivatives[$type->id()] = $base_plugin_definition;
-      $this->derivatives[$type->id()]['title'] = $type->label();
-      $this->derivatives[$type->id()]['route_name'] = "socials.node.{$type->id()}_posts";
-      $this->derivatives[$type->id()]['parent_id'] = 'socials.node.social_posts';
-      $this->derivatives[$type->id()]['route_parameters'] = [
-        'bundle' => $type->id(),
-      ];
+    $types = $this->postTypeManager->getTypes();
+
+    // Only create derivatives if we have multiple types.
+    if (count($types) <= 1) {
+      return [];
+    }
+
+    foreach ($types as $type) {
+      $this->derivatives[$type->id()] = array_merge($base_plugin_definition, [
+        'title' => $type->label(),
+        'route_name' => "socials.node.{$type->id()}_posts",
+        'parent_id' => 'socials.node.social_posts',
+      ]);
     }
 
     return $this->derivatives;

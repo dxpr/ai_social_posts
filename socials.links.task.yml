@@ -26,4 +26,5 @@ socials.node.social_posts:
 # Dynamic local tasks for social post types
 socials.node.bundle_posts:
   deriver: 'Drupal\socials\Plugin\Derivative\SocialPostLocalTasks'
+  parent_id: socials.node.social_posts
   weight: 100
