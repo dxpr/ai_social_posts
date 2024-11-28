@@ -4,6 +4,7 @@ namespace Drupal\socials\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Path\CurrentPathStack;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -20,13 +21,23 @@ class SocialPostController extends ControllerBase {
   protected $currentPath;
 
   /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * Constructs a new SocialPostController.
    *
    * @param \Drupal\Core\Path\CurrentPathStack $current_path
    *   The current path service.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
-  public function __construct(CurrentPathStack $current_path) {
+  public function __construct(CurrentPathStack $current_path, RendererInterface $renderer) {
     $this->currentPath = $current_path;
+    $this->renderer = $renderer;
   }
 
   /**
@@ -34,7 +45,8 @@ class SocialPostController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('path.current')
+      $container->get('path.current'),
+      $container->get('renderer')
     );
   }
 
@@ -163,7 +175,7 @@ class SocialPostController extends ControllerBase {
             ];
 
             // Render the text.
-            $rendered_text = $this->renderer()->renderPlain($text);
+            $rendered_text = $this->renderer->renderPlain($text);
 
             return [
               'post' => [
