@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - socials_example
+id: example_post
+label: 'Example Post'
+description: 'Example social network post type'

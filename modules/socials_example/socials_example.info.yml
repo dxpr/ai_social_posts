@@ -1,0 +1,9 @@
+name: Social Posts - Example
+type: module
+description: 'Example implementation of a custom social network for Social Posts'
+package: Social Posts
+core_version_requirement: ^10.3 || ^11.0
+hidden: true
+dependencies:
+  - maxlength:maxlength
+  - socials:socials
