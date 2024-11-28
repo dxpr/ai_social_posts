@@ -105,7 +105,13 @@ class SocialPostListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /** @var \Drupal\socials\Entity\SocialPost $entity */
-    $row['id'] = $entity->id();
+    $row['id'] = [
+      'data' => [
+        '#type' => 'link',
+        '#title' => $entity->id(),
+        '#url' => $entity->toUrl(),
+      ],
+    ];
     $row['type'] = $entity->bundle();
 
     // Get the processed text with format.
@@ -161,6 +167,23 @@ class SocialPostListBuilder extends EntityListBuilder {
    */
   protected function getLimit() {
     return 50;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getDefaultOperations(EntityInterface $entity) {
+    $operations = parent::getDefaultOperations($entity);
+
+    if ($entity->access('view') && $entity->hasLinkTemplate('canonical')) {
+      $operations['view'] = [
+        'title' => $this->t('View'),
+        'weight' => -100,
+        'url' => $entity->toUrl(),
+      ];
+    }
+
+    return $operations;
   }
 
 }

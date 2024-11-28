@@ -181,6 +181,11 @@ class SocialPostController extends ControllerBase {
             $rendered_text = $this->renderer->renderPlain($text);
 
             return [
+              'id' => [
+                '#type' => 'link',
+                '#title' => $post->id(),
+                '#url' => $post->toUrl(),
+              ],
               'post' => [
                 'value' => $rendered_text,
               ],
@@ -190,6 +195,10 @@ class SocialPostController extends ControllerBase {
               'operations' => [
                 '#type' => 'operations',
                 '#links' => [
+                  'view' => [
+                    'title' => $this->t('View'),
+                    'url' => $post->toUrl(),
+                  ],
                   'edit' => [
                     'title' => $this->t('Edit'),
                     'url' => $post->toUrl('edit-form'),

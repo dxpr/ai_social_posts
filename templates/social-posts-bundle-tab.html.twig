@@ -6,6 +6,7 @@
   <table>
     <thead>
       <tr>
+        <th>{{ 'ID'|t }}</th>
         <th>{{ 'Content'|t }}</th>
         <th>{{ 'Created'|t }}</th>
         <th>{{ 'Operations'|t }}</th>
@@ -14,6 +15,7 @@
     <tbody>
     {% for post in social_posts %}
       <tr>
+        <td>{{ post.id }}</td>
         <td>{{ post.post.value }}</td>
         <td>{{ post.created.value|date('Y-m-d H:i:s') }}</td>
         <td>
