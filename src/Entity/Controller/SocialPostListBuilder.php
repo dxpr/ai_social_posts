@@ -89,7 +89,25 @@ class SocialPostListBuilder extends EntityListBuilder {
     /** @var \Drupal\socials\Entity\SocialPost $entity */
     $row['id'] = $entity->id();
     $row['type'] = $entity->bundle();
-    $row['post'] = $entity->get('post')->value;
+
+    // Get the processed text with format.
+    $text = [
+      '#type' => 'processed_text',
+      '#text' => $entity->get('post')->value,
+      '#format' => $entity->get('post')->format ?: filter_default_format(),
+    ];
+
+    // Render and trim the text.
+    $rendered_text = trim(\Drupal::service('renderer')->renderPlain($text));
+    $trimmed_text = strlen($rendered_text) > 350
+      ? substr($rendered_text, 0, 347) . '...'
+      : $rendered_text;
+
+    $row['post'] = [
+      'data' => [
+        '#markup' => $trimmed_text,
+      ],
+    ];
 
     // Safely get the referenced node.
     if ($entity->hasField('node_id') && !$entity->get('node_id')->isEmpty()) {
