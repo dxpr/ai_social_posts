@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Run npm test
-# npm test
-
-# Run PHP linting
+# Run PHP auto-fixing first
 if command -v composer &> /dev/null; then
+  composer lint:fix
+  # Stage the fixed files
+  git add .
+  # Then run the check
   composer lint
 else
   echo "Composer is not installed. Skipping PHP linting."
