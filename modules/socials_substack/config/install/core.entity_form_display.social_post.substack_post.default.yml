@@ -2,6 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.social_post.substack_post.title
+    - field.field.social_post.substack_post.subtitle
+    - field.field.social_post.substack_post.post
     - socials.social_post_type.substack_post
   module:
     - maxlength
@@ -11,24 +14,50 @@ targetEntityType: social_post
 bundle: substack_post
 mode: default
 content:
-  post:
+  title:
     type: text_textarea
     weight: 0
     region: content
     settings:
-      rows: 5
-      maxlength: 100000
-      maxlength_js: true
-      maxlength_js_label: '@remaining characters remaining'
-    third_party_settings: {}
+      rows: 2
+      placeholder: 'Enter your newsletter title'
+    third_party_settings:
+      maxlength:
+        maxlength_js: 100
+        maxlength_js_label: 'Title limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
+  subtitle:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 2
+      placeholder: 'Enter an optional subtitle'
+    third_party_settings:
+      maxlength:
+        maxlength_js: 200
+        maxlength_js_label: 'Subtitle limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: false
+  post:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 15
+      placeholder: 'Write your newsletter content here'
+    third_party_settings:
+      maxlength:
+        maxlength_js: 500000
+        maxlength_js_label: '@remaining characters remaining'
+        maxlength_js_enforce: false
   node_id:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
-      placeholder: ''
+      placeholder: 'Search for content to promote'
     third_party_settings: {}
 hidden: {}

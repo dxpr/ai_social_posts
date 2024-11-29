@@ -4,15 +4,19 @@ dependencies:
   config:
     - field.storage.social_post.subtitle
     - socials.social_post_type.substack_post
+  module:
+    - text
 id: social_post.substack_post.subtitle
 field_name: subtitle
 entity_type: social_post
 bundle: substack_post
 label: Subtitle
-description: ''
+description: 'Add a compelling subtitle to provide more context and increase reader interest.'
 required: false
 translatable: true
-default_value: {}
-default_value_callback: ''
+default_value:
+  - 
+    value: "/Write a subtitle that:\n- Expands on the title\n- Adds valuable context\n- Stays under 200 characters"
+    format: basic_html
 settings: {}
-field_type: string_long
+field_type: text_long

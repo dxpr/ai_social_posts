@@ -1,5 +1,9 @@
 langcode: en
 status: true
-dependencies: {}
+dependencies:
+  enforced:
+    module:
+      - socials_substack
 id: substack_post
 label: 'Substack Post'
+description: 'Create engaging newsletter content for your Substack subscribers'

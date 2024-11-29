@@ -80,6 +80,18 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
         'format' => 'basic_html',
       ];
 
+      // Set default values for subtitle field (Substack only)
+      if ($type === 'substack') {
+        $values['subtitle'] = [
+          'value' => '/' . sprintf(
+            t('Write a subtitle for @url that:\n- Expands on the title\n- Adds valuable context\n- Stays under 200 characters', [
+              '@url' => $url,
+            ])
+          ),
+          'format' => 'basic_html',
+        ];
+      }
+
       // Set default values for post field.
       $values['post'] = [
         'value' => '/' . sprintf(
