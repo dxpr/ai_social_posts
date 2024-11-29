@@ -1,7 +1,8 @@
-name: Newsletter
+name: 'Social Posts - Newsletter'
 type: module
-description: 'Create engaging newsletter content.'
-package: Socials
-core_version_requirement: ^10
+description: 'Provides Newsletter integration for Social Posts'
+package: Social Posts
+core_version_requirement: ^10.3 || ^11.0
 dependencies:
+  - maxlength:maxlength
   - socials:socials

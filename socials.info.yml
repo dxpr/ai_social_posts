@@ -3,9 +3,6 @@ type: module
 description: 'Provides a content entity type for managing social media posts across multiple platforms.'
 package: Social Posts
 core_version_requirement: ^10.3 || ^11.0
-
-# These modules are required by tests; they must be available at bootstrap time.
 dependencies:
-  - drupal:options
-  - drupal:user
-  - drupal:text
+  - maxlength:maxlength
+  - socials:socials
