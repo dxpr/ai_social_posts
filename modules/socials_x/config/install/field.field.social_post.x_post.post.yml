@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write an X post"
+    value: "/Write an X post that:\n- Is concise and engaging\n- Uses relevant hashtags\n- Stays under 280 characters"
     format: basic_html
 settings: {}
 field_type: text_long

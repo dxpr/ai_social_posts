@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - socials.social_post_type.example_post
+  module:
+    - text
+id: social_post.example_post.post
+field_name: post
+entity_type: social_post
+bundle: example_post
+label: Post
+description: 'Write your example post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write an example post that:\n- Has clear structure\n- Uses formatting\n- Demonstrates key features"
+    format: basic_html
+settings: {}
+field_type: text_long

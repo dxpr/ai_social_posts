@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Facebook post"
+    value: "/Write a Facebook post that:\n- Is engaging and personal\n- Uses emojis appropriately\n- Encourages interaction"
     format: basic_html
 settings: {}
 field_type: text_long

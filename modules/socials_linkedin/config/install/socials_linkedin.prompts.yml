@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - socials_linkedin
+prompts:
+  post: " that:\n- Is professional\n- Shares industry insights\n- Uses paragraph breaks"

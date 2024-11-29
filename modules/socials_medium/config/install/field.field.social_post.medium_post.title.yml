@@ -16,7 +16,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Medium title"
+    value: "/Write a Medium title that:\n- Is clear and compelling\n- Uses power words\n- Stays under 100 characters"
     format: basic_html
 settings: {}
 field_type: text_long

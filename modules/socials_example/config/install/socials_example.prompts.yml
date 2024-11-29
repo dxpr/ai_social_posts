@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - socials_example
+prompts:
+  title: " that:\n- Is descriptive\n- Uses keywords\n- Stays under 100 characters"
+  post: " that:\n- Has clear structure\n- Uses formatting\n- Demonstrates key features"

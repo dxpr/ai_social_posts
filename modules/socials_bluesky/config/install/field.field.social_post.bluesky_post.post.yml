@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Bluesky post"
+    value: "/Write a Bluesky post that:\n- Is conversational\n- Uses relevant tags\n- Encourages engagement"
     format: basic_html
 settings: {}
 field_type: text_long

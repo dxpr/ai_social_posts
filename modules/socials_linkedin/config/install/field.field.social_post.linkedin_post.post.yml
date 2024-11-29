@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a LinkedIn post"
+    value: "/Write a LinkedIn post that:\n- Is professional\n- Shares industry insights\n- Uses paragraph breaks"
     format: basic_html
 settings: {}
 field_type: text_long

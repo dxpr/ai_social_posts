@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.social_post.title
+    - socials.social_post_type.example_post
+  module:
+    - text
+id: social_post.example_post.title
+field_name: title
+entity_type: social_post
+bundle: example_post
+label: Title
+description: 'Write a title for your example post.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write an example title that:\n- Is descriptive\n- Uses keywords\n- Stays under 100 characters"
+    format: basic_html
+settings: {}
+field_type: text_long
