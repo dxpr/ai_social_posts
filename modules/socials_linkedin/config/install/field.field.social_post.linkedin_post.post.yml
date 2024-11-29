@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - socials.social_post_type.linkedin_post
+  module:
+    - text
+id: social_post.linkedin_post.post
+field_name: post
+entity_type: social_post
+bundle: linkedin_post
+label: Post
+description: 'Write your LinkedIn post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a LinkedIn post"
+    format: basic_html
+settings: {}
+field_type: text_long

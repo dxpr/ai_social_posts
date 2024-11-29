@@ -4,5 +4,6 @@ description: 'Provides Medium integration for Social Posts'
 package: Social Posts
 core_version_requirement: ^10.3 || ^11.0
 dependencies:
+  - drupal:text
   - maxlength:maxlength
   - socials:socials

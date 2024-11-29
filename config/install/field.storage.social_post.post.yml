@@ -4,8 +4,8 @@ dependencies:
   module:
     - socials
     - text
-id: social_post.title
-field_name: title
+id: social_post.post
+field_name: post
 entity_type: social_post
 type: text_long
 settings: {}

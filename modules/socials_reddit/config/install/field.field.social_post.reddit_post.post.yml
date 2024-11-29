@@ -2,21 +2,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.social_post.title
     - socials.social_post_type.reddit_post
   module:
     - text
-id: social_post.reddit_post.title
-field_name: title
+id: social_post.reddit_post.post
+field_name: post
 entity_type: social_post
 bundle: reddit_post
-label: Title
-description: 'Create an engaging title for your Reddit post (max 300 characters).'
+label: Post
+description: 'The content of your Reddit post.'
 required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Reddit title:"
+    value: "/Write a Reddit post"
     format: basic_html
 settings: {}
 field_type: text_long

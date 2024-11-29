@@ -2,21 +2,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.social_post.title
     - socials.social_post_type.medium_post
   module:
     - text
-id: social_post.medium_post.title
-field_name: title
+id: social_post.medium_post.post
+field_name: post
 entity_type: social_post
 bundle: medium_post
-label: Title
-description: 'Write a compelling title that captures the essence of your Medium story.'
+label: Post
+description: 'Write your Medium article content.'
 required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Medium title"
+    value: "/Write a Medium post"
     format: basic_html
 settings: {}
 field_type: text_long

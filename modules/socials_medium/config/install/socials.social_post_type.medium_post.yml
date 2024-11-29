@@ -1,5 +1,9 @@
 langcode: en
 status: true
-dependencies: {}
+dependencies:
+  enforced:
+    module:
+      - socials_medium
 id: medium_post
 label: 'Medium Post'
+description: 'Post articles to Medium'

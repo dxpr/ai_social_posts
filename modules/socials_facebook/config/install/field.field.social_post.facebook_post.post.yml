@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - socials.social_post_type.facebook_post
+  module:
+    - text
+id: social_post.facebook_post.post
+field_name: post
+entity_type: social_post
+bundle: facebook_post
+label: Post
+description: 'Write your Facebook post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a Facebook post"
+    format: basic_html
+settings: {}
+field_type: text_long

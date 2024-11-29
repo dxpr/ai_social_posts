@@ -4,15 +4,19 @@ dependencies:
   config:
     - field.storage.social_post.title
     - socials.social_post_type.substack_post
+  module:
+    - text
 id: social_post.substack_post.title
 field_name: title
 entity_type: social_post
 bundle: substack_post
 label: Title
-description: ''
+description: 'Write a newsletter title that drives engagement.'
 required: true
 translatable: true
-default_value: {}
-default_value_callback: ''
+default_value:
+  - 
+    value: "/Write a Substack title for [node:url] that:\n- Creates curiosity\n- Uses emotional triggers\n- Stays under 100 characters\n- Matches newsletter tone"
+    format: basic_html
 settings: {}
-field_type: string
+field_type: text_long

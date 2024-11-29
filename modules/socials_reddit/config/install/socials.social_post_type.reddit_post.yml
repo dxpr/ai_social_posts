@@ -6,3 +6,4 @@ dependencies:
       - socials_reddit
 id: reddit_post
 label: 'Reddit Post'
+description: 'Post content to Reddit'

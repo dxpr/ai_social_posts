@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - socials.social_post_type.bluesky_post
+  module:
+    - text
+id: social_post.bluesky_post.post
+field_name: post
+entity_type: social_post
+bundle: bluesky_post
+label: Post
+description: 'Write your Bluesky post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a Bluesky post"
+    format: basic_html
+settings: {}
+field_type: text_long

@@ -60,24 +60,31 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
    * When a new entity instance is added, set the user_id entity reference to
    * the current user as the creator of the instance.
    */
-  public static function preCreate(EntityStorageInterface $storage_controller, array &$values) {
-    parent::preCreate($storage_controller, $values);
+  public static function preCreate(EntityStorageInterface $storage, array &$values) {
+    parent::preCreate($storage, $values);
 
-    $values += [
-      'user_id' => \Drupal::currentUser()->id(),
-    ];
-
-    // Check if we're on a node path.
     $route_match = \Drupal::routeMatch();
-    if ($node = $route_match->getParameter('node')) {
-      // Generate absolute URL for the node.
-      $url = $node->toUrl()->setAbsolute()->toString();
 
-      // Set the default value.
+    if ($node = $route_match->getParameter('node')) {
+      $url = $node->toUrl()->setAbsolute()->toString();
+      $type = str_replace('_post', '', $values['type']);
+
+      // Set default values for title field.
+      $values['title'] = [
+        'value' => '/' . sprintf(
+          t('Write a @type title for @url', [
+            '@type' => $type,
+            '@url' => $url,
+          ])
+        ),
+        'format' => 'basic_html',
+      ];
+
+      // Set default values for post field.
       $values['post'] = [
         'value' => '/' . sprintf(
           t('Create a @type post to promote @url', [
-            '@type' => str_replace('_post', '', $values['type']),
+            '@type' => $type,
             '@url' => $url,
           ])
         ),
@@ -129,21 +136,11 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['post'] = BaseFieldDefinition::create('text_long')
-      ->setLabel(t('Post'))
-      ->setDescription(t('The content of the social post.'))
-      ->setRequired(TRUE)
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'text_default',
-        'weight' => -4,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'text_textarea',
-        'weight' => -4,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+    $fields['node_id'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Node'))
+      ->setDescription(t('The node this social post belongs to.'))
+      ->setSetting('target_type', 'node')
+      ->setRequired(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
@@ -152,27 +149,6 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the social post was last edited.'));
-
-    $fields['node_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Connected content'))
-      ->setDescription(t('The content this social post is connected to.'))
-      ->setSetting('target_type', 'node')
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => -1,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'placeholder' => '',
-        ],
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'entity_reference_label',
-        'weight' => -1,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
 
     return $fields;
   }

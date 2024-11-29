@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - socials.social_post_type.substack_post
+  module:
+    - text
+id: social_post.substack_post.post
+field_name: post
+entity_type: social_post
+bundle: substack_post
+label: Post
+description: 'Write the content for your Substack newsletter.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a Substack post"
+    format: basic_html
+settings: {}
+field_type: text_long

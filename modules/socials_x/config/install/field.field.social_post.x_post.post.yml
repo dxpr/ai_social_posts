@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - socials.social_post_type.x_post
+  module:
+    - text
+id: social_post.x_post.post
+field_name: post
+entity_type: social_post
+bundle: x_post
+label: Post
+description: 'Write your X post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write an X post"
+    format: basic_html
+settings: {}
+field_type: text_long
