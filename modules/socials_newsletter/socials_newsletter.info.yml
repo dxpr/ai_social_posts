@@ -1,0 +1,7 @@
+name: Newsletter
+type: module
+description: 'Create engaging newsletter content.'
+package: Socials
+core_version_requirement: ^10
+dependencies:
+  - socials:socials

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - socials.social_post_type.newsletter_post
+  module:
+    - text
+id: social_post.newsletter_post.post
+field_name: post
+entity_type: social_post
+bundle: newsletter_post
+label: Body
+description: 'Write the main content of your newsletter.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a newsletter that:\n- Opens with a hook\n- Uses clear sections\n- Includes a call-to-action\n- Maintains brand voice"
+    format: basic_html
+settings: {}
+field_type: text_long

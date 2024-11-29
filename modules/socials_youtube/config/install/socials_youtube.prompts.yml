@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - socials_youtube
+prompts:
+  title: " that:\n- Uses keywords\n- Creates curiosity\n- Stays under 100 characters"
+  post: " that:\n- Has a strong hook\n- Uses clear sections\n- Includes b-roll suggestions\n- Ends with a call-to-action"

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - socials_newsletter
+prompts:
+  title: " that:\n- Creates urgency\n- Sparks curiosity\n- Stays under 60 characters"
+  post: " that:\n- Opens with a hook\n- Uses clear sections\n- Includes a call-to-action\n- Maintains brand voice"

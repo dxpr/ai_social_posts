@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.social_post.title
+    - socials.social_post_type.newsletter_post
+  module:
+    - text
+id: social_post.newsletter_post.title
+field_name: title
+entity_type: social_post
+bundle: newsletter_post
+label: Subject
+description: 'Write an engaging subject line for your newsletter.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a newsletter subject that:\n- Creates urgency\n- Sparks curiosity\n- Stays under 60 characters"
+    format: basic_html
+settings: {}
+field_type: text_long

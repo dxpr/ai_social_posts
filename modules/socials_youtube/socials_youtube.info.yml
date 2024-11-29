@@ -1,0 +1,7 @@
+name: YouTube
+type: module
+description: 'Create engaging YouTube video content.'
+package: Socials
+core_version_requirement: ^10
+dependencies:
+  - socials:socials

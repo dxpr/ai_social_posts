@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - socials_youtube
+id: youtube_post
+label: 'YouTube Post'
+description: 'Create engaging video content for your YouTube channel.'

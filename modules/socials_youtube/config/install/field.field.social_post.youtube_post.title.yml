@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.social_post.title
+    - socials.social_post_type.youtube_post
+  module:
+    - text
+id: social_post.youtube_post.title
+field_name: title
+entity_type: social_post
+bundle: youtube_post
+label: Title
+description: 'Write an engaging title for your YouTube video.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a YouTube title that:\n- Uses keywords\n- Creates curiosity\n- Stays under 100 characters"
+    format: basic_html
+settings: {}
+field_type: text_long
