@@ -16,7 +16,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Substack title for [node:url] that:\n- Creates curiosity\n- Uses emotional triggers\n- Stays under 100 characters\n- Matches newsletter tone"
+    value: "/Write a Substack title that:\n- Creates curiosity\n- Uses emotional triggers\n- Stays under 100 characters\n- Matches newsletter tone"
     format: basic_html
 settings: {}
 field_type: text_long

@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Substack post"
+    value: "/Write a Substack post that:\n- Opens with a strong hook\n- Uses clear sections\n- Includes relevant media\n- Ends with a call-to-action\n- Provides unique insights"
     format: basic_html
 settings: {}
 field_type: text_long

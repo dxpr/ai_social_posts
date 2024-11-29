@@ -64,17 +64,29 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
     parent::preCreate($storage, $values);
 
     $route_match = \Drupal::routeMatch();
+    $messenger = \Drupal::messenger();
 
     if ($node = $route_match->getParameter('node')) {
       $url = $node->toUrl()->setAbsolute()->toString();
       $type = str_replace('_post', '', $values['type']);
 
+      // Debug values.
+      $messenger->addStatus(sprintf('Type: %s', $type));
+      $messenger->addStatus(sprintf('URL: %s', $url));
+
+      // Load module-specific prompts.
+      $config = \Drupal::config("socials_{$type}.prompts");
+      $messenger->addStatus(sprintf('Config: %s', print_r($config->getRawData(), TRUE)));
+      $prompts = $config->get('prompts') ?? [];
+      $messenger->addStatus(sprintf('Prompts: %s', print_r($prompts, TRUE)));
+
       // Set default values for title field.
       $values['title'] = [
         'value' => '/' . sprintf(
-          t('Write a @type title for @url', [
+          t('Write a @type title for @url@suffix', [
             '@type' => $type,
             '@url' => $url,
+            '@suffix' => $prompts['title'] ?? '',
           ])
         ),
         'format' => 'basic_html',
@@ -84,8 +96,9 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
       if ($type === 'substack') {
         $values['subtitle'] = [
           'value' => '/' . sprintf(
-            t('Write a subtitle for @url that:\n- Expands on the title\n- Adds valuable context\n- Stays under 200 characters', [
+            t('Write a subtitle for @url@suffix', [
               '@url' => $url,
+              '@suffix' => $prompts['subtitle'] ?? '',
             ])
           ),
           'format' => 'basic_html',
@@ -95,13 +108,17 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
       // Set default values for post field.
       $values['post'] = [
         'value' => '/' . sprintf(
-          t('Create a @type post to promote @url', [
+          t('Create a @type post for @url@suffix', [
             '@type' => $type,
             '@url' => $url,
+            '@suffix' => $prompts['post'] ?? '',
           ])
         ),
         'format' => 'basic_html',
       ];
+
+      // Debug final values.
+      $messenger->addStatus(sprintf('Final values: %s', print_r($values, TRUE)));
     }
   }
 
