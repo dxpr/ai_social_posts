@@ -126,7 +126,7 @@ class SocialPostController extends ControllerBase {
     $form['#action'] = $form['#action'] . '?destination=' . urlencode($current_path);
 
     // Keep existing button text.
-    $form['actions']['submit']['#value'] = $this->t('Create @type', [
+    $form['actions']['submit']['#value'] = $this->t('Save @type', [
       '@type' => $bundle_label,
     ]);
 
