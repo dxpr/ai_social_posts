@@ -16,6 +16,6 @@ translatable: true
 default_value:
   - 
     value: "/Write a Reddit post that:\n- Is informative\n- Uses proper formatting\n- Encourages discussion"
-    format: basic_html
+    format: social_posts
 settings: {}
 field_type: text_long

@@ -16,6 +16,6 @@ translatable: true
 default_value:
   - 
     value: "/Write an example post that:\n- Has clear structure\n- Uses formatting\n- Demonstrates key features"
-    format: basic_html
+    format: social_posts
 settings: {}
 field_type: text_long

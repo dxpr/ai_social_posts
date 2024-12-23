@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Bluesky post that:\n- Is conversational\n- Uses relevant tags\n- Encourages engagement"
-    format: basic_html
+    value: "/Write a Bluesky post that:\n- Is conversational\n- Uses relevant tags\n- Stays under 300 characters\n- URLs: counts full domain + first 15 chars of path"
+    format: social_posts
 settings: {}
 field_type: text_long

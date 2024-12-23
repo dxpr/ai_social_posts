@@ -17,6 +17,6 @@ translatable: true
 default_value:
   - 
     value: "/Write an example title that:\n- Is descriptive\n- Uses keywords\n- Stays under 100 characters"
-    format: basic_html
+    format: social_posts
 settings: {}
 field_type: text_long

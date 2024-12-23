@@ -17,6 +17,6 @@ translatable: true
 default_value:
   - 
     value: "/Write a Reddit title that:\n- Is descriptive\n- Follows subreddit rules\n- Stays under 300 characters"
-    format: basic_html
+    format: social_posts
 settings: {}
 field_type: text_long

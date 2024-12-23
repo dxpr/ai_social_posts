@@ -17,6 +17,6 @@ translatable: true
 default_value:
   - 
     value: "/Write a newsletter subject that:\n- Creates urgency\n- Sparks curiosity\n- Stays under 60 characters"
-    format: basic_html
+    format: social_posts
 settings: {}
 field_type: text_long

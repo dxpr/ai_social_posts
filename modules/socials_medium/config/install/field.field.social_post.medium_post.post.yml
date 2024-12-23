@@ -16,6 +16,6 @@ translatable: true
 default_value:
   - 
     value: "/Write a Medium post that:\n- Has clear formatting\n- Includes subheadings\n- Provides actionable insights"
-    format: basic_html
+    format: social_posts
 settings: {}
 field_type: text_long

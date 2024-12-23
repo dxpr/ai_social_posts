@@ -17,6 +17,6 @@ translatable: true
 default_value:
   - 
     value: "/Write a YouTube title that:\n- Uses keywords\n- Creates curiosity\n- Stays under 100 characters"
-    format: basic_html
+    format: social_posts
 settings: {}
 field_type: text_long
