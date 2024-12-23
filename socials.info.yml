@@ -5,4 +5,3 @@ package: Social Posts
 core_version_requirement: ^10.3 || ^11.0
 dependencies:
   - maxlength:maxlength
-  - socials:socials
