@@ -101,6 +101,14 @@ entity.social_post_type.delete_form:
   requirements:
     _permission: 'administer social_post types'
 
+entity.social_post_type.canonical:
+  path: '/admin/structure/social-post-types/{social_post_type}'
+  defaults:
+    _entity_view: 'social_post_type'
+    _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
+  requirements:
+    _permission: 'administer social_post types'
+
 # Dynamic routes for bundle-specific tabs
 route_callbacks:
   - '\Drupal\socials\Routing\SocialPostRoutes::routes'
