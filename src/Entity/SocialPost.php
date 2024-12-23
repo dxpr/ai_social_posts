@@ -7,6 +7,8 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\socials\SocialPostInterface;
 use Drupal\user\UserInterface;
 
@@ -57,58 +59,63 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
   /**
    * {@inheritdoc}
    *
-   * When a new entity instance is added, set the user_id entity reference to
-   * the current user as the creator of the instance.
+   * When a new social post is created from a node, prefixes the default field
+   * values with the node's URL.
    */
   public static function preCreate(EntityStorageInterface $storage, array &$values) {
     parent::preCreate($storage, $values);
 
+    // Only process if we have a node context.
+    if (empty($values['type'])) {
+      return;
+    }
+
     $route_match = \Drupal::routeMatch();
+    $node = $route_match->getParameter('node');
+    if (!$node) {
+      return;
+    }
 
-    if ($node = $route_match->getParameter('node')) {
+    try {
       $url = $node->toUrl()->setAbsolute()->toString();
-      $type = str_replace('_post', '', $values['type']);
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('socials')->error(
+        'Failed to generate URL for node @nid: @message', [
+          '@nid' => $node->id(),
+          '@message' => $e->getMessage(),
+        ]
+      );
+      return;
+    }
 
-      // Load module-specific prompts.
-      $config = \Drupal::config("socials_{$type}.prompts");
-      $prompts = $config->get('prompts') ?? [];
+    // Get bundle-specific field definitions.
+    $fields = \Drupal::service('entity_field.manager')
+      ->getFieldDefinitions('social_post', $values['type']);
 
-      // Set default values for title field.
-      $values['title'] = [
-        'value' => '/' . sprintf(
-          t('Write a @type title for @url@suffix', [
-            '@type' => $type,
-            '@url' => $url,
-            '@suffix' => $prompts['title'] ?? '',
-          ])
-        ),
-        'format' => 'basic_html',
-      ];
-
-      // Set default values for subtitle field (Substack only)
-      if ($type === 'substack') {
-        $values['subtitle'] = [
-          'value' => '/' . sprintf(
-            t('Write a subtitle for @url@suffix', [
-              '@url' => $url,
-              '@suffix' => $prompts['subtitle'] ?? '',
-            ])
-          ),
-          'format' => 'basic_html',
-        ];
+    // Iterate over configurable fields.
+    foreach ($fields as $field_name => $field) {
+      if (!$field instanceof FieldConfig) {
+        continue;
       }
 
-      // Set default values for post field.
-      $values['post'] = [
-        'value' => '/' . sprintf(
-          t('Create a @type post for @url@suffix', [
-            '@type' => $type,
-            '@url' => $url,
-            '@suffix' => $prompts['post'] ?? '',
-          ])
-        ),
-        'format' => 'basic_html',
-      ];
+      $default = $field->getDefaultValueLiteral();
+      if (empty($default[0]['value'])) {
+        continue;
+      }
+
+      // Preserve original field settings.
+      $values[$field_name] = $default[0];
+
+      // Create translatable URL prefix while preserving slash as syntax.
+      $url_prefix = t('For @url', ['@url' => $url], ['context' => 'Social post URL prefix']);
+
+      // Prefix default value with URL.
+      $values[$field_name]['value'] = sprintf(
+        '/%s %s',
+        $url_prefix,
+        ltrim($default[0]['value'], '/ ')
+      );
     }
   }
 
@@ -144,30 +151,23 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
 
   /**
    * {@inheritdoc}
-   *
-   * Define the field properties here.
-   *
-   * Field name, type and size determine the table structure.
-   *
-   * In addition, we can define how the field and its content can be manipulated
-   * in the GUI. The behavior of the used widgets can be determined here.
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['node_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Node'))
-      ->setDescription(t('The node this social post belongs to.'))
+      ->setLabel(new TranslatableMarkup('Node'))
+      ->setDescription(new TranslatableMarkup('The node this social post belongs to.'))
       ->setSetting('target_type', 'node')
       ->setRequired(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
-      ->setLabel(t('Created'))
-      ->setDescription(t('The time that the social post was created.'));
+      ->setLabel(new TranslatableMarkup('Created'))
+      ->setDescription(new TranslatableMarkup('The time that the social post was created.'));
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
-      ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the social post was last edited.'));
+      ->setLabel(new TranslatableMarkup('Changed'))
+      ->setDescription(new TranslatableMarkup('The time that the social post was last edited.'));
 
     return $fields;
   }

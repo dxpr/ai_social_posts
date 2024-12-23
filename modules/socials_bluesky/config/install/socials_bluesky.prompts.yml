@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  enforced:
-    module:
-      - socials_bluesky
-prompts:
-  post: " that:\n- Is conversational\n- Uses relevant tags\n- Encourages engagement"

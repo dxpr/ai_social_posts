@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  enforced:
-    module:
-      - socials_facebook
-prompts:
-  post: " that:\n- Is engaging and personal\n- Uses emojis appropriately\n- Encourages interaction"

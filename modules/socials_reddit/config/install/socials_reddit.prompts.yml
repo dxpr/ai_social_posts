@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  enforced:
-    module:
-      - socials_reddit
-prompts:
-  title: " that:\n- Is descriptive\n- Follows subreddit rules\n- Stays under 300 characters"
-  post: " that:\n- Is informative\n- Uses proper formatting\n- Encourages discussion"

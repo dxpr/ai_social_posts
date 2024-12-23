@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  enforced:
-    module:
-      - socials_medium
-prompts:
-  title: " that:\n- Is clear and compelling\n- Uses power words\n- Stays under 100 characters"
-  post: " that:\n- Has clear formatting\n- Includes subheadings\n- Provides actionable insights"
