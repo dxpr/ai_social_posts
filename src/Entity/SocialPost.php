@@ -107,14 +107,13 @@ class SocialPost extends ContentEntityBase implements SocialPostInterface {
       // Preserve original field settings.
       $values[$field_name] = $default[0];
 
-      // Create translatable URL prefix while preserving slash as syntax.
-      $url_prefix = t('For @url', ['@url' => $url], ['context' => 'Social post URL prefix']);
-
-      // Prefix default value with URL.
+      // Single translatable string with URL and prompt placeholders.
       $values[$field_name]['value'] = sprintf(
-        '/%s %s',
-        $url_prefix,
-        ltrim($default[0]['value'], '/ ')
+        '/%s',
+        t('For :url @prompt. Include the link.', [
+          ':url' => $url,
+          '@prompt' => ltrim($default[0]['value'], '/ '),
+        ], ['context' => 'Social post with URL'])
       );
     }
   }
