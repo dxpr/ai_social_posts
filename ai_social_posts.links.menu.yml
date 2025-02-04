@@ -1,0 +1,11 @@
+entity.ai_social_post.collection:
+  title: 'AI Social Posts'
+  route_name: entity.ai_social_post.collection
+  description: 'List of AI Social Posts'
+  parent: system.admin_content
+
+entity.ai_social_post_type.collection:
+  title: 'AI Social Post Types'
+  description: 'Manage social post types'
+  route_name: entity.ai_social_post_type.collection
+  parent: system.admin_structure

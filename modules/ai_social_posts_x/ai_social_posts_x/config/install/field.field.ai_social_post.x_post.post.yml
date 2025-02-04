@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.x_post
+  module:
+    - text
+id: ai_social_post.x_post.post
+field_name: post
+entity_type: ai_social_post
+bundle: x_post
+label: Post
+description: 'Write your X post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write an X post that:\n- Is concise and engaging\n- Uses relevant hashtags\n- Stays under 280 characters\n- Note: URLs = 23 chars each"
+    format: ai_social_posts
+settings: {}
+field_type: text_long

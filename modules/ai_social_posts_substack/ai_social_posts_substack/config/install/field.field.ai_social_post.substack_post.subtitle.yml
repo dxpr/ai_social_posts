@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.ai_social_post.subtitle
+    - ai_social_posts.ai_social_post_type.substack_post
+  module:
+    - text
+id: ai_social_post.substack_post.subtitle
+field_name: subtitle
+entity_type: ai_social_post
+bundle: substack_post
+label: Subtitle
+description: 'Add a compelling subtitle to provide more context and increase reader interest.'
+required: false
+translatable: true
+default_value:
+  - 
+    value: "/Write a subtitle that:\n- Expands on the title\n- Adds valuable context\n- Stays under 200 characters"
+    format: ai_social_posts
+settings: {}
+field_type: text_long

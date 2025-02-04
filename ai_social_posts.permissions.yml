@@ -1,0 +1,10 @@
+'delete ai_social_post entity':
+  title: Delete entity content.
+'add ai_social_post entity':
+  title: Add entity content
+'view ai_social_post entity':
+  title: View entity content
+'edit ai_social_post entity':
+  title: Edit entity content
+'administer ai_social_post entity':
+  title: Administer settings

@@ -18,7 +18,7 @@ For example: Fix #123.
 
 <!--- Put an `x` in all the boxes that apply: -->
 
-- [ ] I have read the [CONTRIBUTING.md](https://github.com/your-repo/socials/blob/main/CONTRIBUTING.md) document.
+- [ ] I have read the [CONTRIBUTING.md](https://github.com/your-repo/ai_social_posts/blob/main/CONTRIBUTING.md) document.
 - [ ] My PR title follows [Conventional Commits](https://www.conventionalcommits.org/).
 - [ ] My commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
 - [ ] My code follows the coding standards and style of this project.

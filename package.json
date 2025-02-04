@@ -1,7 +1,7 @@
 {
-  "name": "socials",
+  "name": "ai_social_posts",
   "version": "1.0.0",
-  "description": "Social Posts for Drupal",
+  "description": "AI Social Posts for Drupal",
   "license": "GPL-2.0-or-later",
   "scripts": {
     "prepare": "husky",

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.reddit_post
+  module:
+    - text
+id: ai_social_post.reddit_post.post
+field_name: post
+entity_type: ai_social_post
+bundle: reddit_post
+label: Post
+description: 'The content of your Reddit post.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a Reddit post that:\n- Is informative\n- Uses proper formatting\n- Encourages discussion"
+    format: ai_social_posts
+settings: {}
+field_type: text_long

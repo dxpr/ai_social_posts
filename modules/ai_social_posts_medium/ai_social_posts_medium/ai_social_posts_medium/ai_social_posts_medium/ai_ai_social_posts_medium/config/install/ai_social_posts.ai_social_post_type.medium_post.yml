@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_social_posts_medium
+id: medium_post
+label: 'Medium Post'
+description: 'Post articles to Medium'

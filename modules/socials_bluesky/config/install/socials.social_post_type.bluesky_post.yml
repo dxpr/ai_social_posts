@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  enforced:
-    module:
-      - socials_bluesky
-id: bluesky_post
-label: 'Bluesky Post'
-description: 'Post content to Bluesky'

@@ -1,0 +1,4 @@
+services:
+  ai_social_posts.post_type_manager:
+    class: Drupal\ai_social_posts\AiSocialPostTypeManager
+    arguments: ['@entity_type.manager']

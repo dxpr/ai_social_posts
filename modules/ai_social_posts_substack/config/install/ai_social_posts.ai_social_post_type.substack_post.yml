@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_social_posts_substack
+id: substack_post
+label: 'Substack Post'
+description: 'Create engaging newsletter content for your Substack subscribers'

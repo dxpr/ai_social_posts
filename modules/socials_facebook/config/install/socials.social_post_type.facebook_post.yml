@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  enforced:
-    module:
-      - socials_facebook
-id: facebook_post
-label: 'Facebook Post'
-description: 'Post content to Facebook'

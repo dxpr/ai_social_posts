@@ -1,0 +1,30 @@
+# Primary tab for content page
+ai_social_posts.admin:
+  title: 'AI Social Posts'
+  route_name: entity.ai_social_post.collection
+  base_route: system.admin_content
+  weight: 2
+
+# Local tasks for individual social post
+ai_social_posts.view:
+  route_name: entity.ai_social_post.canonical
+  base_route: entity.ai_social_post.canonical
+  title: View
+
+ai_social_posts.page_edit:
+  route_name: entity.ai_social_post.edit_form
+  base_route: entity.ai_social_post.canonical
+  title: Edit
+
+# Primary tab for AI Social Posts
+ai_social_posts.node.ai_social_posts:
+  title: 'AI Social Posts'
+  route_name: ai_social_posts.node.ai_social_posts
+  base_route: entity.node.canonical
+  weight: 100
+
+# Dynamic local tasks for social post types
+ai_social_posts.node.bundle_posts:
+  deriver: 'Drupal\ai_social_posts\Plugin\Derivative\AiSocialPostLocalTasks'
+  parent_id: ai_social_posts.node.ai_social_posts
+  weight: 100

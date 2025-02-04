@@ -1,0 +1,4 @@
+ai-social-posts:
+  css:
+    theme:
+      css/ai-social-posts.css: {}

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.facebook_post
+  module:
+    - text
+id: ai_social_post.facebook_post.post
+field_name: post
+entity_type: ai_social_post
+bundle: facebook_post
+label: Post
+description: 'Write your Facebook post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a Facebook post that:\n- Is engaging and personal\n- Uses emojis appropriately\n- Encourages interaction"
+    format: ai_social_posts
+settings: {}
+field_type: text_long

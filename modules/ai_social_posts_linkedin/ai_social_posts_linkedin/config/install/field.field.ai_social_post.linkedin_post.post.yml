@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.linkedin_post
+  module:
+    - text
+id: ai_social_post.linkedin_post.post
+field_name: post
+entity_type: ai_social_post
+bundle: linkedin_post
+label: Post
+description: 'Write your LinkedIn post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a LinkedIn post that:\n- Is professional\n- Shares industry insights\n- Uses paragraph breaks"
+    format: ai_social_posts
+settings: {}
+field_type: text_long

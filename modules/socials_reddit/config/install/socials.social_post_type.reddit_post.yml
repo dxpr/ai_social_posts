@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  enforced:
-    module:
-      - socials_reddit
-id: reddit_post
-label: 'Reddit Post'
-description: 'Post content to Reddit'

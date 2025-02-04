@@ -1,0 +1,78 @@
+<?php
+
+use Drupal\Core\Url;
+
+/**
+ * @file
+ * Contains Drupal\ai_social_posts\ai_social_posts.module.
+ */
+
+/**
+ * @defgroup ai_social_posts Example: Content Entity
+ * @ingroup examples
+ * @{
+ * Implement a content entity.
+ *
+ * This module demonstrates implementing a content entity.
+ *
+ * Entity API is the API that stores pieces of content and configuration for
+ * Drupal core. For instance, if you've encountered node content types, you've
+ * encountered entities of type 'node.'
+ *
+ * This example implements the Entity API so that we have an entity type usable
+ * by the user which you might think of as specialized nodes, but which are
+ * different from nodes. These entities are called AiSocialPost, and are known
+ * internally by the machine name ai_social_post.
+ *
+ * AiSocialPost is a fieldable content entity used to hold structured information
+ * without the overhead of using a node content type. 'Fieldable' means you can
+ * attach fields to it, like you can with nodes. It is defined programmatically
+ * (completely in code). We will show the main techniques to handle and expose
+ * the contents of this entity type.
+ *
+ * The AiSocialPost entity will demonstrate the main tasks for an entity:
+ * - define
+ * - save
+ * - load
+ * - view
+ * - edit
+ * - delete
+ * - control access
+ *
+ * Where ever possible, we use the amazing tools built into D8 natively.
+ *
+ * @see Drupal\ai_social_posts\Entity\AiSocialPost
+ * @see config_entity_example
+ * }
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ai_social_posts_theme() {
+  return [
+    'ai_social_posts_node_ai_social_posts' => [
+      'variables' => [
+        'node' => NULL,
+        'form' => NULL,
+        'posts' => NULL,
+      ],
+    ],
+    'ai_social_posts_overview' => [
+      'variables' => [
+        'node' => NULL,
+      ],
+    ],
+    'ai_social_posts_bundle_tab' => [
+      'variables' => [
+        'node' => NULL,
+        'ai_social_posts' => NULL,
+        'bundle' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * @} End of "defgroup ai_social_posts".
+ */

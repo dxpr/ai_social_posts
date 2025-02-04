@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display node AI Social Posts.
+ *
+ * Available variables:
+ * - node: The node entity.
+ * - form: The social post creation form.
+ * - posts: Array of existing AI Social Posts.
+ */
+#}
+
+<div class="ai-social-posts-wrapper">
+  <h2>{{ 'Create new social post'|t }}</h2>
+  {{ form }}
+
+  {% if posts %}
+    <h2>{{ 'Existing AI Social Posts'|t }}</h2>
+    <div class="existing-ai-social-posts">
+      {{ posts }}
+    </div>
+  {% endif %}
+</div>

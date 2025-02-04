@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.bluesky_post
+  module:
+    - text
+id: ai_social_post.bluesky_post.post
+field_name: post
+entity_type: ai_social_post
+bundle: bluesky_post
+label: Post
+description: 'Write your Bluesky post content.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a Bluesky post that:\n- Is conversational\n- Uses relevant tags\n- Stays under 300 characters\n- URLs: counts full domain + first 15 chars of path"
+    format: ai_social_posts
+settings: {}
+field_type: text_long

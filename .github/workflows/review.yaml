@@ -30,4 +30,4 @@ jobs:
       - uses: wagoid/commitlint-github-action@v6
         with:
           configFile: commitlint.config.mjs
-          helpURL: https://github.com/your-repo/socials/blob/main/CONTRIBUTING.md
+          helpURL: https://github.com/your-repo/ai_social_posts/blob/main/CONTRIBUTING.md
