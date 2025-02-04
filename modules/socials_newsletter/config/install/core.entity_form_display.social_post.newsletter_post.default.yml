@@ -23,8 +23,7 @@ content:
     third_party_settings:
       maxlength:
         maxlength_js: 60
-        maxlength_js_label: 'Subject limited to @limit characters, remaining: <strong>@remaining</strong>'
-        maxlength_js_enforce: true
+        maxlength_js_enforce: false
   post:
     type: text_textarea
     weight: 1
@@ -35,7 +34,6 @@ content:
     third_party_settings:
       maxlength:
         maxlength_js: 50000
-        maxlength_js_label: '@remaining characters remaining'
         maxlength_js_enforce: false
   node_id:
     type: entity_reference_autocomplete
