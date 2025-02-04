@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'cc669b2d5e7fb04b93fc7752ba59dba3e50de618',
+        'pretty_version' => '1.x-dev',
+        'version' => '1.9999999.9999999.9999999-dev',
+        'reference' => '4002e2e18d950a610a440272a5746e97123fbe6b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'cc669b2d5e7fb04b93fc7752ba59dba3e50de618',
+            'pretty_version' => '1.x-dev',
+            'version' => '1.9999999.9999999.9999999-dev',
+            'reference' => '4002e2e18d950a610a440272a5746e97123fbe6b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => true,
         ),
         'drupal/coder' => array(
-            'pretty_version' => '8.3.25',
-            'version' => '8.3.25.0',
-            'reference' => 'c58e5a0c44c0010bbc8a91fc468f4667e177b976',
+            'pretty_version' => '8.3.26',
+            'version' => '8.3.26.0',
+            'reference' => 'fd98546ce3373aa7767240901eda47963ce64c82',
             'type' => 'phpcodesniffer-standard',
             'install_path' => __DIR__ . '/../drupal/coder',
             'aliases' => array(),

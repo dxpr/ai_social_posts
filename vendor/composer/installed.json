@@ -83,17 +83,17 @@
         },
         {
             "name": "drupal/coder",
-            "version": "8.3.25",
-            "version_normalized": "8.3.25.0",
+            "version": "8.3.26",
+            "version_normalized": "8.3.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pfrenssen/coder.git",
-                "reference": "c58e5a0c44c0010bbc8a91fc468f4667e177b976"
+                "reference": "fd98546ce3373aa7767240901eda47963ce64c82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pfrenssen/coder/zipball/c58e5a0c44c0010bbc8a91fc468f4667e177b976",
-                "reference": "c58e5a0c44c0010bbc8a91fc468f4667e177b976",
+                "url": "https://api.github.com/repos/pfrenssen/coder/zipball/fd98546ce3373aa7767240901eda47963ce64c82",
+                "reference": "fd98546ce3373aa7767240901eda47963ce64c82",
                 "shasum": ""
             },
             "require": {
@@ -109,7 +109,7 @@
                 "phpstan/phpstan": "^1.7.12",
                 "phpunit/phpunit": "^8.0"
             },
-            "time": "2024-09-22T19:02:16+00:00",
+            "time": "2024-11-28T23:14:29+00:00",
             "type": "phpcodesniffer-standard",
             "installation-source": "dist",
             "autoload": {
