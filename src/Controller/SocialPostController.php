@@ -5,6 +5,7 @@ namespace Drupal\socials\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -64,6 +65,18 @@ class SocialPostController extends ControllerBase {
     $types = $this->entityTypeManager()
       ->getStorage('social_post_type')
       ->loadMultiple();
+
+    // If no social post types are enabled, show a message.
+    if (empty($types)) {
+      return [
+        '#type' => 'markup',
+        '#markup' => $this->t('No social post types are enabled. <a href=":url">Enable social post types</a>.', [
+          ':url' => Url::fromRoute('entity.social_post_type.collection')->toString(),
+        ]),
+        '#prefix' => '<p>',
+        '#suffix' => '</p>',
+      ];
+    }
 
     // If there's only one type, show its content directly.
     if (count($types) === 1) {
