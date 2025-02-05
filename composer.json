@@ -1,4 +1,10 @@
 {
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
   "require-dev": {
     "drupal/coder": "^8.3",
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
@@ -7,14 +13,17 @@
   },
   "config": {
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "composer/installers": true
+    },
+    "sort-packages": true
   },
   "scripts": {
     "lint": "phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml src/ modules/ tests/",
     "lint:fix": "phpcbf --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml src/ modules/ tests/"
   },
   "require": {
+    "composer/installers": "^2.0",
     "drupal/ckeditor_ai_agent": "1.0.0-alpha1",
     "drupal/maxlength": "^2.1"
   },
