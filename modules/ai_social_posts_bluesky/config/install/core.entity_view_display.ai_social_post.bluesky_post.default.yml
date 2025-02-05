@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.bluesky_post
+    - field.field.ai_social_post.bluesky_post.post
+  module:
+    - text
+id: ai_social_post.bluesky_post.default
+targetEntityType: ai_social_post
+bundle: bluesky_post
+mode: default
+content:
+  post:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  } 

@@ -2,6 +2,9 @@ uuid: 220ad04a-8a1c-4b01-bfd7-3d912c9211da
 langcode: en
 status: true
 dependencies:
+  enforced:
+    module:
+      - ai_social_posts
   config:
     - filter.format.ai_social_posts
   module:
