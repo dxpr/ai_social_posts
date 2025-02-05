@@ -2,25 +2,25 @@ langcode: en
 status: true
 dependencies:
   config:
-    - ai_social_posts.ai_social_post_type.reddit_post
-    - field.field.ai_social_post.reddit_post.post
-    - field.field.ai_social_post.reddit_post.subreddit
-    - field.field.ai_social_post.reddit_post.title
+    - ai_social_posts.ai_social_post_type.medium_post
+    - field.field.ai_social_post.medium_post.post
+    - field.field.ai_social_post.medium_post.subtitle
+    - field.field.ai_social_post.medium_post.title
   module:
     - text
-id: ai_social_post.reddit_post.default
+id: ai_social_post.medium_post.default
 targetEntityType: ai_social_post
-bundle: reddit_post
+bundle: medium_post
 mode: default
 content:
-  subreddit:
+  title:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content
-  title:
+  subtitle:
     type: text_default
     label: above
     settings: {  }

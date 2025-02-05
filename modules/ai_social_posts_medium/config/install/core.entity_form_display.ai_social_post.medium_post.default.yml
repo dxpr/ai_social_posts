@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.ai_social_post.medium_post.title
     - field.field.ai_social_post.medium_post.subtitle
+    - field.field.ai_social_post.medium_post.post
     - ai_social_posts.ai_social_post_type.medium_post
   module:
     - maxlength
@@ -24,19 +25,31 @@ content:
       maxlength:
         maxlength_js: 100
         maxlength_js_enforce: false
-  post:
+  subtitle:
     type: text_textarea
     weight: 1
     region: content
     settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 150
+        maxlength_js_enforce: false
+  post:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
       rows: 5
-      maxlength: 100000
-      maxlength_js: true
-      maxlength_js_enforce: false
-    third_party_settings: {}
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 100000
+        maxlength_js_enforce: false
   node_id:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
