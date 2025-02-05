@@ -9,6 +9,9 @@ node_modules
 .DS_Store
 Thumbs.db
 
+# Drupal core
+/core/
+
 # Auto generated files.
 # /css/*
 # /js/minified/*
