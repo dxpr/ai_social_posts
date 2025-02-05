@@ -112,7 +112,7 @@ route_callbacks:
 entity.ai_social_post.add_form:
   path: '/ai_social_post/add/{ai_social_post_type}'
   defaults:
-    _entity_form: ai_social_post.default
+    _entity_form: 'ai_social_post.add'
     _title_callback: '\Drupal\ai_social_posts\Controller\AiSocialPostController::addPageTitle'
   requirements:
     _entity_create_access: 'ai_social_post'

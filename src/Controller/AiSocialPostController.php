@@ -8,6 +8,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\ai_social_posts\Entity\AiSocialPostType;
 
 /**
  * Returns responses for AI Social Post routes.
@@ -234,19 +235,38 @@ class AiSocialPostController extends ControllerBase {
   }
 
   /**
-   * Title callback for the add social post form.
+   * Provides the title for the add social post page.
    *
-   * @param string $ai_social_post_type
-   *   The social post type.
+   * @param \Drupal\ai_social_posts\Entity\AiSocialPostType|string|null $ai_social_post_type
+   *   The AI Social Post type entity or machine name.
    *
    * @return string
    *   The page title.
    */
-  public function addPageTitle($ai_social_post_type) {
-    $type = $this->entityTypeManager()
-      ->getStorage('ai_social_post_type')
-      ->load($ai_social_post_type);
-    return $this->t('Add @type', ['@type' => $type->label()]);
+  public function addPageTitle($ai_social_post_type = NULL) {
+    // If we don't have a type, we're on the type selection page.
+    if (!$ai_social_post_type) {
+      return $this->t('Add AI Social Post');
+    }
+
+    // If we already have an entity object, use it directly.
+    if ($ai_social_post_type instanceof AiSocialPostType) {
+      return $this->t('Add @type', ['@type' => $ai_social_post_type->label()]);
+    }
+
+    // Otherwise, try to load the entity by its machine name.
+    try {
+      $type = $this->entityTypeManager()
+        ->getStorage('ai_social_post_type')
+        ->load($ai_social_post_type);
+
+      return $this->t('Add @type', [
+        '@type' => $type ? $type->label() : $ai_social_post_type,
+      ]);
+    }
+    catch (\Exception $e) {
+      return $this->t('Add AI Social Post');
+    }
   }
 
   /**
