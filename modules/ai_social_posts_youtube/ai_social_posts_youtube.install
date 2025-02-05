@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Install, update and uninstall functions for ai_social_posts_youtube module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function ai_social_posts_youtube_install() {
+  // Check if analyze_ai_brand_voice is installed.
+  if (\Drupal::moduleHandler()->moduleExists('analyze_ai_brand_voice')) {
+    $config = \Drupal::configFactory()->getEditable('analyze.settings');
+    $config->set('status.ai_social_post.youtube_post.brand_voice_analyzer', TRUE);
+    $config->save();
+  }
+
+  // Check if analyze_ai_sentiment is installed.
+  if (\Drupal::moduleHandler()->moduleExists('analyze_ai_sentiment')) {
+    $config = \Drupal::configFactory()->getEditable('analyze.settings');
+    $config->set('status.ai_social_post.youtube_post.ai_sentiment_analyzer', TRUE);
+    $config->save();
+  }
+} 
