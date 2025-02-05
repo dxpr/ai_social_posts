@@ -8,3 +8,7 @@ dependencies:
   - drupal:ckeditor5
   - maxlength:maxlength
   - ckeditor_ai_agent:ckeditor_ai_agent
+recommended:
+  - analyze:analyze
+  - analyze_ai_brand_voice:analyze_ai_brand_voice
+  - analyze_ai_sentiment:analyze_ai_sentiment
