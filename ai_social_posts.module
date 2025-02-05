@@ -70,6 +70,11 @@ function ai_social_posts_theme() {
         'bundle' => NULL,
       ],
     ],
+    'ai_social_post_add_list' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+    ],
   ];
 }
 

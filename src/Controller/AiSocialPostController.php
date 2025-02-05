@@ -281,4 +281,63 @@ class AiSocialPostController extends ControllerBase {
     ]);
   }
 
+  /**
+   * Displays the add AI Social Post page.
+   *
+   * @return array
+   *   A render array.
+   */
+  public function addPage() {
+    // Get all enabled social post types.
+    $types = $this->entityTypeManager()
+      ->getStorage('ai_social_post_type')
+      ->loadMultiple();
+
+    // If no social post types are enabled, show a message.
+    if (empty($types)) {
+      return [
+        '#type' => 'markup',
+        '#markup' => $this->t('No social post types are enabled. <a href=":url">Enable social post types</a>.', [
+          ':url' => Url::fromRoute('entity.ai_social_post_type.collection')->toString(),
+        ]),
+        '#prefix' => '<p>',
+        '#suffix' => '</p>',
+      ];
+    }
+
+    // If there's only one type, show its form directly.
+    if (count($types) === 1) {
+      $type = reset($types);
+      $ai_social_post = $this->entityTypeManager()->getStorage('ai_social_post')->create([
+        'type' => $type->id(),
+      ]);
+      return $this->entityFormBuilder()->getForm($ai_social_post);
+    }
+
+    // If multiple types, show type selection list.
+    $build = [
+      '#theme' => 'ai_social_post_add_list',
+      '#content' => [],
+    ];
+
+    foreach ($types as $type) {
+      $build['#content'][$type->id()] = [
+        'link' => [
+          '#type' => 'link',
+          '#title' => $type->label(),
+          '#url' => Url::fromRoute('entity.ai_social_post.add_form', [
+            'ai_social_post_type' => $type->id(),
+          ]),
+        ],
+        'description' => [
+          '#prefix' => '<div>',
+          '#markup' => $type->label(),
+          '#suffix' => '</div>',
+        ],
+      ];
+    }
+
+    return $build;
+  }
+
 }
