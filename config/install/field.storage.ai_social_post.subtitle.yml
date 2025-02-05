@@ -6,7 +6,7 @@ dependencies:
 id: ai_social_post.subtitle
 field_name: subtitle
 entity_type: ai_social_post
-type: string_long
+type: text_long
 settings: {}
 module: core
 locked: false
