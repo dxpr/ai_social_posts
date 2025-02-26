@@ -6,32 +6,44 @@ dependencies:
     - field.field.ai_social_post.medium_post.post
     - field.field.ai_social_post.medium_post.subtitle
     - field.field.ai_social_post.medium_post.title
+    - field.field.ai_social_post.medium_post.medium_tag
   module:
     - text
+  enforced:
+    module:
+      - ai_social_posts_medium
 id: ai_social_post.medium_post.default
 targetEntityType: ai_social_post
 bundle: medium_post
 mode: default
 content:
+  medium_tag:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+    weight: 0
+    region: content
   title:
     type: text_default
     label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
+    settings: {}
+    third_party_settings: {}
+    weight: 1
     region: content
   subtitle:
     type: text_default
     label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
+    settings: {}
+    third_party_settings: {}
+    weight: 2
     region: content
   post:
     type: text_default
     label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
+    settings: {}
+    third_party_settings: {}
+    weight: 3
     region: content
-hidden: {  } 
+hidden: {} 

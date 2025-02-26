@@ -3,8 +3,12 @@ status: true
 dependencies:
   config:
     - ai_social_posts.ai_social_post_type.medium_post
+    - field.storage.ai_social_post.post
   module:
     - text
+  enforced:
+    module:
+      - ai_social_posts_medium
 id: ai_social_post.medium_post.post
 field_name: post
 entity_type: ai_social_post
@@ -15,7 +19,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Medium post that: - Has clear formatting - Includes subheadings (h2, h3) - Provides actionable insights. Use paragraph tags () to structure content and heading tags for sections for proper formatting in the editor."
+    value: "/Write a Medium post that: - Has clear formatting - Includes subheadings (h2, h3) - Provides actionable insights - Matches and fits in with style and language at https://medium.com/feed/tag/all. Use paragraph tags () to structure content and heading tags for sections for proper formatting in the editor."
     format: ai_social_posts
 settings: {}
 field_type: text_long

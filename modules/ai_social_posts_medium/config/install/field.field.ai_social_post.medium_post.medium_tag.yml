@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.ai_social_post.medium_tag
+    - ai_social_posts.ai_social_post_type.medium_post
+  module:
+    - ai_social_posts_medium
+  enforced:
+    module:
+      - ai_social_posts_medium
+id: ai_social_post.medium_post.medium_tag
+field_name: medium_tag
+entity_type: ai_social_post
+bundle: medium_post
+label: 'Tag'
+description: 'Enter a Medium tag to help with content discovery (e.g., programming, technology, writing).'
+required: true
+settings:
+  max_length: 255
+field_type: string 

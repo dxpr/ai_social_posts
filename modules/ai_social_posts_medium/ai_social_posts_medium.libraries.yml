@@ -1,0 +1,7 @@
+medium-form:
+  js:
+    js/medium-form.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once 

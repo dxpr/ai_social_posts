@@ -4,15 +4,22 @@ dependencies:
   config:
     - field.storage.ai_social_post.subtitle
     - ai_social_posts.ai_social_post_type.medium_post
+  module:
+    - text
+  enforced:
+    module:
+      - ai_social_posts_medium
 id: ai_social_post.medium_post.subtitle
 field_name: subtitle
 entity_type: ai_social_post
 bundle: medium_post
 label: Subtitle
-description: ''
+description: 'A brief subtitle that complements your title and provides additional context.'
 required: false
 translatable: true
-default_value: {}
-default_value_callback: ''
+default_value:
+  - 
+    value: "/Write a Medium subtitle that: - Complements the title - Provides additional context - Stays under 200 characters - Matches and fits in with style and language at https://medium.com/feed/tag/all"
+    format: ai_social_posts
 settings: {}
 field_type: text_long
