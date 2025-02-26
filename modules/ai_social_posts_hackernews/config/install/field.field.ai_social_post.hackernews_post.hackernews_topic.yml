@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.ai_social_post.hackernews_topic
+    - ai_social_posts.ai_social_post_type.hackernews_post
+  module:
+    - ai_social_posts_hackernews
+  enforced:
+    module:
+      - ai_social_posts_hackernews
+id: ai_social_post.hackernews_post.hackernews_topic
+field_name: hackernews_topic
+entity_type: ai_social_post
+bundle: hackernews_post
+label: 'Topic'
+description: 'Enter a Hacker News topic to help with content discovery (e.g., tech, programming, startups).'
+required: false
+settings:
+  max_length: 255
+field_type: string 

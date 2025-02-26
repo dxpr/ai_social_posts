@@ -5,26 +5,38 @@ dependencies:
     - ai_social_posts.ai_social_post_type.hackernews_post
     - field.field.ai_social_post.hackernews_post.post
     - field.field.ai_social_post.hackernews_post.title
+    - field.field.ai_social_post.hackernews_post.hackernews_topic
   module:
     - text
+  enforced:
+    module:
+      - ai_social_posts_hackernews
 id: ai_social_post.hackernews_post.default
 targetEntityType: ai_social_post
 bundle: hackernews_post
 mode: default
 content:
+  hackernews_topic:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+    weight: 0
+    region: content
   title:
     type: text_default
     label: above
     settings: {}
     third_party_settings: {}
-    weight: 0
+    weight: 1
     region: content
   post:
     type: text_default
     label: above
     settings: {}
     third_party_settings: {}
-    weight: 1
+    weight: 2
     region: content
 hidden:
   node_id: true 

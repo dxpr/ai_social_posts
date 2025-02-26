@@ -3,8 +3,12 @@ status: true
 dependencies:
   config:
     - ai_social_posts.ai_social_post_type.hackernews_post
+    - field.storage.ai_social_post.post
   module:
     - text
+  enforced:
+    module:
+      - ai_social_posts_hackernews
 id: ai_social_post.hackernews_post.post
 field_name: post
 entity_type: ai_social_post
@@ -15,7 +19,7 @@ required: true
 translatable: true
 default_value:
   -
-    value: "/Write a Hacker News post that: - Is technical and insightful - Focuses on programming, technology, or startups - Uses clear, concise language - Avoids clickbait or sensationalism - Has a target length of 20-250 words. Note: Hacker News values substance over style. Keep your post informative and straightforward. The community appreciates technical depth and thoughtful analysis. Do a vibe check on current HN front page and carefully match the vibe and language: https://news.ycombinator.com/"
+    value: "/Write a Hacker News post that: - Is technical and insightful - Focuses on programming, technology, or startups - Uses clear, concise language - Avoids clickbait or sensationalism - Has a target length of 20-250 words. Note: Hacker News values substance over style. Keep your post informative and straightforward. The community appreciates technical depth and thoughtful analysis. Do a vibe check on current HN front page and carefully match the vibe and language: https://news.ycombinator.com/ and https://hackersearch.net/ask?q=tech"
     format: ai_social_posts
 settings: {}
 field_type: text_long 

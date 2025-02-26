@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ai_social_posts
+    - ai_social_posts_hackernews
+  enforced:
+    module:
+      - ai_social_posts_hackernews
+id: ai_social_post.hackernews_topic
+field_name: hackernews_topic
+entity_type: ai_social_post
+type: string
+settings:
+  max_length: 255
+module: core
+locked: false
+cardinality: 1
+translatable: true 

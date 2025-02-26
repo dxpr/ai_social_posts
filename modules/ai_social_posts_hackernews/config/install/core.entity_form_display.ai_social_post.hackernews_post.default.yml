@@ -5,17 +5,32 @@ dependencies:
     - ai_social_posts.ai_social_post_type.hackernews_post
     - field.field.ai_social_post.hackernews_post.post
     - field.field.ai_social_post.hackernews_post.title
+    - field.field.ai_social_post.hackernews_post.hackernews_topic
   module:
     - maxlength
     - text
+  enforced:
+    module:
+      - ai_social_posts_hackernews
 id: ai_social_post.hackernews_post.default
 targetEntityType: ai_social_post
 bundle: hackernews_post
 mode: default
 content:
+  hackernews_topic:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: 255
+        maxlength_js_enforce: false
   title:
     type: text_textarea
-    weight: 0
+    weight: 1
     region: content
     settings:
       rows: 2
@@ -26,7 +41,7 @@ content:
         maxlength_js_enforce: false
   post:
     type: text_textarea
-    weight: 1
+    weight: 2
     region: content
     settings:
       rows: 5
@@ -37,7 +52,7 @@ content:
         maxlength_js_enforce: false
   node_id:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS

@@ -6,6 +6,9 @@ dependencies:
     - field.storage.ai_social_post.title
   module:
     - text
+  enforced:
+    module:
+      - ai_social_posts_hackernews
 id: ai_social_post.hackernews_post.title
 field_name: title
 entity_type: ai_social_post
@@ -16,7 +19,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Hacker News title that: - Is clear and specific - Avoids clickbait - Accurately represents the content - Stays under 80 characters. Note: Hacker News values straightforward, technical titles that precisely describe the content. Do a vibe check on current HN front page and carefully match the vibe and language: https://news.ycombinator.com/"
+    value: "/Write a Hacker News title that: - Is clear and specific - Avoids clickbait - Accurately represents the content - Stays under 80 characters. Note: Hacker News values straightforward, technical titles that precisely describe the content. Do a vibe check on current HN front page and carefully match the vibe and language: https://news.ycombinator.com/ and https://hackersearch.net/ask?q=tech"
     format: ai_social_posts
 settings: {}
 field_type: text_long 
