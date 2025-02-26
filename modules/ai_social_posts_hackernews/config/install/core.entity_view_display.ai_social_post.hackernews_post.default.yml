@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.hackernews_post
+    - field.field.ai_social_post.hackernews_post.post
+    - field.field.ai_social_post.hackernews_post.title
+  module:
+    - text
+id: ai_social_post.hackernews_post.default
+targetEntityType: ai_social_post
+bundle: hackernews_post
+mode: default
+content:
+  title:
+    type: text_default
+    label: above
+    settings: {}
+    third_party_settings: {}
+    weight: 0
+    region: content
+  post:
+    type: text_default
+    label: above
+    settings: {}
+    third_party_settings: {}
+    weight: 1
+    region: content
+hidden:
+  node_id: true 

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.hackernews_post
+    - field.storage.ai_social_post.title
+  module:
+    - text
+id: ai_social_post.hackernews_post.title
+field_name: title
+entity_type: ai_social_post
+bundle: hackernews_post
+label: Title
+description: 'Write your Hacker News post title. Keep it under 80 characters.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a Hacker News title that: - Is clear and specific - Avoids clickbait - Accurately represents the content - Stays under 80 characters. Note: Hacker News values straightforward, technical titles that precisely describe the content. Do a vibe check on current HN front page and carefully match the vibe and language: https://news.ycombinator.com/"
+    format: ai_social_posts
+settings: {}
+field_type: text_long 

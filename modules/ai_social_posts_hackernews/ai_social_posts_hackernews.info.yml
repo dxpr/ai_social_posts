@@ -1,0 +1,8 @@
+name: AI Social Posts - Hacker News
+type: module
+description: 'Provides Hacker News integration for AI Social Posts'
+package: AI Social Posts
+core_version_requirement: ^10.3 || ^11.0
+dependencies:
+  - maxlength:maxlength
+  - ai_social_posts:ai_social_posts 

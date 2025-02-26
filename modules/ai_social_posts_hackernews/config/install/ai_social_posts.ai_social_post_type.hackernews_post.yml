@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_social_posts_hackernews
+id: hackernews_post
+label: 'Hacker News Post'
+description: 'Post content to Hacker News' 

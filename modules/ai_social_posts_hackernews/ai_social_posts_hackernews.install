@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the AI Social Posts Hacker News.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function ai_social_posts_hackernews_install() {
+  // Set the weight of this module higher than the ai_social_posts module.
+  module_set_weight('ai_social_posts_hackernews', 10);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function ai_social_posts_hackernews_uninstall() {
+  // Remove the post type.
+  \Drupal::entityTypeManager()
+    ->getStorage('ai_social_post_type')
+    ->load('hackernews_post')
+    ->delete();
+} 
