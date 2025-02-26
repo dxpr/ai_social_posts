@@ -53,3 +53,5 @@ composer.lock
 
 # Temporary files
 /tmp/
+
+.specstory
