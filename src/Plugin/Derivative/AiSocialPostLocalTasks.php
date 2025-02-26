@@ -44,11 +44,7 @@ class AiSocialPostLocalTasks extends DeriverBase implements ContainerDeriverInte
   public function getDerivativeDefinitions($base_plugin_definition) {
     $types = $this->postTypeManager->getTypes();
 
-    // Only create derivatives if we have multiple types.
-    if (count($types) <= 1) {
-      return [];
-    }
-
+    // Create derivatives for all types, even if there's only one
     foreach ($types as $type) {
       $this->derivatives[$type->id()] = array_merge($base_plugin_definition, [
         'title' => $type->label(),

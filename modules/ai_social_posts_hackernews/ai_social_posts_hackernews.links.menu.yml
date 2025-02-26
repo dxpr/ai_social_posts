@@ -1,0 +1,8 @@
+ai_social_posts_hackernews.add:
+  title: 'Add Hacker News Post'
+  route_name: entity.ai_social_post.add_form
+  description: 'Create a new Hacker News post'
+  parent: ai_social_posts.add_page
+  route_parameters:
+    ai_social_post_type: 'hackernews_post'
+  weight: 0 

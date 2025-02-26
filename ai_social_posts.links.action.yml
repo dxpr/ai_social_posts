@@ -1,16 +1,11 @@
-ai_social_posts.ai_social_post_add:
-
-  # The route which will be invoked when the link is clicked.
+ai_social_posts.add_action:
   route_name: ai_social_posts.ai_social_post_add
-  title: 'Add social post'
-
-  # The pages where the link appears, indicated by their route names.
+  title: 'Add AI Social Post'
   appears_on:
     - entity.ai_social_post.collection
-    - entity.ai_social_post.canonical
 
-ai_social_post_type_add:
-  route_name: 'entity.ai_social_post_type.add_form'
-  title: 'Add social post type'
+entity.ai_social_post_type.add_form:
+  route_name: entity.ai_social_post_type.add_form
+  title: 'Add AI Social Post type'
   appears_on:
     - entity.ai_social_post_type.collection

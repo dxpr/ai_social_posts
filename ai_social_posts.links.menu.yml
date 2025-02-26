@@ -9,3 +9,9 @@ entity.ai_social_post_type.collection:
   description: 'Manage social post types'
   route_name: entity.ai_social_post_type.collection
   parent: system.admin_structure
+
+ai_social_posts.add_page:
+  title: 'Add AI Social Post'
+  route_name: ai_social_posts.ai_social_post_add
+  description: 'Add a new AI Social Post'
+  parent: entity.ai_social_post.collection

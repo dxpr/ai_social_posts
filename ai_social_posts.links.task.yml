@@ -16,6 +16,12 @@ ai_social_posts.page_edit:
   base_route: entity.ai_social_post.canonical
   title: Edit
 
+ai_social_posts.delete:
+  route_name: entity.ai_social_post.delete_form
+  base_route: entity.ai_social_post.canonical
+  title: Delete
+  weight: 10
+
 # Primary tab for AI Social Posts
 ai_social_posts.node.ai_social_posts:
   title: 'AI Social Posts'
