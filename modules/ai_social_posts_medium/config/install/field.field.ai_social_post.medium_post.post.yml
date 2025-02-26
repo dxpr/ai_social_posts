@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Medium post that:\n- Has clear formatting\n- Includes subheadings\n- Provides actionable insights"
+    value: "/Write a Medium post that: - Has clear formatting - Includes subheadings (<h2>, <h3>) - Provides actionable insights. <p>Use paragraph tags (<p>) to structure content and heading tags for sections for proper formatting in the editor.</p>"
     format: ai_social_posts
 settings: {}
 field_type: text_long

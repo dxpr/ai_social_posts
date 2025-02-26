@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Substack post that:\n- Opens with a strong hook\n- Uses clear sections\n- Includes relevant media\n- Ends with a call-to-action\n- Provides unique insights"
+    value: "/Write a Substack post that: - Opens with a strong hook - Uses clear sections (<h2>, <h3>) - Includes relevant media - Ends with a call-to-action - Provides unique insights. <p>Use paragraph tags (<p>) to structure content and heading tags for sections for proper formatting in the editor.</p>"
     format: ai_social_posts
 settings: {}
 field_type: text_long

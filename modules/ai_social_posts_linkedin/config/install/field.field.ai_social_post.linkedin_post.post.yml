@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a LinkedIn post that:\n- Is professional\n- Shares industry insights\n- Uses paragraph breaks"
+    value: "/Write a LinkedIn post that: - Is professional and concise - Shares valuable industry insights - Uses paragraph tags (<p>) to structure content. Note: LinkedIn posts don't support rich formatting. Use plain text with: - Hyphens for bullet points - Numbers for ordered lists - Asterisks for *emphasis* - Special characters for visual structure. Wrap each paragraph in <p> tags for proper formatting in the editor."
     format: ai_social_posts
 settings: {}
 field_type: text_long

@@ -16,7 +16,7 @@ required: false
 translatable: true
 default_value:
   - 
-    value: "/Write a subtitle that:\n- Expands on the title\n- Adds valuable context\n- Stays under 200 characters"
+    value: "/Write a subtitle that: - Expands on the title - Adds valuable context - Stays under 200 characters"
     format: ai_social_posts
 settings: {}
 field_type: text_long

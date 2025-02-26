@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Reddit post that:\n- Is informative\n- Uses proper formatting\n- Encourages discussion"
+    value: "/Write a Reddit post that: - Is informative - Uses proper formatting - Encourages discussion. <p>Use paragraph tags (<p>) to structure content, and consider using markdown-style formatting that Reddit supports (e.g., *italics*, **bold**, > for quotes).</p>"
     format: ai_social_posts
 settings: {}
 field_type: text_long
