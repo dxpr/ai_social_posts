@@ -89,32 +89,26 @@ class AiSocialPost extends ContentEntityBase implements AiSocialPostInterface {
       return;
     }
 
-    // Get bundle-specific field definitions.
-    $fields = \Drupal::service('entity_field.manager')
-      ->getFieldDefinitions('ai_social_post', $values['type']);
-
-    // Iterate over configurable fields.
-    foreach ($fields as $field_name => $field) {
-      if (!$field instanceof FieldConfig) {
-        continue;
+    // Get the field definition for the 'post' field.
+    $field_manager = \Drupal::service('entity_field.manager');
+    $fields = $field_manager->getFieldDefinitions('ai_social_post', $values['type']);
+    
+    // Only process the 'post' field if it exists and has a default value.
+    if (isset($fields['post']) && $fields['post'] instanceof FieldConfig) {
+      $default = $fields['post']->getDefaultValueLiteral();
+      if (!empty($default[0]['value'])) {
+        // Preserve original field settings.
+        $values['post'] = $default[0];
+        
+        // Add URL and prompt to the 'post' field.
+        $values['post']['value'] = sprintf(
+          '/%s',
+          t('For :url @prompt. Include the link.', [
+            ':url' => $url,
+            '@prompt' => ltrim($default[0]['value'], '/ '),
+          ], ['context' => 'Social post with URL'])
+        );
       }
-
-      $default = $field->getDefaultValueLiteral();
-      if (empty($default[0]['value'])) {
-        continue;
-      }
-
-      // Preserve original field settings.
-      $values[$field_name] = $default[0];
-
-      // Single translatable string with URL and prompt placeholders.
-      $values[$field_name]['value'] = sprintf(
-        '/%s',
-        t('For :url @prompt. Include the link.', [
-          ':url' => $url,
-          '@prompt' => ltrim($default[0]['value'], '/ '),
-        ], ['context' => 'Social post with URL'])
-      );
     }
   }
 
