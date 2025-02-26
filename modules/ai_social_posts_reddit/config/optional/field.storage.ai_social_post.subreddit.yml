@@ -2,7 +2,11 @@ langcode: en
 status: true
 dependencies:
   module:
+    - ai_social_posts
     - ai_social_posts_reddit
+  enforced:
+    module:
+      - ai_social_posts_reddit
 id: ai_social_post.subreddit
 field_name: subreddit
 entity_type: ai_social_post

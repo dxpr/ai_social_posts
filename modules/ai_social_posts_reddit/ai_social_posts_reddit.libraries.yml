@@ -1,0 +1,7 @@
+reddit-form:
+  js:
+    js/reddit-form.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once 

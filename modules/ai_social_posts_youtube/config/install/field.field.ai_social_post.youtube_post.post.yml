@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a YouTube script that: - Has a strong hook - Uses clear sections - Includes b-roll suggestions - Ends with a call-to-action. <p>Use paragraph tags (<p>) to structure content for proper formatting in the editor. Consider using <strong> tags for emphasis and <em> for instructions or b-roll notes.</p>"
+    value: "/Write a YouTube script that: - Has a strong hook - Uses clear sections - Includes b-roll suggestions - Ends with a call-to-action. Use paragraph tags () to structure content for proper formatting in the editor. Consider using <strong> tags for emphasis and <em> for instructions or b-roll notes."
     format: ai_social_posts
 settings: {}
 field_type: text_long

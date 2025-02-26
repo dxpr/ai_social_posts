@@ -3,8 +3,12 @@ status: true
 dependencies:
   config:
     - ai_social_posts.ai_social_post_type.reddit_post
+    - field.storage.ai_social_post.post
   module:
     - text
+  enforced:
+    module:
+      - ai_social_posts_reddit
 id: ai_social_post.reddit_post.post
 field_name: post
 entity_type: ai_social_post
@@ -15,7 +19,8 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Reddit post that: - Is informative - Uses proper formatting - Encourages discussion. <p>Use paragraph tags (<p>) to structure content, and consider using markdown-style formatting that Reddit supports (e.g., *italics*, **bold**, > for quotes).</p>"
+    value: "/Write a Reddit post that: - Is informative - Uses proper formatting - Encourages discussion - Matches and fits in with language and style at https://www.reddit.com/r/all. Use paragraph tags () to structure content, and consider using markdown-style formatting that Reddit supports (e.g., *italics*, **bold**, > for quotes)."
     format: ai_social_posts
-settings: {}
+settings:
+  max_length: 40000
 field_type: text_long

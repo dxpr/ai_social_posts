@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a LinkedIn article that uses proper HTML formatting: <p>Use the following formatting options available in LinkedIn Articles:</p> <ul> <li><strong>Bold text</strong> for important points and subheadings</li> <li><em>Italic text</em> for emphasis or quotes</li> <li><h2>Heading 2 (large)</h2> for main sections</li> <li><h3>Heading 3 (medium)</h3> for subsections</li> <li>Numbered lists for sequential steps</li> <li>Bullet points for key takeaways</li> <li>Blockquotes for featured quotes or excerpts</li> </ul> <p>Include sections for:</p> <ol> <li>Introduction with industry insights</li> <li>Main content with practical advice</li> <li>Examples or case studies</li> <li>Conclusion with actionable takeaways</li> <li>Call-to-action for readers</li> </ol> <p>Aim for professional tone and in-depth analysis that showcases expertise.</p>"
+    value: "/Write a LinkedIn article using these formatting options: bold, italic, h2, h3, numbered lists, bullet points, blockquotes, and hashtags. Include sections for: 1. Introduction with industry insights, 2. Main content with practical advice, 3. Examples or case studies, 4. Conclusion with actionable takeaways, 5. Call-to-action for readers, 6. 3-5 relevant hashtags. Aim for professional tone and in-depth analysis that showcases expertise."
     format: ai_social_posts
 settings: {}
 field_type: text_long 

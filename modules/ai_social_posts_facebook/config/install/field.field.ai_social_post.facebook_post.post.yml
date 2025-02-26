@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Facebook post that: - Is engaging and personal - Uses emojis appropriately - Encourages interaction. <p>Use paragraph tags (<p>) to structure content for proper formatting in the editor.</p>"
+    value: "/Write a Facebook post that: - Is engaging and personal - Uses emojis appropriately - Encourages interaction. Use paragraph tags () to structure content for proper formatting in the editor."
     format: ai_social_posts
 settings: {}
 field_type: text_long

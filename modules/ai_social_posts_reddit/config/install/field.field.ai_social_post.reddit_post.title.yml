@@ -6,6 +6,9 @@ dependencies:
     - ai_social_posts.ai_social_post_type.reddit_post
   module:
     - text
+  enforced:
+    module:
+      - ai_social_posts_reddit
 id: ai_social_post.reddit_post.title
 field_name: title
 entity_type: ai_social_post
@@ -16,7 +19,8 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write a Reddit title that: - Is descriptive - Follows subreddit rules - Stays under 300 characters"
+    value: "/Write a Reddit title that: - Is descriptive - Follows subreddit rules - Stays under 300 characters - Matches and fits in with language and style at https://www.reddit.com/r/all"
     format: ai_social_posts
-settings: {}
+settings:
+  max_length: 300
 field_type: text_long

@@ -6,6 +6,9 @@ dependencies:
     - ai_social_posts.ai_social_post_type.reddit_post
   module:
     - ai_social_posts_reddit
+  enforced:
+    module:
+      - ai_social_posts_reddit
 id: ai_social_post.reddit_post.subreddit
 field_name: subreddit
 entity_type: ai_social_post

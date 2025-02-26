@@ -15,7 +15,7 @@ required: true
 translatable: true
 default_value:
   - 
-    value: "/Write an X post that: - Is concise and engaging - Uses relevant hashtags - Stays under 280 characters - Note: URLs = 23 chars each. <p>Use paragraph tags (<p>) to structure content for proper formatting in the editor.</p>"
+    value: "/Write an X post that: - Is concise and engaging - Uses relevant hashtags - Stays under 280 characters - Note: URLs = 23 chars each. Use paragraph tags () to structure content for proper formatting in the editor."
     format: ai_social_posts
 settings: {}
 field_type: text_long
