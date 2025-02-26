@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.linkedin_article
+  module:
+    - text
+id: ai_social_post.linkedin_article.post
+field_name: post
+entity_type: ai_social_post
+bundle: linkedin_article
+label: 'Article Content'
+description: 'Write your LinkedIn article content with rich formatting.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a LinkedIn article that uses proper HTML formatting: <p>Use the following formatting options available in LinkedIn Articles:</p> <ul> <li><strong>Bold text</strong> for important points and subheadings</li> <li><em>Italic text</em> for emphasis or quotes</li> <li><h2>Heading 2 (large)</h2> for main sections</li> <li><h3>Heading 3 (medium)</h3> for subsections</li> <li>Numbered lists for sequential steps</li> <li>Bullet points for key takeaways</li> <li>Blockquotes for featured quotes or excerpts</li> </ul> <p>Include sections for:</p> <ol> <li>Introduction with industry insights</li> <li>Main content with practical advice</li> <li>Examples or case studies</li> <li>Conclusion with actionable takeaways</li> <li>Call-to-action for readers</li> </ol> <p>Aim for professional tone and in-depth analysis that showcases expertise.</p>"
+    format: ai_social_posts
+settings: {}
+field_type: text_long 
