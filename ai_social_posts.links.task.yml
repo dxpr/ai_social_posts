@@ -31,6 +31,7 @@ ai_social_posts.node.ai_social_posts:
 
 # Dynamic local tasks for social post types
 ai_social_posts.node.bundle_posts:
+  class: '\Drupal\Core\Menu\LocalTaskDefault'
   deriver: 'Drupal\ai_social_posts\Plugin\Derivative\AiSocialPostLocalTasks'
   parent_id: ai_social_posts.node.ai_social_posts
   weight: 100

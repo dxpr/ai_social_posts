@@ -105,27 +105,8 @@ function ai_social_posts_menu_links_discovered_alter(&$links) {
  * Implements hook_local_tasks_alter().
  */
 function ai_social_posts_local_tasks_alter(&$local_tasks) {
-  // Load all social post types
-  $post_types = \Drupal::entityTypeManager()
-    ->getStorage('ai_social_post_type')
-    ->loadMultiple();
-  
-  // Create local tasks for each post type, but only for node tabs
-  foreach ($post_types as $type_id => $type) {
-    // Add a local task for the bundle-specific node tab
-    $route_name = "ai_social_posts.node.{$type_id}_posts";
-    
-    // Only add if the route exists and the task doesn't already exist
-    if (!isset($local_tasks[$route_name])) {
-      $local_tasks[$route_name] = [
-        'title' => $type->label(),
-        'route_name' => $route_name,
-        'base_route' => 'entity.node.canonical',
-        'parent_id' => 'ai_social_posts.node.ai_social_posts',
-        'weight' => 10,
-      ];
-    }
-  }
+  // We no longer need to create local tasks here as they are handled by the deriver
+  // This was causing plugin exceptions because tasks were being created without proper class definitions
 }
 
 /**

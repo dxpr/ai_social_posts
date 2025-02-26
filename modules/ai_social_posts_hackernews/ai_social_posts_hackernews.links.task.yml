@@ -1,6 +1,0 @@
-ai_social_posts_hackernews.node.posts:
-  title: 'Hacker News Posts'
-  route_name: ai_social_posts.node.hackernews_post_posts
-  base_route: entity.node.canonical
-  parent_id: ai_social_posts.node.ai_social_posts
-  weight: 10 
