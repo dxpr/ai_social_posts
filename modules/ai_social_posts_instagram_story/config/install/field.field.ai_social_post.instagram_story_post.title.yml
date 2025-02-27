@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.ai_social_post.title
+    - ai_social_posts.ai_social_post_type.instagram_story_post
+  module:
+    - text
+  enforced:
+    module:
+      - ai_social_posts_instagram_story
+id: ai_social_post.instagram_story_post.title
+field_name: title
+entity_type: ai_social_post
+bundle: instagram_story_post
+label: 'Story Title'
+description: 'Write a title for your Instagram Story (for internal reference only).'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a descriptive title for this Instagram Story that summarizes its content and purpose. This is for internal reference only and won't be visible to viewers."
+    format: ai_social_posts
+settings: {}
+field_type: text_long 

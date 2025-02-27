@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_social_posts_youtube_shorts
+id: youtube_shorts_post
+label: 'YouTube Shorts'
+description: 'Create engaging short-form vertical video content for YouTube Shorts.' 

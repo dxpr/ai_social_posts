@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.instagram_story_post
+    - field.field.ai_social_post.instagram_story_post.post
+    - field.field.ai_social_post.instagram_story_post.title
+  module:
+    - text
+id: ai_social_post.instagram_story_post.default
+targetEntityType: ai_social_post
+bundle: instagram_story_post
+mode: default
+content:
+  post:
+    type: text_default
+    label: above
+    settings: {}
+    third_party_settings: {}
+    weight: 1
+    region: content
+  title:
+    type: text_default
+    label: above
+    settings: {}
+    third_party_settings: {}
+    weight: 0
+    region: content
+hidden:
+  node_id: true 

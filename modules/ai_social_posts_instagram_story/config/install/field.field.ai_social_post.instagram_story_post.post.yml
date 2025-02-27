@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.instagram_story_post
+  module:
+    - text
+  enforced:
+    module:
+      - ai_social_posts_instagram_story
+id: ai_social_post.instagram_story_post.post
+field_name: post
+entity_type: ai_social_post
+bundle: instagram_story_post
+label: Storyboard
+description: 'Create a storyboard for your Instagram Story (sequence of 15-second segments).'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Create an Instagram Story storyboard that: - Divides content into 3-5 frames (15 seconds each) - Includes text overlay suggestions - Recommends interactive elements (polls, questions, sliders) - Suggests visual transitions between frames - Includes a strong opening hook - Ends with a clear call-to-action. Format each frame as: [FRAME X] followed by visual description in <em> tags, text overlays in <strong> tags, and interactive elements in brackets []. Use paragraph tags () to structure content for proper formatting in the editor."
+    format: ai_social_posts
+settings: {}
+field_type: text_long 

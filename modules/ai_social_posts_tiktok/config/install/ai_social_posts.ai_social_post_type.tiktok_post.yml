@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_social_posts_tiktok
+id: tiktok_post
+label: 'TikTok'
+description: 'Create engaging short-form vertical video content for TikTok.' 

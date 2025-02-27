@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.ai_social_post.title
+    - ai_social_posts.ai_social_post_type.youtube_shorts_post
+  module:
+    - text
+  enforced:
+    module:
+      - ai_social_posts_youtube_shorts
+id: ai_social_post.youtube_shorts_post.title
+field_name: title
+entity_type: ai_social_post
+bundle: youtube_shorts_post
+label: Title
+description: 'Write an attention-grabbing title for your YouTube Short.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a YouTube Shorts title that: - Grabs attention instantly - Uses trending keywords - Creates curiosity - Stays under 60 characters - Includes emojis when appropriate. Note: YouTube Shorts titles need to be extremely catchy to stand out in the fast-scrolling Shorts feed."
+    format: ai_social_posts
+settings: {}
+field_type: text_long 

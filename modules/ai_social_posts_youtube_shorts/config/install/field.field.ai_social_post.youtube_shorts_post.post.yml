@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.youtube_shorts_post
+  module:
+    - text
+  enforced:
+    module:
+      - ai_social_posts_youtube_shorts
+id: ai_social_post.youtube_shorts_post.post
+field_name: post
+entity_type: ai_social_post
+bundle: youtube_shorts_post
+label: Script
+description: 'Write the script for your YouTube Short (vertical video under 60 seconds).'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a YouTube Shorts script that: - Hooks viewers in the first 3 seconds - Is optimized for vertical viewing - Has a target length of 20-150 words (30-60 seconds) - Includes visual directions in <em> tags - Uses <strong> tags for emphasis - Ends with a clear call-to-action. Note: YouTube Shorts are fast-paced vertical videos under 60 seconds. The script should be concise, visually descriptive, and designed to stop scrollers. Use paragraph tags () to structure content for proper formatting in the editor."
+    format: ai_social_posts
+settings: {}
+field_type: text_long 

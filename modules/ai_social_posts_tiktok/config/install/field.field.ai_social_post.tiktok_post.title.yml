@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.ai_social_post.title
+    - ai_social_posts.ai_social_post_type.tiktok_post
+  module:
+    - text
+  enforced:
+    module:
+      - ai_social_posts_tiktok
+id: ai_social_post.tiktok_post.title
+field_name: title
+entity_type: ai_social_post
+bundle: tiktok_post
+label: Caption
+description: 'Write an engaging caption for your TikTok video.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write a TikTok caption that: - Is conversational and authentic - Uses line breaks for readability - Includes relevant emojis - Ends with 3-5 trending hashtags - Stays under 2200 characters. Note: TikTok captions should match the platform's casual, trendy style. Do a vibe check on current TikTok trends and match the language style: https://www.tiktok.com/discover"
+    format: ai_social_posts
+settings: {}
+field_type: text_long 

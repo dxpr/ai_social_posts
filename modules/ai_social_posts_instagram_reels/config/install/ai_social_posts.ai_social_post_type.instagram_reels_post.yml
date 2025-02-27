@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_social_posts_instagram_reels
+id: instagram_reels_post
+label: 'Instagram Reels'
+description: 'Create engaging short-form vertical video content for Instagram Reels.' 

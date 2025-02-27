@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - ai_social_posts_instagram_story
+id: instagram_story_post
+label: 'Instagram Story'
+description: 'Create engaging ephemeral content for Instagram Stories.' 

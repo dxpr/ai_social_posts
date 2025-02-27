@@ -1,0 +1,8 @@
+name: 'AI Social Posts - TikTok'
+type: module
+description: 'Provides TikTok integration for AI Social Posts'
+package: AI Social Posts
+core_version_requirement: ^10.3 || ^11.0
+dependencies:
+  - maxlength:maxlength
+  - ai_social_posts:ai_social_posts 

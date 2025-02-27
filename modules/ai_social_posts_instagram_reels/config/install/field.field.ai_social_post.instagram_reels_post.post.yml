@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_social_posts.ai_social_post_type.instagram_reels_post
+  module:
+    - text
+  enforced:
+    module:
+      - ai_social_posts_instagram_reels
+id: ai_social_post.instagram_reels_post.post
+field_name: post
+entity_type: ai_social_post
+bundle: instagram_reels_post
+label: Script
+description: 'Write the script for your Instagram Reel (vertical video under 90 seconds).'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write an Instagram Reels script that: - Hooks viewers in the first 3 seconds - Is optimized for vertical viewing - Has a target length of 15-90 seconds - Includes visual directions in <em> tags - Uses <strong> tags for emphasis - Incorporates trending audio or music suggestions - Ends with a clear call-to-action. Note: Instagram Reels are fast-paced vertical videos under 90 seconds. The script should be concise, visually descriptive, and designed to stop scrollers. Use paragraph tags () to structure content for proper formatting in the editor."
+    format: ai_social_posts
+settings: {}
+field_type: text_long 

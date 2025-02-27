@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.ai_social_post.title
+    - ai_social_posts.ai_social_post_type.instagram_reels_post
+  module:
+    - text
+  enforced:
+    module:
+      - ai_social_posts_instagram_reels
+id: ai_social_post.instagram_reels_post.title
+field_name: title
+entity_type: ai_social_post
+bundle: instagram_reels_post
+label: Caption
+description: 'Write an engaging caption for your Instagram Reel.'
+required: true
+translatable: true
+default_value:
+  - 
+    value: "/Write an Instagram Reels caption that: - Starts with a hook or question - Uses line breaks for readability - Includes relevant emojis - Ends with 5-10 trending hashtags - Stays under 2200 characters. Note: Instagram captions should be conversational and authentic. Do a vibe check on current Instagram Reels and match the style."
+    format: ai_social_posts
+settings: {}
+field_type: text_long 
