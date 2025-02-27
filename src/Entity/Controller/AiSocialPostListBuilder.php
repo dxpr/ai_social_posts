@@ -91,6 +91,17 @@ class AiSocialPostListBuilder extends EntityListBuilder {
       'field' => 'post',
       'specifier' => 'post__value',
     ];
+    $header['author'] = [
+      'data' => $this->t('Author'),
+      'field' => 'user_id',
+      'specifier' => 'user_id__target_id',
+    ];
+    $header['created'] = [
+      'data' => $this->t('Created'),
+      'field' => 'created',
+      'specifier' => 'created',
+      'sort' => 'desc',
+    ];
     $header['referenced_node'] = [
       'data' => $this->t('Connected Content'),
       'field' => 'node_id',
@@ -132,6 +143,24 @@ class AiSocialPostListBuilder extends EntityListBuilder {
         '#markup' => $trimmed_text,
       ],
     ];
+
+    // Add author information.
+    if ($entity->hasField('user_id') && !$entity->get('user_id')->isEmpty()) {
+      $author = $entity->getOwner();
+      $row['author'] = $author ? $author->getDisplayName() : '';
+    }
+    else {
+      $row['author'] = '';
+    }
+
+    // Add created date.
+    if ($entity->hasField('created') && !$entity->get('created')->isEmpty()) {
+      $created_timestamp = $entity->get('created')->value;
+      $row['created'] = \Drupal::service('date.formatter')->format($created_timestamp, 'short');
+    }
+    else {
+      $row['created'] = '';
+    }
 
     // Safely get the referenced node.
     if ($entity->hasField('node_id') && !$entity->get('node_id')->isEmpty()) {

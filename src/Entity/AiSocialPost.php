@@ -26,7 +26,7 @@ use Drupal\user\UserInterface;
  *     "bundle" = "type"
  *   },
  *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *     "view_builder" = "Drupal\ai_social_posts\Entity\ViewBuilder\AiSocialPostViewBuilder",
  *     "list_builder" = "Drupal\ai_social_posts\Entity\Controller\AiSocialPostListBuilder",
  *     "form" = {
  *       "default" = "Drupal\ai_social_posts\Form\AiSocialPostForm",
@@ -154,15 +154,45 @@ class AiSocialPost extends ContentEntityBase implements AiSocialPostInterface {
       ->setSetting('target_type', 'node')
       ->setRequired(TRUE);
 
+    $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(new TranslatableMarkup('Author'))
+      ->setDescription(new TranslatableMarkup('The user ID of the social post author.'))
+      ->setSetting('target_type', 'user')
+      ->setDefaultValueCallback('Drupal\ai_social_posts\Entity\AiSocialPost::getCurrentUserId')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'author',
+        'weight' => 0,
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(new TranslatableMarkup('Created'))
-      ->setDescription(new TranslatableMarkup('The time that the social post was created.'));
+      ->setDescription(new TranslatableMarkup('The time that the social post was created.'))
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'timestamp',
+        'weight' => 1,
+      ])
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(new TranslatableMarkup('Changed'))
       ->setDescription(new TranslatableMarkup('The time that the social post was last edited.'));
 
     return $fields;
+  }
+
+  /**
+   * Default value callback for 'user_id' base field definition.
+   *
+   * @see ::baseFieldDefinitions()
+   *
+   * @return array
+   *   An array of default values.
+   */
+  public static function getCurrentUserId() {
+    return [\Drupal::currentUser()->id()];
   }
 
 }

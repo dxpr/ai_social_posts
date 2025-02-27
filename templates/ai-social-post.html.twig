@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an AI Social Post entity.
+ *
+ * Available variables:
+ * - content: All AI Social Post items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the container element.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - author: The author of the post.
+ * - created: The creation date of the post.
+ *
+ * @see template_preprocess_ai_social_post()
+ *
+ * @ingroup themeable
+ */
+#}
+<article{{ attributes }}>
+  {% if content.author %}
+    <div class="ai-social-post-author">
+      <strong>{{ 'Author'|t }}:</strong> {{ content.author }}
+    </div>
+  {% endif %}
+  
+  {% if content.created %}
+    <div class="ai-social-post-created">
+      <strong>{{ 'Created'|t }}:</strong> {{ content.created }}
+    </div>
+  {% endif %}
+  
+  <div class="ai-social-post-content">
+    {{ content|without('author', 'created') }}
+  </div>
+</article> 

@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Url;
+use Drupal\Core\Render\Element;
 
 /**
  * @file
@@ -75,6 +76,10 @@ function ai_social_posts_theme() {
         'content' => NULL,
       ],
     ],
+    'ai_social_post' => [
+      'render element' => 'elements',
+      'template' => 'ai-social-post',
+    ],
   ];
 }
 
@@ -107,6 +112,44 @@ function ai_social_posts_menu_links_discovered_alter(&$links) {
 function ai_social_posts_local_tasks_alter(&$local_tasks) {
   // We no longer need to create local tasks here as they are handled by the deriver
   // This was causing plugin exceptions because tasks were being created without proper class definitions
+}
+
+/**
+ * Prepares variables for AI Social Post templates.
+ *
+ * Default template: ai-social-post.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the AI Social Post information and any
+ *     fields attached to it.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_ai_social_post(array &$variables) {
+  // Fetch AiSocialPost Entity.
+  $ai_social_post = $variables['elements']['#ai_social_post'];
+  $variables['ai_social_post'] = $ai_social_post;
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+  // Helpful $content variable for templates.
+  $variables['content'] = [];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+
+  // Add author information if available.
+  if ($ai_social_post->hasField('user_id') && !$ai_social_post->get('user_id')->isEmpty()) {
+    $author = $ai_social_post->getOwner();
+    if ($author) {
+      $variables['author'] = $author->getDisplayName();
+    }
+  }
+
+  // Add created date information.
+  if ($ai_social_post->hasField('created') && !$ai_social_post->get('created')->isEmpty()) {
+    $created_timestamp = $ai_social_post->get('created')->value;
+    $variables['created'] = \Drupal::service('date.formatter')->format($created_timestamp, 'medium');
+  }
 }
 
 /**
