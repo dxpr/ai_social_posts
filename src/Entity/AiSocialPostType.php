@@ -34,7 +34,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider"
  *     },
  *   },
- *   admin_permission = "administer social post entity",
+ *   admin_permission = "administer ai_social_post entity",
  *   links = {
  *     "canonical" = "/admin/structure/ai_social_post_types/{ai_social_post_type}",
  *     "add-form" = "/admin/structure/ai_social_post_types/add",

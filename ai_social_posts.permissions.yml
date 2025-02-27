@@ -1,10 +1,19 @@
 'delete ai_social_post entity':
-  title: Delete entity content.
+  title: Delete AI Social Post content
+  description: 'Allow users to delete AI Social Post entities'
+
 'add ai_social_post entity':
-  title: Add entity content
+  title: Add AI Social Post content
+  description: 'Allow users to add AI Social Post entities'
+
 'view ai_social_post entity':
-  title: View entity content
+  title: View AI Social Post content
+  description: 'Allow users to view AI Social Post entities in the admin interface'
+
 'edit ai_social_post entity':
-  title: Edit entity content
+  title: Edit AI Social Post content
+  description: 'Allow users to edit AI Social Post entities'
+
 'administer ai_social_post entity':
-  title: Administer settings
+  title: Administer AI Social Post settings
+  description: 'Allow users to administer AI Social Post settings'

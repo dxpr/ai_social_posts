@@ -1,11 +1,13 @@
 # Entity routes
 entity.ai_social_post.canonical:
-  path: '/ai_social_post/{ai_social_post}'
+  path: '/admin/content/ai-social-posts/{ai_social_post}'
   defaults:
     _entity_view: 'ai_social_post'
     _title: 'AI Social Post'
   requirements:
     _entity_access: 'ai_social_post.view'
+  options:
+    _admin_route: TRUE
 
 entity.ai_social_post.collection:
   path: '/admin/content/ai-social-posts'
@@ -14,9 +16,11 @@ entity.ai_social_post.collection:
     _title: 'AI Social Posts'
   requirements:
     _permission: 'view ai_social_post entity'
+  options:
+    _admin_route: TRUE
 
 ai_social_posts.ai_social_post_add:
-  path: '/ai_social_post/add'
+  path: '/admin/content/ai-social-posts/add'
   defaults:
     _controller: '\Drupal\ai_social_posts\Controller\AiSocialPostController::addPage'
     _title: 'Add AI Social Post'
@@ -25,21 +29,38 @@ ai_social_posts.ai_social_post_add:
   options:
     _admin_route: TRUE
 
+entity.ai_social_post.add_form:
+  path: '/admin/content/ai-social-posts/add/{ai_social_post_type}'
+  defaults:
+    _entity_form: 'ai_social_post.add'
+    _title_callback: '\Drupal\ai_social_posts\Controller\AiSocialPostController::addPageTitle'
+  requirements:
+    _entity_create_access: 'ai_social_post'
+  options:
+    _admin_route: TRUE
+    parameters:
+      ai_social_post_type:
+        type: entity:ai_social_post_type
+
 entity.ai_social_post.edit_form:
-  path: '/ai_social_post/{ai_social_post}/edit'
+  path: '/admin/content/ai-social-posts/{ai_social_post}/edit'
   defaults:
     _entity_form: ai_social_post.default
     _title: 'Edit AI Social Post'
   requirements:
     _entity_access: 'ai_social_post.update'
+  options:
+    _admin_route: TRUE
 
 entity.ai_social_post.delete_form:
-  path: '/ai_social_post/{ai_social_post}/delete'
+  path: '/admin/content/ai-social-posts/{ai_social_post}/delete'
   defaults:
     _entity_form: ai_social_post.delete
     _title: 'Delete AI Social Post'
   requirements:
     _entity_access: 'ai_social_post.delete'
+  options:
+    _admin_route: TRUE
 
 # Settings routes
 ai_social_posts.ai_social_post_settings:
@@ -108,16 +129,3 @@ entity.ai_social_post_type.canonical:
 # Dynamic routes for bundle-specific tabs
 route_callbacks:
   - '\Drupal\ai_social_posts\Routing\AiSocialPostRoutes::routes'
-
-entity.ai_social_post.add_form:
-  path: '/ai_social_post/add/{ai_social_post_type}'
-  defaults:
-    _entity_form: 'ai_social_post.add'
-    _title_callback: '\Drupal\ai_social_posts\Controller\AiSocialPostController::addPageTitle'
-  requirements:
-    _entity_create_access: 'ai_social_post'
-  options:
-    _admin_route: TRUE
-    parameters:
-      ai_social_post_type:
-        type: entity:ai_social_post_type

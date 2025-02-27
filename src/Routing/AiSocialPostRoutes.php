@@ -50,7 +50,7 @@ class AiSocialPostRoutes implements ContainerInjectionInterface {
 
     // Add the overview route.
     $collection->add('ai_social_posts.node.ai_social_posts', new Route(
-      '/node/{node}/ai-social-posts',
+      '/admin/content/node/{node}/ai-social-posts',
       [
         '_controller' => '\Drupal\ai_social_posts\Controller\AiSocialPostController::nodeAiSocialPosts',
         '_title_callback' => '\Drupal\ai_social_posts\Controller\AiSocialPostController::getAiSocialPostsTitle',
@@ -62,13 +62,14 @@ class AiSocialPostRoutes implements ContainerInjectionInterface {
         'parameters' => [
           'node' => ['type' => 'entity:node'],
         ],
+        '_admin_route' => TRUE,
       ]
     ));
 
     // Add routes for each post type.
     foreach ($this->postTypeManager->getTypes() as $type) {
       $collection->add("ai_social_posts.node.{$type->id()}_posts", new Route(
-        "/node/{node}/ai-social-posts/{$type->id()}",
+        "/admin/content/node/{node}/ai-social-posts/{$type->id()}",
         [
           '_controller' => '\Drupal\ai_social_posts\Controller\AiSocialPostController::nodeBundlePosts',
           '_title_callback' => '\Drupal\ai_social_posts\Controller\AiSocialPostController::getBundlePostsTitle',

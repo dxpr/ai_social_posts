@@ -39,15 +39,15 @@ use Drupal\user\UserInterface;
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
  *   },
- *   admin_permission = "administer social post entity",
+ *   admin_permission = "administer ai_social_post entity",
  *   bundle_entity_type = "ai_social_post_type",
  *   field_ui_base_route = "entity.ai_social_post_type.edit_form",
  *   links = {
- *     "canonical" = "/ai_social_post/{ai_social_post}",
- *     "add-page" = "/ai_social_post/add",
- *     "add-form" = "/ai_social_post/add/{ai_social_post_type}",
- *     "edit-form" = "/ai_social_post/{ai_social_post}/edit",
- *     "delete-form" = "/ai_social_post/{ai_social_post}/delete",
+ *     "canonical" = "/admin/content/ai-social-posts/{ai_social_post}",
+ *     "add-page" = "/admin/content/ai-social-posts/add",
+ *     "add-form" = "/admin/content/ai-social-posts/add/{ai_social_post_type}",
+ *     "edit-form" = "/admin/content/ai-social-posts/{ai_social_post}/edit",
+ *     "delete-form" = "/admin/content/ai-social-posts/{ai_social_post}/delete",
  *     "collection" = "/admin/content/ai-social-posts"
  *   }
  * )
