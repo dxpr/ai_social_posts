@@ -137,14 +137,6 @@ function template_preprocess_ai_social_post(array &$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 
-  // Add author information if available.
-  if ($ai_social_post->hasField('user_id') && !$ai_social_post->get('user_id')->isEmpty()) {
-    $author = $ai_social_post->getOwner();
-    if ($author) {
-      $variables['author'] = $author->getDisplayName();
-    }
-  }
-
   // Add created date information.
   if ($ai_social_post->hasField('created') && !$ai_social_post->get('created')->isEmpty()) {
     $created_timestamp = $ai_social_post->get('created')->value;

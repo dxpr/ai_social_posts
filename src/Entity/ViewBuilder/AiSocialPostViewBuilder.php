@@ -72,27 +72,13 @@ class AiSocialPostViewBuilder extends EntityViewBuilder {
   public function view(EntityInterface $entity, $view_mode = 'full', $langcode = NULL) {
     $build = parent::view($entity, $view_mode, $langcode);
 
-    // Add author information if available.
-    if ($entity->hasField('user_id') && !$entity->get('user_id')->isEmpty()) {
-      $author = $entity->getOwner();
-      if ($author) {
-        $build['author'] = [
-          '#type' => 'item',
-          '#title' => t('Author'),
-          '#markup' => $author->getDisplayName(),
-          '#weight' => -10,
-        ];
-      }
-    }
-
     // Add created date information.
     if ($entity->hasField('created') && !$entity->get('created')->isEmpty()) {
       $created_timestamp = $entity->get('created')->value;
       $build['created'] = [
-        '#type' => 'item',
-        '#title' => t('Created'),
+        '#type' => 'markup',
         '#markup' => $this->dateFormatter->format($created_timestamp, 'medium'),
-        '#weight' => -9,
+        '#weight' => 100,
       ];
     }
 

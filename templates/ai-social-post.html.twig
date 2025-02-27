@@ -10,7 +10,6 @@
  *   of a given child element.
  * - attributes: HTML attributes for the container element.
  * - view_mode: View mode; for example, "teaser" or "full".
- * - author: The author of the post.
  * - created: The creation date of the post.
  *
  * @see template_preprocess_ai_social_post()
@@ -18,20 +17,16 @@
  * @ingroup themeable
  */
 #}
-<article{{ attributes }}>
-  {% if content.author %}
-    <div class="ai-social-post-author">
-      <strong>{{ 'Author'|t }}:</strong> {{ content.author }}
-    </div>
-  {% endif %}
+<article{{ attributes.addClass('ai-social-post') }}>
+  <div class="content">
+    {{ content|without('created') }}
+  </div>
   
   {% if content.created %}
-    <div class="ai-social-post-created">
-      <strong>{{ 'Created'|t }}:</strong> {{ content.created }}
+    <div class="details-wrapper">
+      <div class="details-description">
+        <small class="text-muted">{{ 'Posted on'|t }}: {{ content.created }}</small>
+      </div>
     </div>
   {% endif %}
-  
-  <div class="ai-social-post-content">
-    {{ content|without('author', 'created') }}
-  </div>
 </article> 

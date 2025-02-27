@@ -75,12 +75,6 @@ class AiSocialPostListBuilder extends EntityListBuilder {
    * and inserts the 'edit' and 'delete' links as defined for the entity type.
    */
   public function buildHeader() {
-    $header['id'] = [
-      'data' => $this->t('Post ID'),
-      'field' => 'id',
-      'specifier' => 'id',
-      'sort' => 'asc',
-    ];
     $header['type'] = [
       'data' => $this->t('Platform'),
       'field' => 'type',
@@ -90,11 +84,6 @@ class AiSocialPostListBuilder extends EntityListBuilder {
       'data' => $this->t('Post'),
       'field' => 'post',
       'specifier' => 'post__value',
-    ];
-    $header['author'] = [
-      'data' => $this->t('Author'),
-      'field' => 'user_id',
-      'specifier' => 'user_id__target_id',
     ];
     $header['created'] = [
       'data' => $this->t('Created'),
@@ -116,13 +105,6 @@ class AiSocialPostListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /** @var \Drupal\ai_social_posts\Entity\AiSocialPost $entity */
-    $row['id'] = [
-      'data' => [
-        '#type' => 'link',
-        '#title' => $entity->id(),
-        '#url' => $entity->toUrl(),
-      ],
-    ];
     $row['type'] = $entity->bundle();
 
     // Get the processed text with format.
@@ -140,18 +122,11 @@ class AiSocialPostListBuilder extends EntityListBuilder {
 
     $row['post'] = [
       'data' => [
-        '#markup' => $trimmed_text,
+        '#type' => 'link',
+        '#title' => $trimmed_text,
+        '#url' => $entity->toUrl(),
       ],
     ];
-
-    // Add author information.
-    if ($entity->hasField('user_id') && !$entity->get('user_id')->isEmpty()) {
-      $author = $entity->getOwner();
-      $row['author'] = $author ? $author->getDisplayName() : '';
-    }
-    else {
-      $row['author'] = '';
-    }
 
     // Add created date.
     if ($entity->hasField('created') && !$entity->get('created')->isEmpty()) {
