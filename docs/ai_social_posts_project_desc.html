@@ -1,0 +1,85 @@
+  <p>This module is part of the <a href="https://www.drupal.org/project/ai">AI module</a> ecosystem and included in <a href="https://www.drupal.org/project/dxpr_cms">DXPR CMS</a>.</p>
+
+  <blockquote>AI Social Posts provides a flexible framework for creating and managing AI-assisted social media content across multiple platforms.</blockquote>
+
+  <h3>You need AI Social Posts if</h3>
+  <ul>
+    <li>You manage social media across multiple platforms and need content variations</li>
+    <li>You want AI assistance for creating platform-specific social content</li>
+    <li>You need to repurpose existing content into social media posts</li>
+    <li>You want interactive AI editing tools for refining social content</li>
+  </ul>
+
+  <h3 id="module-project--features">Features</h3>
+  <ul>
+    <li><strong>Flexible Content Creation Paths</strong>:
+      <ul>
+        <li>Create posts directly from any content item via the "AI Social Posts" tab</li>
+        <li>Generate multiple platform variations from a single piece of content</li>
+        <li>Create standalone social posts from the central dashboard</li>
+        <li>Batch create posts across multiple platforms</li>
+      </ul>
+    </li>
+    <li><strong>Interactive AI Content Refinement</strong>:
+      <ul>
+        <li>Real-time AI editing commands directly in the editor</li>
+        <li>Quick actions like "Make Longer", "Make Shorter", "Simplify Language"</li>
+        <li>Context-aware content improvements</li>
+        <li>Generate new content from selections</li>
+        <li>One-click summarization</li>
+        <li>"Continue writing" functionality</li>
+        <li>Edit or review existing content</li>
+      </ul>
+    </li>
+    <li><strong>Platform Integrations</strong>:
+      <ul>
+        <li>X (Twitter) - 280 character microblogging</li>
+        <li>LinkedIn - Professional networking posts</li>
+        <li>LinkedIn Articles - Professional networking articles</li>
+        <li>Facebook - Social engagement posts</li>
+        <li>Medium - Long-form articles with formatting, with topical vibe check</li>
+        <li>Substack - Newsletter content with titles</li>
+        <li>Reddit - Subreddit-specific posts, with topical vibe check</li>
+        <li>Bluesky - 300 character social posts</li>
+        <li>YouTube - Video descriptions and metadata</li>
+        <li>Hacker News - HN posts, with topical vibe check</li>
+      </ul>
+    </li>
+    <li><strong>Extensible Architecture</strong>:
+      <ul>
+        <li>Easy addition of new social platforms through submodules</li>
+        <li>Fully fieldable post types for custom requirements</li>
+        <li>Customizable AI prompts per platform</li>
+        <li>Flexible validation and character limit rules</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3 id="module-project--post-installation">Post-Installation</h3>
+  <ol>
+    <li>Install the base module and desired platform modules:
+      <pre>composer require drupal/ai_social_posts
+  drush en ai_social_posts ai_social_posts_x ai_social_posts_linkedin</pre>
+    </li>
+    <li>Two ways to create social posts:
+      <ul>
+        <li>Primary: Navigate to any content item and use the "AI Social Posts" tab to create platform-specific variations</li>
+        <li>Alternative: Create standalone posts via /admin/content/ai-social-posts</li>
+      </ul>
+    </li>
+    <li>Customize AI generation prompts per platform to match your content strategy</li>
+    <li>Optionally enable analysis tools for content optimization</li>
+  </ol>
+
+  <h3 id="module-project--additional-requirements">Additional Requirements</h3>
+  <ul>
+    <li>Drupal 10.3 or 11.0</li>
+    <li><a href="https://www.drupal.org/project/ckeditor_ai_agent">CKEditor AI Agent</a> module</li>
+    <li><a href="https://www.drupal.org/project/maxlength">Maxlength</a> module</li>
+  </ul>
+
+  <h3 id="module-project--recommended-libraries">Recommended modules/libraries</h3>
+  <ul>
+    <li><a href="https://www.drupal.org/project/analyze_ai_brand_voice">AI Brand Voice Analyzer</a> - Get instant feedback on brand voice consistency</li>
+    <li><a href="https://www.drupal.org/project/analyze_ai_sentiment">AI Sentiment Analyzer</a> - Optimize engagement through sentiment analysis</li>
+  </ul>
