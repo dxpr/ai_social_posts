@@ -27,7 +27,7 @@
   },
   "require": {
     "drupal/ckeditor_ai_agent": "^1.0.0-alpha1",
-    "drupal/maxlength": "^2.1"
+    "drupal/maxlength": "^3.0"
   },
   "suggest": {
     "drupal/analyze": "Provides text analysis capabilities for content",
