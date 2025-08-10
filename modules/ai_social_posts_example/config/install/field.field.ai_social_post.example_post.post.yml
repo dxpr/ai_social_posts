@@ -17,5 +17,7 @@ default_value:
   - 
     value: "/Write an example post that: - Has clear structure - Uses formatting - Demonstrates key features"
     format: ai_social_posts
-settings: {}
+settings:
+  allowed_formats:
+    - ai_social_posts
 field_type: text_long

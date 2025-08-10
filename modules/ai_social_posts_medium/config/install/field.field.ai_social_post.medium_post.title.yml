@@ -21,5 +21,7 @@ default_value:
   - 
     value: "/Write a Medium title that: - Is clear and compelling - Uses power words - Stays under 100 characters - Matches and fits in with style and language at https://medium.com/feed/tag/all"
     format: ai_social_posts
-settings: {}
+settings:
+  allowed_formats:
+    - ai_social_posts
 field_type: text_long

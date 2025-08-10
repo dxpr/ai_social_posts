@@ -21,5 +21,7 @@ default_value:
   - 
     value: "/Write a Hacker News title that: - Is clear and specific - Avoids clickbait - Accurately represents the content - Stays under 80 characters. Note: Hacker News values straightforward, technical titles that precisely describe the content. Do a vibe check on current HN front page and carefully match the vibe and language: https://news.ycombinator.com/ and https://hackersearch.net/ask?q=tech"
     format: ai_social_posts
-settings: {}
-field_type: text_long 
+settings:
+  allowed_formats:
+    - ai_social_posts
+field_type: text_long

@@ -18,5 +18,7 @@ default_value:
   - 
     value: "/Write an example title that: - Is descriptive - Uses keywords - Stays under 100 characters"
     format: ai_social_posts
-settings: {}
+settings:
+  allowed_formats:
+    - ai_social_posts
 field_type: text_long

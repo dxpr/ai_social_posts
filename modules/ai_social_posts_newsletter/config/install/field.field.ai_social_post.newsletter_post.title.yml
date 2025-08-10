@@ -18,5 +18,7 @@ default_value:
   - 
     value: "/Write a newsletter subject that: - Creates urgency - Sparks curiosity - Stays under 60 characters"
     format: ai_social_posts
-settings: {}
+settings:
+  allowed_formats:
+    - ai_social_posts
 field_type: text_long

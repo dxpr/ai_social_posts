@@ -20,5 +20,7 @@ default_value:
   - 
     value: "/Create an Instagram Story storyboard that: - Divides content into 3-5 frames (15 seconds each) - Includes text overlay suggestions - Recommends interactive elements (polls, questions, sliders) - Suggests visual transitions between frames - Includes a strong opening hook - Ends with a clear call-to-action. Format each frame as: [FRAME X] followed by visual description in <em> tags, text overlays in <strong> tags, and interactive elements in brackets []. Use paragraph tags () to structure content for proper formatting in the editor."
     format: ai_social_posts
-settings: {}
-field_type: text_long 
+settings:
+  allowed_formats:
+    - ai_social_posts
+field_type: text_long

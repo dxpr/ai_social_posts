@@ -17,5 +17,7 @@ default_value:
   - 
     value: "/Write a Bluesky post that: - Is conversational - Uses relevant tags - Stays under 300 characters - URLs: counts full domain + first 15 chars of path. Use paragraph tags () to structure content for proper formatting in the editor."
     format: ai_social_posts
-settings: {}
+settings:
+  allowed_formats:
+    - ai_social_posts
 field_type: text_long

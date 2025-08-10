@@ -21,5 +21,7 @@ default_value:
   - 
     value: "/Write an Instagram Reels caption that: - Starts with a hook or question - Uses line breaks for readability - Includes relevant emojis - Ends with 5-10 trending hashtags - Stays under 2200 characters. Note: Instagram captions should be conversational and authentic. Do a vibe check on current Instagram Reels and match the style."
     format: ai_social_posts
-settings: {}
-field_type: text_long 
+settings:
+  allowed_formats:
+    - ai_social_posts
+field_type: text_long

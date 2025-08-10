@@ -21,5 +21,7 @@ default_value:
   - 
     value: "/Write a YouTube Shorts title that: - Grabs attention instantly - Uses trending keywords - Creates curiosity - Stays under 60 characters - Includes emojis when appropriate. Note: YouTube Shorts titles need to be extremely catchy to stand out in the fast-scrolling Shorts feed."
     format: ai_social_posts
-settings: {}
-field_type: text_long 
+settings:
+  allowed_formats:
+    - ai_social_posts
+field_type: text_long

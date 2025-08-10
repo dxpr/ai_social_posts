@@ -20,5 +20,7 @@ default_value:
   - 
     value: "/Write a YouTube Shorts script that: - Hooks viewers in the first 3 seconds - Is optimized for vertical viewing - Has a target length of 20-150 words (30-60 seconds) - Includes visual directions in <em> tags - Uses <strong> tags for emphasis - Ends with a clear call-to-action. Note: YouTube Shorts are fast-paced vertical videos under 60 seconds. The script should be concise, visually descriptive, and designed to stop scrollers. Use paragraph tags () to structure content for proper formatting in the editor."
     format: ai_social_posts
-settings: {}
-field_type: text_long 
+settings:
+  allowed_formats:
+    - ai_social_posts
+field_type: text_long

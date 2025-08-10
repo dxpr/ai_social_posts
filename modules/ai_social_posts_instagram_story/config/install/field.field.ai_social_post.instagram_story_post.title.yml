@@ -21,5 +21,7 @@ default_value:
   - 
     value: "/Write a descriptive title for this Instagram Story that summarizes its content and purpose. This is for internal reference only and won't be visible to viewers."
     format: ai_social_posts
-settings: {}
-field_type: text_long 
+settings:
+  allowed_formats:
+    - ai_social_posts
+field_type: text_long

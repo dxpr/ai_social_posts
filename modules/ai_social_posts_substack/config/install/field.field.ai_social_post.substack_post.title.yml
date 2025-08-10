@@ -18,5 +18,7 @@ default_value:
   - 
     value: "/Write a Substack title that: - Creates curiosity - Uses emotional triggers - Stays under 100 characters - Matches newsletter tone"
     format: ai_social_posts
-settings: {}
+settings:
+  allowed_formats:
+    - ai_social_posts
 field_type: text_long

@@ -20,5 +20,7 @@ default_value:
   - 
     value: "/Write a TikTok script that: - Hooks viewers in the first 3 seconds - Is optimized for vertical viewing - Has a target length of 15-60 seconds - Includes visual directions in <em> tags - Uses <strong> tags for emphasis - Suggests trending sounds or music - Incorporates popular TikTok formats (transitions, effects) - Ends with a clear call-to-action. Note: TikTok videos are fast-paced and trend-driven. The script should be concise, visually descriptive, and designed to stop scrollers. Use paragraph tags () to structure content for proper formatting in the editor."
     format: ai_social_posts
-settings: {}
-field_type: text_long 
+settings:
+  allowed_formats:
+    - ai_social_posts
+field_type: text_long

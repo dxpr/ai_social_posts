@@ -18,5 +18,7 @@ default_value:
   - 
     value: "/Write a compelling and professional LinkedIn article title that captures attention and reflects the content."
     format: ai_social_posts
-settings: {}
-field_type: text_long 
+settings:
+  allowed_formats:
+    - ai_social_posts
+field_type: text_long
