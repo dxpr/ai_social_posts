@@ -25,10 +25,10 @@ class AiSocialPostAccessControlHandler extends EntityAccessControlHandler {
     if ($account->hasPermission($admin_permission)) {
       return AccessResult::allowed();
     }
-    
+
     switch ($operation) {
       case 'view':
-        // Only allow viewing if the user has explicit permission
+        // Only allow viewing if the user has explicit permission.
         return AccessResult::allowedIfHasPermission($account, 'view ai_social_post entity');
 
       case 'update':
@@ -37,7 +37,7 @@ class AiSocialPostAccessControlHandler extends EntityAccessControlHandler {
       case 'delete':
         return AccessResult::allowedIfHasPermission($account, 'delete ai_social_post entity');
     }
-    
+
     return AccessResult::neutral();
   }
 

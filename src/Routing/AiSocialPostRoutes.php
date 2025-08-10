@@ -2,8 +2,8 @@
 
 namespace Drupal\ai_social_posts\Routing;
 
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\ai_social_posts\AiSocialPostTypeManager;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;

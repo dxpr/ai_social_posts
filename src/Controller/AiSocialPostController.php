@@ -2,13 +2,13 @@
 
 namespace Drupal\ai_social_posts\Controller;
 
+use Drupal\ai_social_posts\Entity\AiSocialPostType;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\ai_social_posts\Entity\AiSocialPostType;
 
 /**
  * Returns responses for AI Social Post routes.

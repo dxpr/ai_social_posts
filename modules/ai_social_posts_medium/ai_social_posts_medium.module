@@ -5,21 +5,24 @@
  * Primary module hooks for AI Social Posts MEDIUM module.
  */
 
+use Drupal\Core\Entity\EntityFormInterface;
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements hook_form_alter().
  */
-function ai_social_posts_medium_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function ai_social_posts_medium_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $form_object = $form_state->getFormObject();
-  
-  // Check if this is an entity form for a Medium post
-  if ($form_object instanceof \Drupal\Core\Entity\EntityFormInterface) {
+
+  // Check if this is an entity form for a Medium post.
+  if ($form_object instanceof EntityFormInterface) {
     $entity = $form_object->getEntity();
-    
+
     if ($entity->getEntityTypeId() === 'ai_social_post' && $entity->bundle() === 'medium_post') {
-      // Add our custom library to the form
+      // Add our custom library to the form.
       $form['#attached']['library'][] = 'ai_social_posts_medium/medium-form';
-      
-      // Add a class to the form for easier targeting in JavaScript
+
+      // Add a class to the form for easier targeting in JavaScript.
       $form['#attributes']['class'][] = 'ai-social-post-medium-post-form';
     }
   }

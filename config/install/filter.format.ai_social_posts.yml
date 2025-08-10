@@ -18,4 +18,3 @@ filters:
       allowed_html: '<br> <p>'
       filter_html_help: true
       filter_html_nofollow: false
-

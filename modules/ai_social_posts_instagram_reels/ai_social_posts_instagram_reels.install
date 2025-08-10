@@ -2,7 +2,8 @@
 
 /**
  * @file
- * Install, update and uninstall functions for ai_social_posts_instagram_reels module.
+ * Install, update and uninstall functions for
+ * ai_social_posts_instagram_reels module.
  */
 
 /**
@@ -12,14 +13,20 @@ function ai_social_posts_instagram_reels_install() {
   // Check if analyze_ai_brand_voice is installed.
   if (\Drupal::moduleHandler()->moduleExists('analyze_ai_brand_voice')) {
     $config = \Drupal::configFactory()->getEditable('analyze.settings');
-    $config->set('status.ai_social_post.instagram_reels_post.brand_voice_analyzer', TRUE);
+    $config->set(
+      'status.ai_social_post.instagram_reels_post.brand_voice_analyzer',
+      TRUE
+    );
     $config->save();
   }
 
   // Check if analyze_ai_sentiment is installed.
   if (\Drupal::moduleHandler()->moduleExists('analyze_ai_sentiment')) {
     $config = \Drupal::configFactory()->getEditable('analyze.settings');
-    $config->set('status.ai_social_post.instagram_reels_post.ai_sentiment_analyzer', TRUE);
+    $config->set(
+      'status.ai_social_post.instagram_reels_post.ai_sentiment_analyzer',
+      TRUE
+    );
     $config->save();
   }
-} 
+}

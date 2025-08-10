@@ -2,14 +2,14 @@
 
 namespace Drupal\ai_social_posts\Entity\ViewBuilder;
 
-use Drupal\Core\Entity\EntityViewBuilder;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityViewBuilder;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Theme\Registry;
-use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -44,9 +44,9 @@ class AiSocialPostViewBuilder extends EntityViewBuilder {
     EntityTypeInterface $entity_type,
     EntityRepositoryInterface $entity_repository,
     LanguageManagerInterface $language_manager,
-    Registry $theme_registry = NULL,
-    EntityDisplayRepositoryInterface $entity_display_repository = NULL,
-    DateFormatterInterface $date_formatter
+    ?Registry $theme_registry = NULL,
+    ?EntityDisplayRepositoryInterface $entity_display_repository = NULL,
+    DateFormatterInterface $date_formatter,
   ) {
     parent::__construct($entity_type, $entity_repository, $language_manager, $theme_registry, $entity_display_repository);
     $this->dateFormatter = $date_formatter;
@@ -85,4 +85,4 @@ class AiSocialPostViewBuilder extends EntityViewBuilder {
     return $build;
   }
 
-} 
+}

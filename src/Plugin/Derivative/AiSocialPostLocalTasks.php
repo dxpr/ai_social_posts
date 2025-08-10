@@ -2,11 +2,11 @@
 
 namespace Drupal\ai_social_posts\Plugin\Derivative;
 
+use Drupal\ai_social_posts\AiSocialPostTypeManager;
 use Drupal\Component\Plugin\Derivative\DeriverBase;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
-use Drupal\ai_social_posts\AiSocialPostTypeManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides local task definitions for all social post bundles.
@@ -56,11 +56,11 @@ class AiSocialPostLocalTasks extends DeriverBase implements ContainerDeriverInte
   public function getDerivativeDefinitions($base_plugin_definition) {
     $types = $this->postTypeManager->getTypes();
 
-    // Create derivatives for all types, but only if the route exists
+    // Create derivatives for all types, but only if the route exists.
     foreach ($types as $type) {
       $route_name = "ai_social_posts.node.{$type->id()}_posts";
-      
-      // Check if the route exists before creating a derivative
+
+      // Check if the route exists before creating a derivative.
       try {
         if ($this->routeProvider->getRouteByName($route_name)) {
           $this->derivatives[$type->id()] = array_merge($base_plugin_definition, [
@@ -71,7 +71,7 @@ class AiSocialPostLocalTasks extends DeriverBase implements ContainerDeriverInte
         }
       }
       catch (\Exception $e) {
-        // Route doesn't exist, don't create a derivative
+        // Route doesn't exist, don't create a derivative.
         \Drupal::logger('ai_social_posts')->notice('Route @route does not exist for local task derivative.', ['@route' => $route_name]);
       }
     }

@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_social_posts\Entity;
 
+use Drupal\ai_social_posts\AiSocialPostInterface;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -9,7 +10,6 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\field\Entity\FieldConfig;
-use Drupal\ai_social_posts\AiSocialPostInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -62,7 +62,10 @@ class AiSocialPost extends ContentEntityBase implements AiSocialPostInterface {
    * When a new social post is created from a node, prefixes the default field
    * values with the node's URL.
    */
-  public static function preCreate(EntityStorageInterface $storage, array &$values) {
+  public static function preCreate(
+    EntityStorageInterface $storage,
+    array &$values,
+  ) {
     parent::preCreate($storage, $values);
 
     // Only process if we have a node context.
@@ -91,15 +94,18 @@ class AiSocialPost extends ContentEntityBase implements AiSocialPostInterface {
 
     // Get the field definition for the 'post' field.
     $field_manager = \Drupal::service('entity_field.manager');
-    $fields = $field_manager->getFieldDefinitions('ai_social_post', $values['type']);
-    
+    $fields = $field_manager->getFieldDefinitions(
+      'ai_social_post',
+      $values['type']
+    );
+
     // Only process the 'post' field if it exists and has a default value.
     if (isset($fields['post']) && $fields['post'] instanceof FieldConfig) {
       $default = $fields['post']->getDefaultValueLiteral();
       if (!empty($default[0]['value'])) {
         // Preserve original field settings.
         $values['post'] = $default[0];
-        
+
         // Add URL and prompt to the 'post' field.
         $values['post']['value'] = sprintf(
           '/%s',
@@ -145,20 +151,28 @@ class AiSocialPost extends ContentEntityBase implements AiSocialPostInterface {
   /**
    * {@inheritdoc}
    */
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+  public static function baseFieldDefinitions(
+    EntityTypeInterface $entity_type,
+  ) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['node_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(new TranslatableMarkup('Node'))
-      ->setDescription(new TranslatableMarkup('The node this social post belongs to.'))
+      ->setDescription(new TranslatableMarkup(
+        'The node this social post belongs to.'
+      ))
       ->setSetting('target_type', 'node')
       ->setRequired(TRUE);
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(new TranslatableMarkup('Author'))
-      ->setDescription(new TranslatableMarkup('The user ID of the social post author.'))
+      ->setDescription(new TranslatableMarkup(
+        'The user ID of the social post author.'
+      ))
       ->setSetting('target_type', 'user')
-      ->setDefaultValueCallback('Drupal\ai_social_posts\Entity\AiSocialPost::getCurrentUserId')
+      ->setDefaultValueCallback(
+        'Drupal\ai_social_posts\Entity\AiSocialPost::getCurrentUserId'
+      )
       ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'author',
@@ -168,7 +182,9 @@ class AiSocialPost extends ContentEntityBase implements AiSocialPostInterface {
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(new TranslatableMarkup('Created'))
-      ->setDescription(new TranslatableMarkup('The time that the social post was created.'))
+      ->setDescription(new TranslatableMarkup(
+        'The time that the social post was created.'
+      ))
       ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'timestamp',
@@ -178,7 +194,9 @@ class AiSocialPost extends ContentEntityBase implements AiSocialPostInterface {
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(new TranslatableMarkup('Changed'))
-      ->setDescription(new TranslatableMarkup('The time that the social post was last edited.'));
+      ->setDescription(new TranslatableMarkup(
+        'The time that the social post was last edited.'
+      ));
 
     return $fields;
   }

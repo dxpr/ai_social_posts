@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\ai_social_posts\Kernel;
 
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\ai_social_posts\Entity\AiSocialPost;
+use Drupal\KernelTests\KernelTestBase;
 
 /**
  * Test basic CRUD operations for our AiSocialPost entity type.
