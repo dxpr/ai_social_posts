@@ -33,20 +33,20 @@ class AiSocialPostViewBuilder extends EntityViewBuilder {
    *   The entity repository service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.
-   * @param \Drupal\Core\Theme\Registry $theme_registry
-   *   The theme registry.
-   * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository
-   *   The entity display repository.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
+   * @param \Drupal\Core\Theme\Registry|null $theme_registry
+   *   The theme registry.
+   * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface|null $entity_display_repository
+   *   The entity display repository.
    */
   public function __construct(
     EntityTypeInterface $entity_type,
     EntityRepositoryInterface $entity_repository,
     LanguageManagerInterface $language_manager,
+    DateFormatterInterface $date_formatter,
     ?Registry $theme_registry = NULL,
     ?EntityDisplayRepositoryInterface $entity_display_repository = NULL,
-    DateFormatterInterface $date_formatter,
   ) {
     parent::__construct($entity_type, $entity_repository, $language_manager, $theme_registry, $entity_display_repository);
     $this->dateFormatter = $date_formatter;
@@ -60,9 +60,9 @@ class AiSocialPostViewBuilder extends EntityViewBuilder {
       $entity_type,
       $container->get('entity.repository'),
       $container->get('language_manager'),
+      $container->get('date.formatter'),
       $container->get('theme.registry'),
-      $container->get('entity_display.repository'),
-      $container->get('date.formatter')
+      $container->get('entity_display.repository')
     );
   }
 
