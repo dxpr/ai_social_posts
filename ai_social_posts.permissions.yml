@@ -17,3 +17,7 @@
 'administer ai_social_post entity':
   title: Administer AI Social Post settings
   description: 'Allow users to administer AI Social Post settings'
+
+'administer ai_social_post types':
+  title: Administer AI Social Post types
+  description: 'Allow users to configure AI Social Post types'

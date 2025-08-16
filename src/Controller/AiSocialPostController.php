@@ -334,7 +334,7 @@ class AiSocialPostController extends ControllerBase {
       return $this->entityFormBuilder()->getForm($ai_social_post);
     }
 
-    // If multiple types, show type selection list.
+    // If multiple types, show type selection list matching node/add UI.
     $build = [
       '#theme' => 'ai_social_post_add_list',
       '#content' => [],
@@ -342,18 +342,12 @@ class AiSocialPostController extends ControllerBase {
 
     foreach ($types as $type) {
       $build['#content'][$type->id()] = [
-        'link' => [
-          '#type' => 'link',
-          '#title' => $type->label(),
-          '#url' => Url::fromRoute('entity.ai_social_post.add_form', [
-            'ai_social_post_type' => $type->id(),
-          ]),
-        ],
-        'description' => [
-          '#prefix' => '<div>',
-          '#markup' => $type->label(),
-          '#suffix' => '</div>',
-        ],
+        'url' => Url::fromRoute('entity.ai_social_post.add_form', [
+          'ai_social_post_type' => $type->id(),
+        ]),
+        'title' => $type->label(),
+        'description' => '...',
+        'type_id' => $type->id(),
       ];
     }
 

@@ -97,14 +97,14 @@ function ai_social_posts_menu_links_discovered_alter(&$links) {
     ->getStorage('ai_social_post_type')
     ->loadMultiple();
 
-  // Create menu links for each post type - but only for the add form.
+  // Create menu links for each post type directly under AI Social Posts.
   foreach ($post_types as $type_id => $type) {
     // Add a menu link for adding a new post of this type.
     $links["ai_social_posts.add.{$type_id}"] = [
       'title' => t('Add @type', ['@type' => $type->label()]),
       'route_name' => 'entity.ai_social_post.add_form',
       'menu_name' => 'admin',
-      'parent' => 'ai_social_posts.add_page',
+      'parent' => 'entity.ai_social_post.collection',
       'route_parameters' => ['ai_social_post_type' => $type_id],
       'weight' => 0,
     ];
