@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_social_posts\Controller;
 
+use Drupal\Core\Link;
 use Drupal\ai_social_posts\Entity\AiSocialPostType;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Path\CurrentPathStack;
@@ -246,7 +247,7 @@ class AiSocialPostController extends ControllerBase {
   public function addPageTitle($ai_social_post_type = NULL) {
     // If we don't have a type, we're on the type selection page.
     if (!$ai_social_post_type) {
-      return $this->t('Add AI Social Post');
+      return $this->t('Add Social Post');
     }
 
     // If we already have an entity object, use it directly.
@@ -265,7 +266,7 @@ class AiSocialPostController extends ControllerBase {
       ]);
     }
     catch (\Exception $e) {
-      return $this->t('Add AI Social Post');
+      return $this->t('Add Social Post');
     }
   }
 
@@ -334,30 +335,26 @@ class AiSocialPostController extends ControllerBase {
       return $this->entityFormBuilder()->getForm($ai_social_post);
     }
 
-    // If multiple types, show type selection list.
-    $build = [
-      '#theme' => 'ai_social_post_add_list',
-      '#content' => [],
-    ];
-
+    // Use standard entity_add_list theme for type selection.
+    $bundles = [];
     foreach ($types as $type) {
-      $build['#content'][$type->id()] = [
-        'link' => [
-          '#type' => 'link',
-          '#title' => $type->label(),
-          '#url' => Url::fromRoute('entity.ai_social_post.add_form', [
-            'ai_social_post_type' => $type->id(),
-          ]),
-        ],
-        'description' => [
-          '#prefix' => '<div>',
-          '#markup' => $type->label(),
-          '#suffix' => '</div>',
-        ],
+      $route_params = ['ai_social_post_type' => $type->id()];
+      $bundles[$type->id()] = [
+        'label' => $type->label(),
+        'description' => '',
+        'add_link' => Link::createFromRoute(
+          $type->label(),
+          'entity.ai_social_post.add_form',
+          $route_params
+        ),
       ];
     }
 
-    return $build;
+    return [
+      '#theme' => 'entity_add_list',
+      '#bundles' => $bundles,
+      '#add_bundle_message' => $this->t('There are no social post types available.'),
+    ];
   }
 
 }

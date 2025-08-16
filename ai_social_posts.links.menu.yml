@@ -1,7 +1,7 @@
 entity.ai_social_post.collection:
-  title: 'AI Social Posts'
+  title: 'Social Posts'
   route_name: entity.ai_social_post.collection
-  description: 'List of AI Social Posts'
+  description: 'List of Social Posts'
   parent: system.admin_content
 
 entity.ai_social_post_type.collection:
@@ -9,9 +9,3 @@ entity.ai_social_post_type.collection:
   description: 'Manage social post types'
   route_name: entity.ai_social_post_type.collection
   parent: system.admin_structure
-
-ai_social_posts.add_page:
-  title: 'Add AI Social Post'
-  route_name: ai_social_posts.ai_social_post_add
-  description: 'Add a new AI Social Post'
-  parent: entity.ai_social_post.collection

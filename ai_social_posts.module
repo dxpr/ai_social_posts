@@ -6,11 +6,42 @@
  */
 
 use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
 
 /**
- * @file
- * Contains Drupal\ai_social_posts\ai_social_posts.module.
+ * Implements hook_help().
  */
+function ai_social_posts_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.ai_social_posts':
+      $output = '';
+      $output .= '<h2>' . t('About') . '</h2>';
+      $output .= '<p>' . t('The AI Social Posts module allows you to create and manage social media posts for various platforms. It provides a unified interface for generating, editing, and organizing content across multiple social networks.') . '</p>';
+      $output .= '<h2>' . t('Uses') . '</h2>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Creating social posts') . '</dt>';
+      $output .= '<dd>' . t('You can create new social posts by clicking <em>Add Social Post</em> on the <a href=":posts">Social Posts page</a>. Choose the type of social post you want to create from the available options.', [':posts' => Url::fromRoute('entity.ai_social_post.collection')->toString()]) . '</dd>';
+      $output .= '<dt>' . t('Managing post types') . '</dt>';
+      $output .= '<dd>' . t('Different social post types can be configured at the <a href=":types">Social Post Types page</a>. Each type represents a different social media platform or format.', [':types' => Url::fromRoute('entity.ai_social_post_type.collection')->toString()]) . '</dd>';
+      $output .= '<dt>' . t('Integrating with content') . '</dt>';
+      $output .= '<dd>' . t('Social posts can be associated with existing content on your site. Navigate to any content item to create related social posts that promote or share that content.') . '</dd>';
+      $output .= '</dl>';
+      return $output;
+
+    case 'ai_social_posts.ai_social_post_add':
+      $output = '<p>' . t('AI Social Posts allow you to share content across different platforms. Each post can be customized with different fields to match your needs. You can customize these fields in the <a href=":admin_link">AI Social Posts settings</a>.', [
+        ':admin_link' => Url::fromRoute('ai_social_posts.ai_social_post_settings')->toString(),
+      ]) . '</p>';
+      return $output;
+
+    case 'entity.ai_social_post_type.collection':
+      $output = '<p>' . t('Enable ready-made social post types by installing AI Social Post submodules on the <a href=":modules">Extend page</a>.', [
+        ':modules' => Url::fromRoute('system.modules_list')->toString(),
+      ]) . '</p>';
+      return $output;
+  }
+}
 
 /**
  * @defgroup ai_social_posts Example: Content Entity
@@ -76,11 +107,6 @@ function ai_social_posts_theme() {
         'bundle' => NULL,
       ],
     ],
-    'ai_social_post_add_list' => [
-      'variables' => [
-        'content' => NULL,
-      ],
-    ],
     'ai_social_post' => [
       'render element' => 'elements',
       'template' => 'ai-social-post',
@@ -97,14 +123,14 @@ function ai_social_posts_menu_links_discovered_alter(&$links) {
     ->getStorage('ai_social_post_type')
     ->loadMultiple();
 
-  // Create menu links for each post type - but only for the add form.
+  // Create menu links for each post type directly under AI Social Posts.
   foreach ($post_types as $type_id => $type) {
     // Add a menu link for adding a new post of this type.
     $links["ai_social_posts.add.{$type_id}"] = [
       'title' => t('Add @type', ['@type' => $type->label()]),
       'route_name' => 'entity.ai_social_post.add_form',
       'menu_name' => 'admin',
-      'parent' => 'ai_social_posts.add_page',
+      'parent' => 'entity.ai_social_post.collection',
       'route_parameters' => ['ai_social_post_type' => $type_id],
       'weight' => 0,
     ];
