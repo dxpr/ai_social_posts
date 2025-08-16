@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_social_posts\Controller;
 
+use Drupal\Core\Link;
 use Drupal\ai_social_posts\Entity\AiSocialPostType;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Path\CurrentPathStack;
@@ -334,24 +335,23 @@ class AiSocialPostController extends ControllerBase {
       return $this->entityFormBuilder()->getForm($ai_social_post);
     }
 
-    // If multiple types, show type selection list matching node/add UI.
-    $build = [
-      '#theme' => 'ai_social_post_add_list',
-      '#content' => [],
-    ];
-
+    // If multiple types, show type selection list using standard entity_add_list theme.
+    $bundles = [];
     foreach ($types as $type) {
-      $build['#content'][$type->id()] = [
-        'url' => Url::fromRoute('entity.ai_social_post.add_form', [
+      $bundles[$type->id()] = [
+        'label' => $type->label(),
+        'description' => '',
+        'add_link' => Link::createFromRoute($type->label(), 'entity.ai_social_post.add_form', [
           'ai_social_post_type' => $type->id(),
         ]),
-        'title' => $type->label(),
-        'description' => '...',
-        'type_id' => $type->id(),
       ];
     }
 
-    return $build;
+    return [
+      '#theme' => 'entity_add_list',
+      '#bundles' => $bundles,
+      '#add_bundle_message' => $this->t('There are no social post types available.'),
+    ];
   }
 
 }
