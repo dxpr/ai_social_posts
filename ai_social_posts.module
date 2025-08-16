@@ -6,11 +6,42 @@
  */
 
 use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
 
 /**
- * @file
- * Contains Drupal\ai_social_posts\ai_social_posts.module.
+ * Implements hook_help().
  */
+function ai_social_posts_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.ai_social_posts':
+      $output = '';
+      $output .= '<h2>' . t('About') . '</h2>';
+      $output .= '<p>' . t('The AI Social Posts module allows you to create and manage social media posts for various platforms. It provides a unified interface for generating, editing, and organizing content across multiple social networks.') . '</p>';
+      $output .= '<h2>' . t('Uses') . '</h2>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Creating social posts') . '</dt>';
+      $output .= '<dd>' . t('You can create new social posts by clicking <em>Add Social Post</em> on the <a href=":posts">Social Posts page</a>. Choose the type of social post you want to create from the available options.', [':posts' => Url::fromRoute('entity.ai_social_post.collection')->toString()]) . '</dd>';
+      $output .= '<dt>' . t('Managing post types') . '</dt>';
+      $output .= '<dd>' . t('Different social post types can be configured at the <a href=":types">Social Post Types page</a>. Each type represents a different social media platform or format.', [':types' => Url::fromRoute('entity.ai_social_post_type.collection')->toString()]) . '</dd>';
+      $output .= '<dt>' . t('Integrating with content') . '</dt>';
+      $output .= '<dd>' . t('Social posts can be associated with existing content on your site. Navigate to any content item to create related social posts that promote or share that content.') . '</dd>';
+      $output .= '</dl>';
+      return $output;
+
+    case 'entity.ai_social_post.collection':
+      $output = '<p>' . t('AI Social Posts allow you to share your content across various social media platforms. Create, manage, and organize your social media presence from a single interface.') . '</p>';
+      return $output;
+
+    case 'ai_social_posts.ai_social_post_add':
+      $output = '<p>' . t('Select the type of social post you want to create. Each type is optimized for a specific social media platform or format.') . '</p>';
+      return $output;
+
+    case 'entity.ai_social_post_type.collection':
+      $output = '<p>' . t('Manage the different types of social posts available on your site. Each post type can have its own fields and display settings tailored to specific social media platforms.') . '</p>';
+      return $output;
+  }
+}
 
 /**
  * @defgroup ai_social_posts Example: Content Entity
