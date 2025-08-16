@@ -57,11 +57,6 @@ class AiSocialPostListBuilder extends EntityListBuilder {
    * buildHeader() and buildRow() implementations.
    */
   public function render() {
-    $build['description'] = [
-      '#markup' => $this->t('AI Social Posts allow you to share content across different platforms. Each post can be customized with different fields to match your needs. You can customize these fields in the <a href=":admin_link">AI Social Posts settings</a>.', [
-        ':admin_link' => $this->urlGenerator->generateFromRoute('ai_social_posts.ai_social_post_settings'),
-      ]),
-    ];
     $build['table'] = parent::render();
     return $build;
   }

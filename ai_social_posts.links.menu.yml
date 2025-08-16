@@ -1,5 +1,5 @@
 entity.ai_social_post.collection:
-  title: 'Add Social Post'
+  title: 'Social Posts'
   route_name: entity.ai_social_post.collection
   description: 'List of Social Posts'
   parent: system.admin_content

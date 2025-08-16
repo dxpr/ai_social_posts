@@ -29,16 +29,16 @@ function ai_social_posts_help($route_name, RouteMatchInterface $route_match) {
       $output .= '</dl>';
       return $output;
 
-    case 'entity.ai_social_post.collection':
-      $output = '<p>' . t('AI Social Posts allow you to share your content across various social media platforms. Create, manage, and organize your social media presence from a single interface.') . '</p>';
-      return $output;
-
     case 'ai_social_posts.ai_social_post_add':
-      $output = '<p>' . t('Select the type of social post you want to create. Each type is optimized for a specific social media platform or format.') . '</p>';
+      $output = '<p>' . t('AI Social Posts allow you to share content across different platforms. Each post can be customized with different fields to match your needs. You can customize these fields in the <a href=":admin_link">AI Social Posts settings</a>.', [
+        ':admin_link' => Url::fromRoute('ai_social_posts.ai_social_post_settings')->toString(),
+      ]) . '</p>';
       return $output;
 
     case 'entity.ai_social_post_type.collection':
-      $output = '<p>' . t('Manage the different types of social posts available on your site. Each post type can have its own fields and display settings tailored to specific social media platforms.') . '</p>';
+      $output = '<p>' . t('Enable ready-made social post types by installing AI Social Post submodules on the <a href=":modules">Extend page</a>.', [
+        ':modules' => Url::fromRoute('system.modules_list')->toString(),
+      ]) . '</p>';
       return $output;
   }
 }

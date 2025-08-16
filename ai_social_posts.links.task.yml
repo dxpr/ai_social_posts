@@ -1,6 +1,6 @@
 # Primary tab for content page
 ai_social_posts.admin:
-  title: 'Add Social Post'
+  title: 'Social Posts'
   route_name: entity.ai_social_post.collection
   base_route: system.admin_content
   weight: 2
