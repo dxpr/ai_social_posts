@@ -23,7 +23,7 @@ ai_social_posts.ai_social_post_add:
   path: '/admin/content/ai-social-posts/add'
   defaults:
     _controller: '\Drupal\ai_social_posts\Controller\AiSocialPostController::addPage'
-    _title: 'Add AI Social Post'
+    _title: 'Add Social Post'
   requirements:
     _entity_create_access: 'ai_social_post'
   options:

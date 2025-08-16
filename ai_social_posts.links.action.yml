@@ -1,6 +1,6 @@
 ai_social_posts.add_action:
   route_name: ai_social_posts.ai_social_post_add
-  title: 'Add AI Social Post'
+  title: 'Add Social Post'
   appears_on:
     - entity.ai_social_post.collection
 

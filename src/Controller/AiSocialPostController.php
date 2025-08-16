@@ -247,7 +247,7 @@ class AiSocialPostController extends ControllerBase {
   public function addPageTitle($ai_social_post_type = NULL) {
     // If we don't have a type, we're on the type selection page.
     if (!$ai_social_post_type) {
-      return $this->t('Add AI Social Post');
+      return $this->t('Add Social Post');
     }
 
     // If we already have an entity object, use it directly.
@@ -266,7 +266,7 @@ class AiSocialPostController extends ControllerBase {
       ]);
     }
     catch (\Exception $e) {
-      return $this->t('Add AI Social Post');
+      return $this->t('Add Social Post');
     }
   }
 
@@ -335,15 +335,18 @@ class AiSocialPostController extends ControllerBase {
       return $this->entityFormBuilder()->getForm($ai_social_post);
     }
 
-    // If multiple types, show type selection list using standard entity_add_list theme.
+    // Use standard entity_add_list theme for type selection.
     $bundles = [];
     foreach ($types as $type) {
+      $route_params = ['ai_social_post_type' => $type->id()];
       $bundles[$type->id()] = [
         'label' => $type->label(),
         'description' => '',
-        'add_link' => Link::createFromRoute($type->label(), 'entity.ai_social_post.add_form', [
-          'ai_social_post_type' => $type->id(),
-        ]),
+        'add_link' => Link::createFromRoute(
+          $type->label(),
+          'entity.ai_social_post.add_form',
+          $route_params
+        ),
       ];
     }
 
