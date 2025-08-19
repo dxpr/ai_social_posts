@@ -92,28 +92,39 @@ class AiSocialPost extends ContentEntityBase implements AiSocialPostInterface {
       return;
     }
 
-    // Get the field definition for the 'post' field.
+    // Get field definitions for all fields.
     $field_manager = \Drupal::service('entity_field.manager');
     $fields = $field_manager->getFieldDefinitions(
       'ai_social_post',
       $values['type']
     );
 
-    // Only process the 'post' field if it exists and has a default value.
-    if (isset($fields['post']) && $fields['post'] instanceof FieldConfig) {
-      $default = $fields['post']->getDefaultValueLiteral();
-      if (!empty($default[0]['value'])) {
-        // Preserve original field settings.
-        $values['post'] = $default[0];
+    // Define content fields that should get the "For [url]" prefix.
+    $content_field_names = ['post', 'title', 'subtitle'];
+    $content_field_types = ['text_long', 'string', 'string_long'];
 
-        // Add URL and prompt to the 'post' field.
-        $values['post']['value'] = sprintf(
-          '/%s',
-          t('For :url @prompt. Include the link.', [
-            ':url' => $url,
-            '@prompt' => ltrim($default[0]['value'], '/ '),
-          ], ['context' => 'Social post with URL'])
-        );
+    // Process each content field that has a default value.
+    foreach ($content_field_names as $field_name) {
+      if (isset($fields[$field_name]) && $fields[$field_name] instanceof FieldConfig) {
+        // Check if it's a content field type.
+        if (!in_array($fields[$field_name]->getType(), $content_field_types)) {
+          continue;
+        }
+
+        $default = $fields[$field_name]->getDefaultValueLiteral();
+        if (!empty($default[0]['value'])) {
+          // Preserve original field settings.
+          $values[$field_name] = $default[0];
+
+          // Add URL and prompt to the field.
+          $values[$field_name]['value'] = sprintf(
+            '/%s',
+            t('For :url @prompt. Include the link.', [
+              ':url' => $url,
+              '@prompt' => ltrim($default[0]['value'], '/ '),
+            ], ['context' => 'Social post with URL'])
+          );
+        }
       }
     }
   }
