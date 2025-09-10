@@ -1,4 +1,4 @@
-# AI Social Posts
+# AI Social Posts :)
 
 AI-assisted social media content creation across multiple platforms.
 
