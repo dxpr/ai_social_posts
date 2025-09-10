@@ -39,4 +39,4 @@ if [ $status -ne 0 ]; then
 fi
 
 # Exit with failure if any of the checks failed
-exit $EXIT_CODE 
+exit $EXIT_CODE
