@@ -21,9 +21,9 @@ fi
 cd drupal
 mkdir -p web/modules/contrib/
 
-# Symlink analyze_ai_brand_voice if not already linked
-if [ ! -L "web/modules/contrib/analyze_ai_brand_voice" ]; then
-  ln -s /src web/modules/contrib/analyze_ai_brand_voice
+# Symlink ai_social_posts if not already linked
+if [ ! -L "web/modules/contrib/ai_social_posts" ]; then
+  ln -s /src web/modules/contrib/ai_social_posts
 fi
 
 # Install the statistic modules if D11 (removed from core).
@@ -31,8 +31,11 @@ if [[ $DRUPAL_RECOMMENDED_PROJECT == 11.* ]]; then
   composer require drupal/statistics
 fi
 
+# Install dependencies for ai_social_posts
+composer require drupal/maxlength
+
 # Install drupal-check
 composer require $DRUPAL_CHECK_TOOL --dev
 
 # Run drupal-check
-./vendor/bin/drupal-check --drupal-root . -ad web/modules/contrib/analyze_ai_brand_voice 
+./vendor/bin/drupal-check --drupal-root . -ad web/modules/contrib/ai_social_posts 
