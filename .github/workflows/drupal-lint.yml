@@ -1,44 +1,27 @@
-name: Drupal Linting and Code Quality
+name: Review
 
-on:
-  push:
-    branches: [ main, 1.x ]
-  pull_request:
-    branches: [ main, 1.x ]
+on: [pull_request]
+
+env:
+  TARGET_DRUPAL_CORE_VERSION: 11
 
 jobs:
   drupal-lint:
-    name: Drupal Coding Standards
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 60
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Run Drupal linting
-        run: |
-          docker compose run --rm drupal-lint
-        
+    - uses: actions/checkout@v4
+
+    - name: Lint Drupal
+      run: |
+        docker compose --profile lint run drupal-lint
+
   drupal-check:
-    name: Drupal Deprecation Analysis
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 60
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Run Drupal deprecation check
-        run: |
-          docker compose run --rm drupal-check
-        
-  drupal-compatibility:
-    name: PHP 8.3+ Compatibility 
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Check PHP compatibility
-        run: |
-          docker compose run --rm drupal-lint | grep -i "phpcompatibility" || true
+    - uses: actions/checkout@v4
+
+    - name: Check Drupal compatibility
+      run: |
+        docker compose --profile lint run drupal-check

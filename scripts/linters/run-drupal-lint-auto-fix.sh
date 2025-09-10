@@ -1,13 +1,13 @@
 #!/bin/bash
 
-source scripts/prepare-drupal-lint.sh
+source scripts/linters/prepare-drupal-lint.sh
 
 phpcbf --standard=Drupal \
   --extensions=php,module,inc,install,test,profile,theme,info,txt,md,yml \
-  --ignore=node_modules,ai_social_posts/vendor,.github,vendor \
+  --ignore=node_modules,vendor,.github \
   .
 
 phpcbf --standard=DrupalPractice \
   --extensions=php,module,inc,install,test,profile,theme,info,txt,md,yml \
-  --ignore=node_modules,ai_social_posts/vendor,.github,vendor \
-  . 
+  --ignore=node_modules,vendor,.github \
+  .
