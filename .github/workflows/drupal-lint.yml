@@ -19,6 +19,14 @@ jobs:
         run: |
           docker compose run --rm drupal-lint
         
+  drupal-check:
+    name: Drupal Deprecation Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
       - name: Run Drupal deprecation check
         run: |
           docker compose run --rm drupal-check
