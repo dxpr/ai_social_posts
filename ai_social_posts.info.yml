@@ -6,6 +6,7 @@ core_version_requirement: ^10.3 || ^11.0
 dependencies:
   - drupal:filter
   - drupal:ckeditor5
+  - markdownify:markdownify_path
   - maxlength:maxlength
   - ckeditor_ai_agent:ckeditor_ai_agent
 recommended:
