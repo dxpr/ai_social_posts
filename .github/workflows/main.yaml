@@ -13,7 +13,7 @@ jobs:
     name: Lint Commit Messages
     runs-on: ubicloud-standard-4
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v6
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubicloud-standard-4
     timeout-minutes: 60
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Lint Drupal
       run: |
         docker compose run --rm drupal-lint
@@ -34,7 +34,7 @@ jobs:
     name: PHP Lint
     runs-on: ubicloud-standard-4
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
