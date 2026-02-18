@@ -13,7 +13,7 @@ permissions:
 jobs:
   php-lint:
     name: PHP Lint
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     steps:
       - uses: actions/checkout@v4
 

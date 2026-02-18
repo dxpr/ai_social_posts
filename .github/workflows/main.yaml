@@ -11,7 +11,7 @@ permissions:
 jobs:
   commitlint:
     name: Lint Commit Messages
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,7 +22,7 @@ jobs:
           helpURL: https://github.com/your-repo/ai_social_posts/blob/main/CONTRIBUTING.md
 
   drupal-lint:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
 
   php-lint:
     name: PHP Lint
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-4
     steps:
       - uses: actions/checkout@v4
       
