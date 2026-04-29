@@ -1,6 +1,10 @@
-> Part of [DXPR CMS](https://dxpr.com/c/marketing-cms) | The AI-Powered Drupal CMS
+> **AI Social Posts** generates platform-optimized social media content from your
+> Drupal nodes using AI, supporting 14+ platforms from LinkedIn to TikTok.
+> Built by [DXPR](https://dxpr.com).
 >
-> [Documentation](https://dxpr.com/docs) | [Try Free](https://dxpr.com/try) | [dxpr.com](https://dxpr.com)
+> [Getting Started](https://dxpr.com/c/getting-started) |
+> [Pricing](https://dxpr.com/pricing) |
+> [Try Free Demo](https://dxpr.com/try)
 
 # AI Social Posts: AI-Powered Social Media Content Creation for Drupal
 
@@ -58,8 +62,10 @@ Each platform requires its submodule:
 - [AI Brand Voice Analyzer](https://www.drupal.org/project/analyze_ai_brand_voice) - Brand consistency
 - [AI Sentiment Analyzer](https://www.drupal.org/project/analyze_ai_sentiment) - Content optimization
 
-## Related DXPR Modules
+## Related Modules
 
 - [AI Content Strategy](https://www.drupal.org/project/ai_content_strategy) - AI-powered content strategy recommendations
 - [AI Brand Voice Analyzer](https://www.drupal.org/project/analyze_ai_brand_voice) - Brand voice consistency scoring
 - [AI Sentiment Analyzer](https://www.drupal.org/project/analyze_ai_sentiments) - Multi-dimensional content tone analysis
+- [AI](https://www.drupal.org/project/ai) - Drupal AI integration layer for connecting to LLM providers
+- [Metatag](https://www.drupal.org/project/metatag) - Manage meta tags for improved SEO and social sharing
