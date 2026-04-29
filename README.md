@@ -1,4 +1,12 @@
-# AI Social Posts
+> **AI Social Posts** generates platform-optimized social media content from your
+> Drupal nodes using AI, supporting 14+ platforms from LinkedIn to TikTok.
+> Built by [DXPR](https://dxpr.com).
+>
+> [Getting Started](https://dxpr.com/c/getting-started) |
+> [Pricing](https://dxpr.com/pricing) |
+> [Try Free Demo](https://dxpr.com/try)
+
+# AI Social Posts: AI-Powered Social Media Content Creation for Drupal
 
 AI-assisted social media content creation across multiple platforms.
 
@@ -53,3 +61,12 @@ Each platform requires its submodule:
 
 - [AI Brand Voice Analyzer](https://www.drupal.org/project/analyze_ai_brand_voice) - Brand consistency
 - [AI Sentiment Analyzer](https://www.drupal.org/project/analyze_ai_sentiment) - Content optimization
+
+## Related Modules
+
+- [CKEditor AI Agent](https://www.drupal.org/project/ckeditor_ai_agent) - Required. Powers the interactive AI editing commands inside each post editor
+- [Maxlength](https://www.drupal.org/project/maxlength) - Required. Enforces platform-specific character limits (e.g., 300 for Bluesky, 280 for X)
+- [Analyze](https://www.drupal.org/project/analyze) - Recommended. Content analysis framework that provides a unified Analyze tab
+- [AI Brand Voice Analyzer](https://www.drupal.org/project/analyze_ai_brand_voice) - Recommended. Scores brand voice consistency across your social posts
+- [AI Sentiment Analyzer](https://www.drupal.org/project/analyze_ai_sentiment) - Recommended. Multi-dimensional tone analysis for content optimization
+- [AI Content Strategy](https://www.drupal.org/project/ai_content_strategy) - Plan what content to create, then use AI Social Posts to promote it
