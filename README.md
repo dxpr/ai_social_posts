@@ -1,4 +1,8 @@
-# AI Social Posts
+> Part of [DXPR CMS](https://dxpr.com/c/marketing-cms) | The AI-Powered Drupal CMS
+>
+> [Documentation](https://dxpr.com/docs) | [Try Free](https://dxpr.com/try) | [dxpr.com](https://dxpr.com)
+
+# AI Social Posts: AI-Powered Social Media Content Creation for Drupal
 
 AI-assisted social media content creation across multiple platforms.
 
@@ -53,3 +57,9 @@ Each platform requires its submodule:
 
 - [AI Brand Voice Analyzer](https://www.drupal.org/project/analyze_ai_brand_voice) - Brand consistency
 - [AI Sentiment Analyzer](https://www.drupal.org/project/analyze_ai_sentiment) - Content optimization
+
+## Related DXPR Modules
+
+- [AI Content Strategy](https://www.drupal.org/project/ai_content_strategy) - AI-powered content strategy recommendations
+- [AI Brand Voice Analyzer](https://www.drupal.org/project/analyze_ai_brand_voice) - Brand voice consistency scoring
+- [AI Sentiment Analyzer](https://www.drupal.org/project/analyze_ai_sentiments) - Multi-dimensional content tone analysis
