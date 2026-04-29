@@ -64,8 +64,9 @@ Each platform requires its submodule:
 
 ## Related Modules
 
-- [AI Content Strategy](https://www.drupal.org/project/ai_content_strategy) - AI-powered content strategy recommendations
-- [AI Brand Voice Analyzer](https://www.drupal.org/project/analyze_ai_brand_voice) - Brand voice consistency scoring
-- [AI Sentiment Analyzer](https://www.drupal.org/project/analyze_ai_sentiments) - Multi-dimensional content tone analysis
-- [AI](https://www.drupal.org/project/ai) - Drupal AI integration layer for connecting to LLM providers
-- [Metatag](https://www.drupal.org/project/metatag) - Manage meta tags for improved SEO and social sharing
+- [CKEditor AI Agent](https://www.drupal.org/project/ckeditor_ai_agent) - Required. Powers the interactive AI editing commands inside each post editor
+- [Maxlength](https://www.drupal.org/project/maxlength) - Required. Enforces platform-specific character limits (e.g., 300 for Bluesky, 280 for X)
+- [Analyze](https://www.drupal.org/project/analyze) - Recommended. Content analysis framework that provides a unified Analyze tab
+- [AI Brand Voice Analyzer](https://www.drupal.org/project/analyze_ai_brand_voice) - Recommended. Scores brand voice consistency across your social posts
+- [AI Sentiment Analyzer](https://www.drupal.org/project/analyze_ai_sentiment) - Recommended. Multi-dimensional tone analysis for content optimization
+- [AI Content Strategy](https://www.drupal.org/project/ai_content_strategy) - Plan what content to create, then use AI Social Posts to promote it
