@@ -2,9 +2,9 @@
 > Drupal nodes using AI, supporting 14+ platforms from LinkedIn to TikTok.
 > Built by [DXPR](https://dxpr.com).
 >
-> [Getting Started](https://dxpr.com/c/getting-started) |
+> [Getting Started](https://dxpr.com/c/marketing-cms) |
 > [Pricing](https://dxpr.com/pricing) |
-> [Try Free Demo](https://dxpr.com/try)
+> [Try Free Demo](https://try.dxpr.com)
 
 # AI Social Posts: AI-Powered Social Media Content Creation for Drupal
 
