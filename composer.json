@@ -26,7 +26,7 @@
     "lint:fix": "phpcbf --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml src/ modules/ tests/"
   },
   "require": {
-    "drupal/ckeditor_ai_agent": "^2.0",
+    "drupal/ckeditor_ai_agent": "^2.0.0-rc1",
     "drupal/maxlength": "^3.0"
   },
   "suggest": {
