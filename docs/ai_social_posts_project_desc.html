@@ -10,6 +10,8 @@
     <li>You want interactive AI editing tools for refining social content</li>
   </ul>
 
+  <p><a href="/files/ai-social-posts-authoring.jpg"><img src="/files/ai-social-posts-authoring.jpg" alt="AI Social Posts authoring UI showing LinkedIn article creation with AI-generated content" /></a></p>
+
   <h3 id="module-project--features">Features</h3>
   <ul>
     <li><strong>Flexible Content Creation Paths</strong>:
@@ -55,6 +57,8 @@
     </li>
   </ul>
 
+<p><a href="/files/ai-social-posts-add.jpg"><img src="/files/ai-social-posts-add.jpg" alt="AI Social Posts creation form showing platform selection, AI-generated content preview, and editing controls for a new social post" /></a></p>
+
   <h3 id="module-project--post-installation">Post-Installation</h3>
   <ol>
     <li>Install the base module and desired platform modules:
@@ -77,6 +81,8 @@
     <p><a href="https://www.drupal.org/project/dxpr_cms" title="DXPR CMS platform">Get DXPR CMS »</a></p>
   </div>
 
+<p><a href="/files/ai-social-posts-settings.jpg"><img src="/files/ai-social-posts-settings.jpg" alt="AI Social Posts settings page showing platform-specific prompt configuration and AI generation options" /></a></p>
+
   <h3 id="module-project--additional-requirements">Additional Requirements</h3>
   <ul>
     <li><a href="https://www.drupal.org/project/ckeditor_ai_agent">CKEditor AI Agent</a> module</li>
@@ -88,6 +94,26 @@
     <li><a href="https://www.drupal.org/project/analyze_ai_brand_voice">AI Brand Voice Analyzer</a> - Get instant feedback on brand voice consistency</li>
     <li><a href="https://www.drupal.org/project/analyze_ai_sentiment">AI Sentiment Analyzer</a> - Optimize engagement through sentiment analysis</li>
   </ul>
+
+  <h2>FAQ</h2>
+
+  <dl>
+    <dt>Which social media platforms does AI Social Posts support?</dt>
+    <dd>
+      <p>The module ships with plugins for ten platforms: X (Twitter), LinkedIn posts, LinkedIn Articles, Facebook, Medium, Substack, Reddit, Bluesky, YouTube, and Hacker News. Each platform has its own submodule with format-specific constraints such as character limits and formatting rules.</p>
+      <p>New platforms can be added through custom submodules without modifying the base module. Each submodule defines its own validation rules, prompt templates, and post entity fields.</p>
+    </dd>
+
+    <dt>Can I customise the AI prompts for each platform?</dt>
+    <dd>
+      <p>Yes. Each platform plugin has configurable AI generation prompts so you can match your content strategy per channel. Adjust tone, length, hashtag usage, or any other parameter for each platform independently. The prompts control how the AI transforms your source content into platform-specific posts.</p>
+    </dd>
+
+    <dt>Does AI Social Posts require a specific AI provider?</dt>
+    <dd>
+      <p>No. The module uses CKEditor AI Agent for its interactive editing features, which connects to any AI provider configured through the Drupal AI module: OpenAI, Anthropic Claude, Google Gemini, Mistral, or DXPR AI. The same provider powers real-time editing commands like "Make Shorter" and "Simplify Language".</p>
+    </dd>
+  </dl>
 
   <h3>Related Modules</h3>
   <ul>
