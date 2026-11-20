@@ -1,0 +1,5 @@
+
+services:
+  Drupal\ai_social_posts_hackernews\Hook\AiSocialPostsHackernewsHooks:
+    class: Drupal\ai_social_posts_hackernews\Hook\AiSocialPostsHackernewsHooks
+    autowire: true

@@ -2,3 +2,10 @@ services:
   ai_social_posts.post_type_manager:
     class: Drupal\ai_social_posts\AiSocialPostTypeManager
     arguments: ['@entity_type.manager']
+
+  Drupal\ai_social_posts\Hook\AiSocialPostsHooks:
+    class: Drupal\ai_social_posts\Hook\AiSocialPostsHooks
+    autowire: true
+    arguments:
+      - '@entity_type.manager'
+      - '@current_route_match'

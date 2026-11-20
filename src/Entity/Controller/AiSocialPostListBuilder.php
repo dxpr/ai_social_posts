@@ -2,6 +2,8 @@
 
 namespace Drupal\ai_social_posts\Entity\Controller;
 
+use Drupal\Component\Utility\DeprecationHelper;
+use Drupal\filter\FilterFormatRepositoryInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -106,11 +108,11 @@ class AiSocialPostListBuilder extends EntityListBuilder {
     $text = [
       '#type' => 'processed_text',
       '#text' => $entity->get('post')->value,
-      '#format' => $entity->get('post')->format ?: filter_default_format(),
+      '#format' => $entity->get('post')->format ?: DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.4.0', fn() => \Drupal::service(FilterFormatRepositoryInterface::class)->getDefaultFormat()->id(), fn() => filter_default_format()),
     ];
 
     // Render and trim the text.
-    $rendered_text = trim(\Drupal::service('renderer')->renderPlain($text));
+    $rendered_text = trim(\Drupal::service('renderer')->renderInIsolation($text));
     $trimmed_text = strlen($rendered_text) > 350
       ? substr($rendered_text, 0, 347) . '...'
       : $rendered_text;

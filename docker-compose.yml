@@ -29,4 +29,4 @@ services:
    environment:
      DRUPAL_RECOMMENDED_PROJECT: 11.2.x-dev
    volumes:
-      - .:/src 
+      - .:/src
