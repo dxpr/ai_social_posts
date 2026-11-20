@@ -1,0 +1,266 @@
+<?php
+
+namespace Drupal\ai_social_posts\Hook;
+
+use Drupal\Core\Url;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+
+/**
+ * Hook implementations for ai_social_posts.
+ */
+class AiSocialPostsHooks {
+  use StringTranslationTrait;
+
+  /**
+   * Implements hook_help().
+   */
+  #[Hook('help')]
+  public function help($route_name, RouteMatchInterface $route_match) {
+    switch ($route_name) {
+      case 'help.page.ai_social_posts':
+        $output = '';
+        $output .= '<h2>' . $this->t('About') . '</h2>';
+        $output .= '<p>' . $this->t('The AI Social Posts module allows you to create and manage social media posts for various platforms. It provides a unified interface for generating, editing, and organizing content across multiple social networks.') . '</p>';
+        $output .= '<h2>' . $this->t('Uses') . '</h2>';
+        $output .= '<dl>';
+        $output .= '<dt>' . $this->t('Creating social posts') . '</dt>';
+        $output .= '<dd>' . $this->t('You can create new social posts by clicking <em>Add Social Post</em> on the <a href=":posts">Social Posts page</a>. Choose the type of social post you want to create from the available options.', [
+          ':posts' => Url::fromRoute('entity.ai_social_post.collection')->toString(),
+        ]) . '</dd>';
+        $output .= '<dt>' . $this->t('Managing post types') . '</dt>';
+        $output .= '<dd>' . $this->t('Different social post types can be configured at the <a href=":types">Social Post Types page</a>. Each type represents a different social media platform or format.', [
+          ':types' => Url::fromRoute('entity.ai_social_post_type.collection')->toString(),
+        ]) . '</dd>';
+        $output .= '<dt>' . $this->t('Integrating with content') . '</dt>';
+        $output .= '<dd>' . $this->t('Social posts can be associated with existing content on your site. Navigate to any content item to create related social posts that promote or share that content.') . '</dd>';
+        $output .= '</dl>';
+        return $output;
+
+      case 'ai_social_posts.ai_social_post_add':
+        $output = '<p>' . $this->t('AI Social Posts allow you to share content across different platforms. Each post can be customized with different fields to match your needs. You can customize these fields in the <a href=":admin_link">AI Social Posts settings</a>.', [
+          ':admin_link' => Url::fromRoute('ai_social_posts.ai_social_post_settings')->toString(),
+        ]) . '</p>';
+        return $output;
+
+      case 'entity.ai_social_post_type.collection':
+        $output = '<p>' . $this->t('Enable ready-made social post types by installing AI Social Post submodules on the <a href=":modules">Extend page</a>.', [
+          ':modules' => Url::fromRoute('system.modules_list')->toString(),
+        ]) . '</p>';
+        return $output;
+    }
+  }
+
+  /**
+   * @defgroup ai_social_posts Example: Content Entity
+   * @ingroup examples
+   * @{
+   * Implement a content entity.
+   *
+   * This module demonstrates implementing a content entity.
+   *
+   * Entity API is the API that stores pieces of content and configuration for
+   * Drupal core. For instance, if you've encountered node content types, you've
+   * encountered entities of type 'node.'
+   *
+   * This example implements the Entity API so that we have an entity type usable
+   * by the user which you might think of as specialized nodes, but which are
+   * different from nodes. These entities are called AiSocialPost, and are known
+   * internally by the machine name ai_social_post.
+   *
+   * AiSocialPost is a fieldable content entity used to hold structured
+   * information
+   * without the overhead of using a node content type. 'Fieldable' means you can
+   * attach fields to it, like you can with nodes. It is defined programmatically
+   * (completely in code). We will show the main techniques to handle and expose
+   * the contents of this entity type.
+   *
+   * The AiSocialPost entity will demonstrate the main tasks for an entity:
+   * - define
+   * - save
+   * - load
+   * - view
+   * - edit
+   * - delete
+   * - control access
+   *
+   * Where ever possible, we use the amazing tools built into D8 natively.
+   *
+   * @see Drupal\ai_social_posts\Entity\AiSocialPost
+   * @see config_entity_example
+   * }
+   */
+
+  /**
+   * Implements hook_theme().
+   */
+  #[Hook('theme')]
+  public function theme() {
+    return [
+      'ai_social_posts_node_ai_social_posts' => [
+        'variables' => [
+          'node' => NULL,
+          'form' => NULL,
+          'posts' => NULL,
+        ],
+      ],
+      'ai_social_posts_overview' => [
+        'variables' => [
+          'node' => NULL,
+        ],
+      ],
+      'ai_social_posts_bundle_tab' => [
+        'variables' => [
+          'node' => NULL,
+          'ai_social_posts' => NULL,
+          'bundle' => NULL,
+        ],
+      ],
+      'ai_social_post' => [
+        'render element' => 'elements',
+        'template' => 'ai-social-post',
+      ],
+    ];
+  }
+
+  /**
+   * Implements hook_menu_links_discovered_alter().
+   */
+  #[Hook('menu_links_discovered_alter')]
+  public function menuLinksDiscoveredAlter(&$links) {
+    // Load all social post types.
+    $post_types = \Drupal::entityTypeManager()->getStorage('ai_social_post_type')->loadMultiple();
+    // Create menu links for each post type directly under AI Social Posts.
+    foreach ($post_types as $type_id => $type) {
+      // Add a menu link for adding a new post of this type.
+      $links["ai_social_posts.add.{$type_id}"] = [
+        'title' => $this->t('Add @type', [
+          '@type' => $type->label(),
+        ]),
+        'route_name' => 'entity.ai_social_post.add_form',
+        'menu_name' => 'admin',
+        'parent' => 'entity.ai_social_post.collection',
+        'route_parameters' => [
+          'ai_social_post_type' => $type_id,
+        ],
+        'weight' => 0,
+      ];
+    }
+  }
+
+  /**
+   * Implements hook_local_tasks_alter().
+   */
+  #[Hook('local_tasks_alter')]
+  public function localTasksAlter(&$local_tasks) {
+    // We no longer need to create local tasks here as they are handled by
+    // the deriver. This was causing plugin exceptions because tasks were being
+    // created without proper class definitions.
+  }
+
+  /**
+   * Implements hook_entity_type_build().
+   */
+  #[Hook('entity_type_build')]
+  public function entityTypeBuild(array &$entity_types) {
+    /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+    if (isset($entity_types['ai_social_post'])) {
+      // Set the admin route for the entity type.
+      $entity_types['ai_social_post']->set('admin_permission', 'administer ai_social_post entity');
+      // Ensure all link templates are properly set.
+      $entity_types['ai_social_post']->setLinkTemplate('add-page', '/ai_social_post/add');
+      $entity_types['ai_social_post']->setLinkTemplate('collection', '/admin/content/ai-social-posts');
+      // Ensure all routes are marked as admin routes.
+      $entity_types['ai_social_post']->set('route_provider', [
+        'html' => 'Drupal\Core\Entity\Routing\AdminHtmlRouteProvider',
+      ]);
+    }
+  }
+
+  /**
+   * Implements hook_preprocess_breadcrumb().
+   */
+  #[Hook('preprocess_breadcrumb')]
+  public function preprocessBreadcrumb(&$variables) {
+    $route_match = \Drupal::routeMatch();
+    $route_name = $route_match->getRouteName();
+    // Handle AI Social Post routes.
+    if (strpos($route_name, 'entity.ai_social_post') === 0 || strpos($route_name, 'ai_social_posts.') === 0) {
+      // Get the current breadcrumb.
+      $breadcrumb = $variables['breadcrumb'];
+      // Handle entity forms.
+      $ai_social_post = $route_match->getParameter('ai_social_post');
+      if ($ai_social_post) {
+        $bundle = $ai_social_post->bundle();
+        $post_type = \Drupal::entityTypeManager()->getStorage('ai_social_post_type')->load($bundle);
+        if ($post_type) {
+          // Add the AI Social Posts link if it's not already there.
+          $has_social_posts_link = FALSE;
+          foreach ($breadcrumb as $link) {
+            if (isset($link['url']) && $link['url'] === '/admin/content/ai-social-posts') {
+              $has_social_posts_link = TRUE;
+              break;
+            }
+          }
+          if (!$has_social_posts_link) {
+            $breadcrumb[] = [
+              'text' => $this->t('AI Social Posts'),
+              'url' => '/admin/content/ai-social-posts',
+            ];
+          }
+          // For edit and delete forms, add the entity link.
+          if (in_array($route_name, [
+            'entity.ai_social_post.edit_form',
+            'entity.ai_social_post.delete_form',
+          ])) {
+            $breadcrumb[] = [
+              'text' => $this->t('Post #@id', [
+                '@id' => $ai_social_post->id(),
+              ]),
+              'url' => $ai_social_post->toUrl()->toString(),
+            ];
+          }
+          $variables['breadcrumb'] = $breadcrumb;
+        }
+      }
+      // Handle node bundle tabs.
+      if (strpos($route_name, 'ai_social_posts.node.') === 0 && strpos($route_name, '_posts') !== FALSE) {
+        $node = $route_match->getParameter('node');
+        $bundle = $route_match->getParameter('bundle');
+        if ($node) {
+          // Add the node link if it's not already there.
+          $has_node_link = FALSE;
+          foreach ($breadcrumb as $link) {
+            if (isset($link['url']) && strpos($link['url'], '/node/' . $node->id()) === 0) {
+              $has_node_link = TRUE;
+              break;
+            }
+          }
+          if (!$has_node_link) {
+            $breadcrumb[] = [
+              'text' => $node->label(),
+              'url' => $node->toUrl()->toString(),
+            ];
+          }
+          // Add the AI Social Posts link.
+          $breadcrumb[] = [
+            'text' => $this->t('AI Social Posts'),
+            'url' => '/node/' . $node->id() . '/ai-social-posts',
+          ];
+          // Add the bundle-specific link if we have a bundle.
+          if ($bundle) {
+            $post_type = \Drupal::entityTypeManager()->getStorage('ai_social_post_type')->load($bundle);
+            if ($post_type) {
+              $breadcrumb[] = [
+                'text' => $post_type->label(),
+              ];
+            }
+          }
+          $variables['breadcrumb'] = $breadcrumb;
+        }
+      }
+    }
+  }
+
+}

@@ -2,6 +2,8 @@
 
 namespace Drupal\Tests\ai_social_posts\Kernel;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Drupal\ai_social_posts\Entity\AiSocialPost;
 use Drupal\KernelTests\KernelTestBase;
 
@@ -13,6 +15,9 @@ use Drupal\KernelTests\KernelTestBase;
  *
  * @ingroup ai_social_posts
  */
+#[Group('ai_social_posts')]
+#[Group('examples')]
+#[RunTestsInSeparateProcesses]
 class AiSocialPostTest extends KernelTestBase {
 
   /**

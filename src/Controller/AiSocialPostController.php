@@ -2,6 +2,8 @@
 
 namespace Drupal\ai_social_posts\Controller;
 
+use Drupal\Component\Utility\DeprecationHelper;
+use Drupal\filter\FilterFormatRepositoryInterface;
 use Drupal\Core\Link;
 use Drupal\ai_social_posts\Entity\AiSocialPostType;
 use Drupal\Core\Controller\ControllerBase;
@@ -189,11 +191,11 @@ class AiSocialPostController extends ControllerBase {
             $text = [
               '#type' => 'processed_text',
               '#text' => $post->get('post')->value,
-              '#format' => $post->get('post')->format ?: filter_default_format(),
+              '#format' => $post->get('post')->format ?: DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.4.0', fn() => \Drupal::service(FilterFormatRepositoryInterface::class)->getDefaultFormat()->id(), fn() => filter_default_format()),
             ];
 
             // Render the text.
-            $rendered_text = $this->renderer->renderPlain($text);
+            $rendered_text = $this->renderer->renderInIsolation($text);
 
             return [
               'id' => [

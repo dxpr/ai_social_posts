@@ -2,6 +2,8 @@
 
 namespace Drupal\Tests\ai_social_posts\Functional;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -9,6 +11,8 @@ use Drupal\Tests\BrowserTestBase;
  *
  * @group ai_social_posts
  */
+#[Group('ai_social_posts')]
+#[RunTestsInSeparateProcesses]
 class AiSocialPostsTest extends BrowserTestBase {
 
   /**

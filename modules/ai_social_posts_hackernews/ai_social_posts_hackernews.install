@@ -2,6 +2,13 @@
 
 /**
  * @file
+ */
+
+use Drupal\Component\Utility\DeprecationHelper;
+use Drupal\Core\Extension\ModuleWeight;
+
+/**
+ * @file
  * Install, update and uninstall functions for the AI Social Posts Hacker News.
  */
 
@@ -10,7 +17,7 @@
  */
 function ai_social_posts_hackernews_install() {
   // Set the weight of this module higher than the ai_social_posts module.
-  module_set_weight('ai_social_posts_hackernews', 10);
+  DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.5.0', fn() => \Drupal::service(ModuleWeight::class)->set('ai_social_posts_hackernews', 10), fn() => module_set_weight('ai_social_posts_hackernews', 10));
 }
 
 /**
