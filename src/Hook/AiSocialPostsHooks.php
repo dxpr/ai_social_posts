@@ -2,6 +2,8 @@
 
 namespace Drupal\ai_social_posts\Hook;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
 use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Hook\Attribute\Hook;
@@ -12,6 +14,14 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  */
 class AiSocialPostsHooks {
   use StringTranslationTrait;
+
+  /**
+   * Constructs the hook service.
+   */
+  public function __construct(
+    protected EntityTypeManagerInterface $entityTypeManager,
+    protected RouteMatchInterface $routeMatch,
+  ) {}
 
   /**
    * Implements hook_help().
@@ -130,7 +140,7 @@ class AiSocialPostsHooks {
   #[Hook('menu_links_discovered_alter')]
   public function menuLinksDiscoveredAlter(&$links) {
     // Load all social post types.
-    $post_types = \Drupal::entityTypeManager()->getStorage('ai_social_post_type')->loadMultiple();
+    $post_types = $this->entityTypeManager->getStorage('ai_social_post_type')->loadMultiple();
     // Create menu links for each post type directly under AI Social Posts.
     foreach ($post_types as $type_id => $type) {
       // Add a menu link for adding a new post of this type.
@@ -183,7 +193,7 @@ class AiSocialPostsHooks {
    */
   #[Hook('preprocess_breadcrumb')]
   public function preprocessBreadcrumb(&$variables) {
-    $route_match = \Drupal::routeMatch();
+    $route_match = $this->routeMatch;
     $route_name = $route_match->getRouteName();
     // Handle AI Social Post routes.
     if (strpos($route_name, 'entity.ai_social_post') === 0 || strpos($route_name, 'ai_social_posts.') === 0) {
@@ -193,7 +203,7 @@ class AiSocialPostsHooks {
       $ai_social_post = $route_match->getParameter('ai_social_post');
       if ($ai_social_post) {
         $bundle = $ai_social_post->bundle();
-        $post_type = \Drupal::entityTypeManager()->getStorage('ai_social_post_type')->load($bundle);
+        $post_type = $this->entityTypeManager->getStorage('ai_social_post_type')->load($bundle);
         if ($post_type) {
           // Add the AI Social Posts link if it's not already there.
           $has_social_posts_link = FALSE;
@@ -250,7 +260,7 @@ class AiSocialPostsHooks {
           ];
           // Add the bundle-specific link if we have a bundle.
           if ($bundle) {
-            $post_type = \Drupal::entityTypeManager()->getStorage('ai_social_post_type')->load($bundle);
+            $post_type = $this->entityTypeManager->getStorage('ai_social_post_type')->load($bundle);
             if ($post_type) {
               $breadcrumb[] = [
                 'text' => $post_type->label(),
