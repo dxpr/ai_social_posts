@@ -1,0 +1,29 @@
+name: Drupal quality
+
+on: [pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  drupal-lint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Run drupal-lint
+        run: |
+          docker compose --profile lint run --rm drupal-lint
+
+  drupal-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Run drupal-check
+        run: |
+          docker compose --profile lint run --rm drupal-check
